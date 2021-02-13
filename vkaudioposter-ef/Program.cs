@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
+using System.Text;
 using Microsoft.EntityFrameworkCore;
-using vkaudioposter_ef.Entities;
+using vkaudioposter_ef.Model;
+
 
 namespace vkaudioposter_ef
 {
@@ -9,48 +11,69 @@ namespace vkaudioposter_ef
     {
         static void Main(string[] args)
         {
-            DotNetEnv.Env.TraversePath().Load();
-            // добавление данных
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                Playlist playlist1 = new Playlist { Playlist_ID = "spoty:1221214", Playlist_Name = "Metall" };
-                Playlist playlist2 = new Playlist { Playlist_ID = "spoty:93203523", Playlist_Name = "Club" };
+            InsertData();
+            PrintData();
+        }
 
-                db.Playlists.AddRange(playlist1, playlist2);
-                db.SaveChanges();
-            }
-            // получение данных
-            using (ApplicationContext db = new ApplicationContext())
+
+        private static void InsertData()
+        {
+            using (var context = new PlaylistContext())
             {
-                var playlists = db.Playlists.ToList();
-                Console.WriteLine("Список объектов:");
-                foreach (Playlist p in playlists)
+                // Creates the database if not exists
+                context.Database.EnsureCreated();
+
+                // Adds a publisher
+                var playlist = new Playlist
                 {
-                    Console.WriteLine($"{p.id}.{p.Playlist_ID} - {p.Playlist_Name}");
+                    Playlist_ID = "spoty:134636",
+                    Playlist_Name = "Club Hits"
+                };
+                context.Playlists.Add(playlist);
+
+                //// Adds some books
+                //context.Book.Add(new Book
+                //{
+                //    ISBN = "978-0544003415",
+                //    Title = "The Lord of the Rings",
+                //    Author = "J.R.R. Tolkien",
+                //    Language = "English",
+                //    Pages = 1216,
+                //    Publisher = publisher
+                //});
+                //context.Book.Add(new Book
+                //{
+                //    ISBN = "978-0547247762",
+                //    Title = "The Sealed Letter",
+                //    Author = "Emma Donoghue",
+                //    Language = "English",
+                //    Pages = 416,
+                //    Publisher = publisher
+                //});
+
+                // Saves changes
+                context.SaveChanges();
+            }
+        }
+
+        private static void PrintData()
+        {
+            // Gets and prints all books in database
+            using (var context = new PlaylistContext())
+            {
+                //var books = context.Book
+                //  .Include(p => p.Publisher);
+
+                var playlists = context.Playlists;
+
+                foreach (var playlist in playlists)
+                {
+                    var data = new StringBuilder();
+                    data.AppendLine($"ID: {playlist.Playlist_ID}");
+                    data.AppendLine($"Name: {playlist.Playlist_Name}");
+                    Console.WriteLine(data.ToString());
                 }
             }
-        }
-    }
-    public class ApplicationContext : DbContext
-    {
-        public DbSet<Playlist> Playlists { get; set; }
-
-        public ApplicationContext()
-        {
-            Database.EnsureCreated();
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            var server = DotNetEnv.Env.GetString("SERVER");
-            var user = DotNetEnv.Env.GetString("USER");
-            var pass = DotNetEnv.Env.GetString("PASSWORD");
-            var db = DotNetEnv.Env.GetString("DATABASE");
-
-            optionsBuilder.UseMySql(
-                "server="+ server + ";user="+ user + ";password="+ pass + ";database="+ db + ";",
-                new MySqlServerVersion(new Version(8, 0, 11))
-            );
         }
     }
 }

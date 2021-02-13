@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace vkaudioposter_ef.Entities
+namespace vkaudioposter_ef.Model
 {
     public class Playlist
     {

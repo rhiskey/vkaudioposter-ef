@@ -2,7 +2,8 @@
 using System.Linq;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
-using vkaudioposter_ef.Model;
+using vkaudioposter_ef.parser;
+//using vkaudioposter_ef.Model;
 
 
 namespace vkaudioposter_ef
@@ -20,16 +21,24 @@ namespace vkaudioposter_ef
         {
             using (var context = new PlaylistContext())
             {
+                context.Database.EnsureDeleted();
                 // Creates the database if not exists
                 context.Database.EnsureCreated();
 
-                // Adds a publisher
-                var playlist = new Playlist
-                {
-                    Playlist_ID = "spoty:134636",
-                    Playlist_Name = "Club Hits"
-                };
-                context.Playlists.Add(playlist);
+                var p1= new Playlist{ PlaylistId = "spoty:134636", PlaylistName = "Club Hits"};
+                var p2 = new Playlist { PlaylistId = "spoty:13463145", PlaylistName = "Metall Charhe" };
+                context.Playlists.AddRange(p1, p2);
+                //context.Playlists.Add(playlist);
+
+                context.Database.ExecuteSqlRaw(@"CREATE 
+                                            VIEW parser_ef.vw_all_playlists AS 
+                                            SELECT `Playlists`.`id` AS `id`
+                                            `Playlists`.`Playlist_ID` AS `Playlist_ID`, 
+                                            `Playlists`.`Playlist_Name` AS `Playlist_Name`,
+                                            `Playlists `.`Mood` AS `Mood`,
+                                            FROM Playlists
+                                            ORDER BY `Playlists`.`Mood`, `Playlists`.`Playlist_Name`
+                                              ");
 
                 //// Adds some books
                 //context.Book.Add(new Book
@@ -58,19 +67,18 @@ namespace vkaudioposter_ef
 
         private static void PrintData()
         {
-            // Gets and prints all books in database
             using (var context = new PlaylistContext())
             {
                 //var books = context.Book
                 //  .Include(p => p.Publisher);
 
-                var playlists = context.Playlists;
+                var playlists = context.AllPlaylists;
 
                 foreach (var playlist in playlists)
                 {
                     var data = new StringBuilder();
-                    data.AppendLine($"ID: {playlist.Playlist_ID}");
-                    data.AppendLine($"Name: {playlist.Playlist_Name}");
+                    data.AppendLine($"ID: {playlist.PlaylistId}");
+                    data.AppendLine($"Name: {playlist.PlaylistName}");
                     Console.WriteLine(data.ToString());
                 }
             }

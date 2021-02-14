@@ -7,7 +7,15 @@ using System.Text;
 
 namespace vkaudioposter_ef.Model
 {
-    public class Playlist
+    public class Playlist:AllPlaylists
+    {
+        //public new int Id { get; set; }
+        //public new string Playlist_ID { get; set; }
+        //public new string Playlist_Name { get; set; }
+        public int Mood { get; set; }
+    }
+
+    public abstract class AllPlaylists
     {
         [Column("id")]
         public int Id { get; set; }
@@ -22,6 +30,5 @@ namespace vkaudioposter_ef.Model
         [MaxLength(50)]
         [Comment("Name of playlist")]
         public string Playlist_Name { get; set; }
-        public int Mood { get; set; }
     }
 }

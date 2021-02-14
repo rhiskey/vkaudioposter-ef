@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using vkaudioposter_ef.Model;
+using vkaudioposter_ef.parser;
+//using vkaudioposter_ef.Model;
 //using MySQL.EntityFrameworkCore.Extensions;
 
 
@@ -9,9 +10,10 @@ namespace vkaudioposter_ef
     {
         public DbSet<Playlist> Playlists { get; set; }
 
+        public DbSet<VwAllPlaylist> AllPlaylists{ get; set; }
         //public DbSet<Publisher> Publisher { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             DotNetEnv.Env.TraversePath().Load();
 
@@ -28,13 +30,19 @@ namespace vkaudioposter_ef
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Playlist>(entity =>
-            {
-                entity.HasKey(e => e.Id);
-                entity.Property(e => e.Playlist_ID).IsRequired();
-                entity.Property(e => e.Playlist_Name).IsRequired();
+            //modelBuilder.Entity<Playlist>(entity =>
+            //{
+            //    entity.HasKey(e => e.Id);
+            //    entity.Property(e => e.Playlist_ID).IsRequired();
+            //    entity.Property(e => e.Playlist_Name).IsRequired();
 
-            });
+            //});
+
+            modelBuilder.Entity<VwAllPlaylist>((ap =>
+            {
+                //ap.HasKey(e => e.Id);
+                ap.ToView("vw_all_playlists");
+            }));
 
             //modelBuilder.Entity<Book>(entity =>
             //{

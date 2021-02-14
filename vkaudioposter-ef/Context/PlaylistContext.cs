@@ -30,9 +30,10 @@ namespace vkaudioposter_ef
 
             modelBuilder.Entity<Playlist>(entity =>
             {
-                entity.HasKey(e => e.id);
+                entity.HasKey(e => e.Id);
                 entity.Property(e => e.Playlist_ID).IsRequired();
                 entity.Property(e => e.Playlist_Name).IsRequired();
+
             });
 
             //modelBuilder.Entity<Book>(entity =>

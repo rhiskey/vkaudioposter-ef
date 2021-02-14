@@ -1,13 +1,26 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace vkaudioposter_ef.Model
 {
     public class Playlist
     {
-        public int id { get; set; }
+        [Column("id")]
+        public int Id { get; set; }
+
+        [Required]
+        [Column(TypeName = "varchar(45)")]
+        [MaxLength(45)]
+        [Comment("Spotify URI")]
         public string Playlist_ID { get; set; }
+        [Required]
+        [Column(TypeName = "varchar(50)")]
+        [MaxLength(50)]
+        [Comment("Name of playlist")]
         public string Playlist_Name { get; set; }
         public int Mood { get; set; }
     }

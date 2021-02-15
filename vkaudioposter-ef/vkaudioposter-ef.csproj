@@ -7,18 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="parser\**" />
+    <EmbeddedResource Remove="parser\**" />
+    <None Remove="parser\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Model\PlaylistsModel.cs" />
-    <Compile Remove="parser\parserContext.cs" />
-    <Compile Remove="parser\PlaylistsAll.cs" />
-    <Compile Remove="parser\VwAllPlaylist.cs" />
-    <Compile Remove="parser\VwGetAllPostedTrack.cs" />
-    <Compile Remove="parser\VwLastAddedTrack.cs" />
-    <Compile Remove="parser\VwLastPostedTrack.cs" />
-    <Compile Remove="parser\VwLastPublishedTrack.cs" />
-    <Compile Remove="parser\VwLoadPhotostocksFromDb.cs" />
-    <Compile Remove="parser\VwMakeGenresFromDb.cs" />
-    <Compile Remove="parser\VwPostedTracksCount.cs" />
-    <Compile Remove="parser\VwSelectDateFromPostedTrack.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -41,10 +36,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="MySql.EntityFrameworkCore" Version="5.0.0-m8.0.23" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="parser\" />
   </ItemGroup>
 
 </Project>

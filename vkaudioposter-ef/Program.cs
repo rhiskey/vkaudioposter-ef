@@ -13,74 +13,93 @@ namespace vkaudioposter_ef
         static void Main(string[] args)
         {
             InsertData();
-            PrintData();
+            PrintDataAsync();
         }
 
-
+        // Seed
         private static void InsertData()
         {
-            using (var context = new PlaylistContext())
+            using (var context = new AppContext())
             {
                 context.Database.EnsureDeleted();
+
                 // Creates the database if not exists
                 context.Database.EnsureCreated();
 
-                var p1= new Playlist{ PlaylistId = "spoty:134636", PlaylistName = "Club Hits"};
-                var p2 = new Playlist { PlaylistId = "spoty:13463145", PlaylistName = "Metall Charhe" };
+                var p1 = new Playlist { PlaylistId = "spoty:134636", PlaylistName = "Club Hits" };
+                var p2 = new Playlist { PlaylistId = "spoty:13463145", PlaylistName = "Metall Charge" };
                 context.Playlists.AddRange(p1, p2);
-                //context.Playlists.Add(playlist);
 
-                context.Database.ExecuteSqlRaw(@"CREATE 
-                                            VIEW parser_ef.vw_all_playlists AS 
-                                            SELECT `Playlists`.`id` AS `id`
-                                            `Playlists`.`Playlist_ID` AS `Playlist_ID`, 
-                                            `Playlists`.`Playlist_Name` AS `Playlist_Name`,
-                                            `Playlists `.`Mood` AS `Mood`,
-                                            FROM Playlists
-                                            ORDER BY `Playlists`.`Mood`, `Playlists`.`Playlist_Name`
-                                              ");
+                var cp1 = new ConsolePhotostock { Url = "https://devianart.com/topic" };
+                context.Photostocks.Add(cp1);
 
-                //// Adds some books
-                //context.Book.Add(new Book
-                //{
-                //    ISBN = "978-0544003415",
-                //    Title = "The Lord of the Rings",
-                //    Author = "J.R.R. Tolkien",
-                //    Language = "English",
-                //    Pages = 1216,
-                //    Publisher = publisher
-                //});
-                //context.Book.Add(new Book
-                //{
-                //    ISBN = "978-0547247762",
-                //    Title = "The Sealed Letter",
-                //    Author = "Emma Donoghue",
-                //    Language = "English",
-                //    Pages = 416,
-                //    Publisher = publisher
-                //});
+                var pt1 = new PostedTrack { 
+                    Trackname = "Martin Garrix - Animals", 
+                    Date = DateTime.Now, 
+                    Playlist = p1 
+                };
+                var pt2 = new PostedTrack { 
+                    Trackname = "Disturbed - Silence", 
+                    Date = DateTime.Now, 
+                    Playlist = p2
+                };
+                context.PostedTracks.AddRange(pt1, pt2);
+
+                var ut1 = new UnfoundTrack { Trackname = "CPMG - Dddl", Playlist = p1 };
+                var ut2 = new UnfoundTrack { Trackname = "AC/DC - Thunderstruck", Playlist = p2 };
+                context.UnfoundTracks.AddRange(ut1, ut2);
+
+                //context.Database.ExecuteSqlRaw(@"CREATE 
+                //                            VIEW parser_ef.vw_all_playlists AS 
+                //                            SELECT `Playlists`.`id` AS `id`
+                //                            `Playlists`.`Playlist_ID` AS `Playlist_ID`, 
+                //                            `Playlists`.`Playlist_Name` AS `Playlist_Name`,
+                //                            `Playlists `.`Mood` AS `Mood`,
+                //                            FROM Playlists
+                //                            ORDER BY `Playlists`.`Mood`, `Playlists`.`Playlist_Name`
+                //                              ");
+
 
                 // Saves changes
                 context.SaveChanges();
             }
         }
 
-        private static void PrintData()
+        private static async System.Threading.Tasks.Task PrintDataAsync()
         {
-            using (var context = new PlaylistContext())
+            using (var context = new AppContext())
             {
-                //var books = context.Book
-                //  .Include(p => p.Publisher);
+                var playlists = await context.Playlists.ToListAsync();
 
-                var playlists = context.AllPlaylists;
-
-                foreach (var playlist in playlists)
+                var postedTracks = context.PostedTracks.Include(p => p.Playlist);
+                foreach (var track in postedTracks)
                 {
                     var data = new StringBuilder();
-                    data.AppendLine($"ID: {playlist.PlaylistId}");
-                    data.AppendLine($"Name: {playlist.PlaylistName}");
+                    data.AppendLine("Found Tracks:");
+                    data.AppendLine($"ID: {track.Id}");
+                    data.AppendLine($"Name: {track.Trackname}");
+                    data.AppendLine($"Playlist: {track.Playlist.PlaylistName}");
                     Console.WriteLine(data.ToString());
                 }
+
+                var unfoundTracks = context.UnfoundTracks.Include(p => p.Playlist);
+                foreach (var track in unfoundTracks)
+                {                
+                    var data = new StringBuilder();
+                    data.AppendLine("Unfound Tracks:");
+                    data.AppendLine($"ID: {track.Id}");
+                    data.AppendLine($"Name: {track.Trackname}");
+                    data.AppendLine($"Playlist: {track.Playlist.PlaylistName}");
+                    Console.WriteLine(data.ToString());
+                }
+
+                //foreach (var playlist in playlists)
+                //{
+                //    var data = new StringBuilder();
+                //    data.AppendLine($"ID: {playlist.PlaylistId}");
+                //    data.AppendLine($"Name: {playlist.PlaylistName}");
+                //    Console.WriteLine(data.ToString());
+                //}
             }
         }
     }

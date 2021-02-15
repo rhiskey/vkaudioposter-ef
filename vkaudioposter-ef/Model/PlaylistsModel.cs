@@ -7,11 +7,21 @@ using System.Text;
 
 namespace vkaudioposter_ef.Model
 {
-    public class Playlist:AllPlaylists
+    public class Playlist
     {
-        //public new int Id { get; set; }
-        //public new string Playlist_ID { get; set; }
-        //public new string Playlist_Name { get; set; }
+        [Key]
+        [Column("id")]
+        public int Id { get; set; }
+        [Required]
+        [Column(TypeName = "varchar(45)")]
+        [MaxLength(45)]
+        [Comment("Spotify URI")]
+        public string Playlist_ID { get; set; }
+        [Required]
+        [Column(TypeName = "varchar(50)")]
+        [MaxLength(50)]
+        [Comment("Name of playlist")]
+        public string Playlist_Name { get; set; }
         public int Mood { get; set; }
     }
 

@@ -18,12 +18,9 @@ namespace vkaudioposter_ef.parser
         }
 
         public virtual DbSet<ConsolePhotostock> ConsolePhotostocks { get; set; }
-        public virtual DbSet<Photostock> Photostocks { get; set; }
         public virtual DbSet<Playlist> Playlists { get; set; }
         public virtual DbSet<PlaylistsAll> PlaylistsAlls { get; set; }
-        public virtual DbSet<PlaylistsBackupWithBeatport> PlaylistsBackupWithBeatports { get; set; }
         public virtual DbSet<PostedTrack> PostedTracks { get; set; }
-        public virtual DbSet<PostedTracksArchive> PostedTracksArchives { get; set; }
         public virtual DbSet<UnfoundTrack> UnfoundTracks { get; set; }
         public virtual DbSet<VwAllPlaylist> VwAllPlaylists { get; set; }
         public virtual DbSet<VwGetAllPostedTrack> VwGetAllPostedTracks { get; set; }
@@ -66,22 +63,6 @@ namespace vkaudioposter_ef.parser
                     .HasColumnName("URL");
             });
 
-
-
-            modelBuilder.Entity<Photostock>(entity =>
-            {
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.PhotostockName)
-                    .IsRequired()
-                    .HasMaxLength(100)
-                    .HasColumnName("Photostock_Name");
-
-                entity.Property(e => e.PhotostockUrl)
-                    .IsRequired()
-                    .HasMaxLength(1000)
-                    .HasColumnName("Photostock_Url");
-            });
 
             modelBuilder.Entity<Playlist>(entity =>
             {
@@ -137,32 +118,6 @@ namespace vkaudioposter_ef.parser
                     .HasColumnName("Playlist_Name");
             });
 
-            modelBuilder.Entity<PlaylistsBackupWithBeatport>(entity =>
-            {
-                entity.ToTable("Playlists_backup_withBeatport");
-
-                entity.HasIndex(e => e.PlaylistName, "Playlist_Name")
-                    .IsUnique();
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Photostock).HasMaxLength(100);
-
-                entity.Property(e => e.PlaylistAuthor)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .HasColumnName("Playlist_Author");
-
-                entity.Property(e => e.PlaylistId)
-                    .IsRequired()
-                    .HasMaxLength(45)
-                    .HasColumnName("Playlist_ID");
-
-                entity.Property(e => e.PlaylistName)
-                    .IsRequired()
-                    .HasMaxLength(50)
-                    .HasColumnName("Playlist_Name");
-            });
 
             modelBuilder.Entity<PostedTrack>(entity =>
             {
@@ -174,27 +129,12 @@ namespace vkaudioposter_ef.parser
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Style)
-                    .IsRequired()
+                    //.IsRequired()
                     .HasMaxLength(50);
 
                 entity.Property(e => e.Trackname)
                     .IsRequired()
                     .HasMaxLength(150);
-            });
-
-            modelBuilder.Entity<PostedTracksArchive>(entity =>
-            {
-                entity.ToTable("PostedTracks_archive");
-
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Style)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.Trackname)
-                    .IsRequired()
-                    .HasMaxLength(100);
             });
 
 
@@ -206,7 +146,7 @@ namespace vkaudioposter_ef.parser
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Style)
-                    .IsRequired()
+                    //.IsRequired()
                     .HasMaxLength(50)
                     .HasColumnName("style");
 

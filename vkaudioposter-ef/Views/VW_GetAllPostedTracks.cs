@@ -6,9 +6,9 @@ using System.Text;
 
 namespace vkaudioposter_ef.Views
 {
-    public class VW_MakeGenres
+    public class VW_GetAllPostedTracks : IView
     {
-        public static void CreateMakeGenres()
+        public void CreateView()
         {
             MySqlConnection conn = new MySqlConnection();
             conn.ConnectionString = Program.connStr;
@@ -19,13 +19,14 @@ namespace vkaudioposter_ef.Views
                 Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
                 cmd.Connection = conn;
-                cmd.CommandText = "DROP VIEW IF EXISTS vw_make_genres_fromDB";
+                cmd.CommandText = "DROP VIEW IF EXISTS vw_get_all_posted_tracks";
                 cmd.ExecuteNonQuery();
 
-                cmd.CommandText = "CREATE VIEW vw_make_genres_fromDB AS " +
+                cmd.CommandText = "CREATE VIEW vw_get_all_posted_tracks AS " +
                     "SELECT * " +
-                    "FROM Playlists "+
-                    "ORDER BY Playlists.Mood , Playlists.Playlist_Name";
+                    "FROM PostedTracks " +
+                    "ORDER BY PostedTracks.Date DESC " +
+                    "LIMIT 100";
 
                 cmd.ExecuteNonQuery();
             }
@@ -36,7 +37,13 @@ namespace vkaudioposter_ef.Views
             conn.Close();
             Console.WriteLine("Connection closed.");
 
-            //Test
+        }
+
+        public void TestView()
+        {
+            MySqlConnection conn = new MySqlConnection();
+            conn.ConnectionString = Program.connStr;
+            MySqlCommand cmd = new MySqlCommand();
             try
             {
                 StringBuilder output = new StringBuilder();
@@ -44,32 +51,33 @@ namespace vkaudioposter_ef.Views
                 conn.Open();
                 cmd.Connection = conn;
 
-                cmd.CommandText = "SELECT * FROM vw_make_genres_fromDB;";
+                cmd.CommandText = "SELECT * FROM vw_get_all_posted_tracks;";
                 cmd.CommandType = CommandType.Text;
 
-                //cmd.ExecuteNonQuery();
                 var reader = cmd.ExecuteReader();
 
                 var ordinalPK = reader.GetOrdinal("id");
-                var ordinalID = reader.GetOrdinal("Playlist_ID");
-                var ordinalName = reader.GetOrdinal("Playlist_Name");
-                //var ordinalAuthor = reader.GetOrdinal("Playlist_Author");
+                var ordinalStyle = reader.GetOrdinal("Style");
+                var ordinalName = reader.GetOrdinal("Trackname");
+                var ordinalDate = reader.GetOrdinal("Date");
+   
                 while (reader.Read())
                 {
-                    if (reader.GetValue(ordinalID).ToString() != "\u0000") 
+                    if (reader.GetValue(ordinalName).ToString() != "\u0000")
                     {
-                        if (reader.IsDBNull(ordinalID) || reader.IsDBNull(ordinalName))
-                        {                         
+                        if (reader.IsDBNull(ordinalName) || reader.IsDBNull(ordinalDate) || reader.IsDBNull(ordinalStyle))
+                        {
                             throw new Exception("returned NULL from Table");
                         }
                         else
                         {
                             var val1 = reader.GetValue(ordinalPK); //ID
                             var val2 = reader.GetValue(ordinalName); //Name        
-                            //var PlAuthor = reader.GetValue(ordinalAuthor); //Author
-                            var plId = reader.GetValue(ordinalID).ToString();
+                            var date = reader.GetValue(ordinalDate).ToString();
+                            var plId = reader.GetValue(ordinalStyle).ToString();
+                            
                             var plName = reader.GetValue(ordinalName).ToString();
-                            output.AppendLine($" {plId} - {plName}");
+                            output.AppendLine($" {plId} - {date} - {plName}");
                         }
                     }
                 }
@@ -82,6 +90,7 @@ namespace vkaudioposter_ef.Views
             }
             conn.Close();
             Console.WriteLine("Done.");
+
         }
     }
 }

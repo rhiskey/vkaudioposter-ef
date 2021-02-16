@@ -7,9 +7,9 @@ using vkaudioposter_ef;
 
 namespace vkaudioposter_ef.StoredProcedures
 {
-    public class SP_PostedTracks
+    public class SP_InsertFoundTrack: IStoredProcedure
     {
-        public static void CreateInsertFoundTrack()
+        public void CreateProcedure()
         {
             MySqlConnection conn = new MySqlConnection();
             conn.ConnectionString = Program.connStr;
@@ -23,14 +23,13 @@ namespace vkaudioposter_ef.StoredProcedures
                 cmd.CommandText = "DROP PROCEDURE IF EXISTS sp_insert_found_track";
                 cmd.ExecuteNonQuery();
 
-                //cmd.CommandText = "DROP TABLE IF EXISTS emp";
-                //cmd.ExecuteNonQuery();
-                //cmd.CommandText = "CREATE TABLE emp (empno INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(20), last_name VARCHAR(20), birthdate DATE)";
-                //cmd.ExecuteNonQuery();
 
                 cmd.CommandText = "CREATE PROCEDURE sp_insert_found_track(" +
-                                   "IN trackname VARCHAR(150), IN style VARCHAR(50), IN dateT DATETIME, IN playlist INT)" +
-                                   "BEGIN INSERT INTO PostedTracks(Trackname, Style, Date, PlaylistId) values(trackname, style, dateT, playlist);END";
+                                   "IN in_trackname VARCHAR(150), IN in_style VARCHAR(50), IN in_dateT DATETIME, IN in_playlist INT" +
+                                   ")" +
+                                   "BEGIN " +
+                                   "INSERT INTO PostedTracks(Trackname, Style, Date, PlaylistId) values(in_trackname, in_style, in_dateT, in_playlist);" +
+                                   "END";
 
                 cmd.ExecuteNonQuery();
             }
@@ -40,8 +39,15 @@ namespace vkaudioposter_ef.StoredProcedures
             }
             conn.Close();
             Console.WriteLine("Connection closed.");
+        }
 
-            //Test
+
+        public void TestProcedure(string trackname, string style, DateTime? date, int? playlistID)
+        {
+            MySqlConnection conn = new MySqlConnection();
+            conn.ConnectionString = Program.connStr;
+            MySqlCommand cmd = new MySqlCommand();
+ 
             try
             {
                 Console.WriteLine("Connecting to MySQL...");
@@ -51,22 +57,22 @@ namespace vkaudioposter_ef.StoredProcedures
                 cmd.CommandText = "sp_insert_found_track";
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@trackname", "KVPV - Test Track");
-                cmd.Parameters["@trackname"].Direction = ParameterDirection.Input;
+                cmd.Parameters.AddWithValue("@in_trackname", trackname);
+                cmd.Parameters["@in_trackname"].Direction = ParameterDirection.Input;
 
-                cmd.Parameters.AddWithValue("@style", "");
-                cmd.Parameters["@style"].Direction = ParameterDirection.Input;
+                cmd.Parameters.AddWithValue("@in_style", style);
+                cmd.Parameters["@in_style"].Direction = ParameterDirection.Input;
 
-                cmd.Parameters.AddWithValue("@dateT", "2021-02-16 02:45:00");
-                cmd.Parameters["@dateT"].Direction = ParameterDirection.Input;
+                cmd.Parameters.AddWithValue("@in_dateT", date);
+                cmd.Parameters["@in_dateT"].Direction = ParameterDirection.Input;
 
-                cmd.Parameters.AddWithValue("playlist", 2);
-                cmd.Parameters["playlist"].Direction = ParameterDirection.Input;
+                cmd.Parameters.AddWithValue("in_playlist", playlistID);
+                cmd.Parameters["in_playlist"].Direction = ParameterDirection.Input;
 
                 cmd.ExecuteNonQuery();
 
-                Console.WriteLine("Track name: " + cmd.Parameters["@trackname"].Value);
-                Console.WriteLine("Date: " + cmd.Parameters["@dateT"].Value);
+                Console.WriteLine("Track name: " + cmd.Parameters["@in_trackname"].Value);
+                Console.WriteLine("Date: " + cmd.Parameters["@in_dateT"].Value);
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {

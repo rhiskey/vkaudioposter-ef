@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using vkaudioposter_ef.Functions;
 using vkaudioposter_ef.parser;
 //using vkaudioposter_ef.Model;
 using vkaudioposter_ef.StoredProcedures;
@@ -84,9 +85,41 @@ namespace vkaudioposter_ef
         }
 
         private static void CreateSPandVw()
-        {
-            SP_PostedTracks.CreateInsertFoundTrack();
-            VW_MakeGenres.CreateMakeGenres();
+        {          
+            SP_CheckTrackInPosted cTIP = new SP_CheckTrackInPosted();
+
+            SP_CheckTrackInUnfound cTIU = new SP_CheckTrackInUnfound();
+
+            SP_InsertFoundTrack iFT = new SP_InsertFoundTrack();
+            iFT.CreateProcedure();
+            iFT.TestProcedure("AC/DC - Highway To Hell2", null, DateTime.Now, 2);
+
+            SP_InsertUnfoundTrack iUT = new SP_InsertUnfoundTrack();
+
+            SP_SelectAllPostedTracksByStyle sAPTBS = new SP_SelectAllPostedTracksByStyle();
+
+            SP_SelectUnfoundTracksByStyle sUTBS = new SP_SelectUnfoundTracksByStyle();
+
+            VW_AllPlaylists aP = new VW_AllPlaylists();
+
+            VW_GetAllPostedTracks gAPT = new VW_GetAllPostedTracks();
+
+            VW_LastAddedTrack lAT = new VW_LastAddedTrack();
+
+            VW_LastPostedTrack lPT = new VW_LastPostedTrack();
+
+            VW_LastPublishedTracks lPTs = new VW_LastPublishedTracks();
+
+            VW_MakeGenresFromDB mG = new VW_MakeGenresFromDB();
+            mG.CreateView();
+            mG.TestView();
+
+            VW_PostedTracksCount pTC = new VW_PostedTracksCount();
+
+            VW_StyleCountChart sCS = new VW_StyleCountChart();
+
+            FUNC_GetLastDateFromPostedTracks gLDFPT = new FUNC_GetLastDateFromPostedTracks();
+
         }
 
         private static async System.Threading.Tasks.Task PrintDataAsync()

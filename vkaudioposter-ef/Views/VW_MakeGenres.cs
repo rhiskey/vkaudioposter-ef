@@ -10,15 +10,8 @@ namespace vkaudioposter_ef.Views
     {
         public static void CreateMakeGenres()
         {
-            DotNetEnv.Env.TraversePath().Load();
-
-            var server = DotNetEnv.Env.GetString("SERVER");
-            var user = DotNetEnv.Env.GetString("USER");
-            var pass = DotNetEnv.Env.GetString("PASSWORD");
-            var db = DotNetEnv.Env.GetString("DATABASE");
-
             MySqlConnection conn = new MySqlConnection();
-            conn.ConnectionString = "server=" + server + ";user=" + user + ";database=" + db + ";port=3306;password=" + pass + "";
+            conn.ConnectionString = Program.connStr;
             MySqlCommand cmd = new MySqlCommand();
 
             try

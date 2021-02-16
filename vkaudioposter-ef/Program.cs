@@ -9,13 +9,30 @@ using vkaudioposter_ef.Views;
 
 namespace vkaudioposter_ef
 {
-    class Program
+    public class Program
     {
+        public static string server;
+        public static string user;
+        public static string pass;
+        public static string db;
+        public static string connStr;
+
+        private static void LoadConfig()
+        {
+            DotNetEnv.Env.TraversePath().Load();
+            server = DotNetEnv.Env.GetString("SERVER");
+            user = DotNetEnv.Env.GetString("USER");
+            pass = DotNetEnv.Env.GetString("PASSWORD");
+            db = DotNetEnv.Env.GetString("DATABASE");
+            connStr = "server=" + server + ";user=" + user + ";database=" + db + ";port=3306;password=" + pass + "";
+        }
         static void Main(string[] args)
         {
+            LoadConfig();
+
             InsertData();
             CreateSPandVw();
-            PrintDataAsync();
+            //PrintDataAsync();
         }
 
         // Seed
@@ -28,27 +45,31 @@ namespace vkaudioposter_ef
                 // Creates the database if not exists
                 context.Database.EnsureCreated();
 
-                var p1 = new Playlist { 
-                    PlaylistId = "spoty:134636", 
-                    PlaylistName = "Club Hits" 
+                var p1 = new Playlist
+                {
+                    PlaylistId = "spoty:134636",
+                    PlaylistName = "Club Hits"
                 };
-                var p2 = new Playlist { 
-                    PlaylistId = "spoty:13463145", 
-                    PlaylistName = "Metall Charge" 
+                var p2 = new Playlist
+                {
+                    PlaylistId = "spoty:13463145",
+                    PlaylistName = "Metall Charge"
                 };
                 context.Playlists.AddRange(p1, p2);
 
                 var cp1 = new ConsolePhotostock { Url = "https://devianart.com/topic" };
                 context.Photostocks.Add(cp1);
 
-                var pt1 = new PostedTrack { 
-                    Trackname = "Martin Garrix - Animals", 
-                    Date = DateTime.Now, 
-                    Playlist = p1 
+                var pt1 = new PostedTrack
+                {
+                    Trackname = "Martin Garrix - Animals",
+                    Date = DateTime.Now,
+                    Playlist = p1
                 };
-                var pt2 = new PostedTrack { 
-                    Trackname = "Disturbed - Silence", 
-                    Date = DateTime.Now, 
+                var pt2 = new PostedTrack
+                {
+                    Trackname = "Disturbed - Silence",
+                    Date = DateTime.Now,
                     Playlist = p2
                 };
                 context.PostedTracks.AddRange(pt1, pt2);
@@ -96,7 +117,7 @@ namespace vkaudioposter_ef
                 var unfoundTracks = context.UnfoundTracks.Include(p => p.Playlist);
                 Console.WriteLine("----------Unfound Tracks:---------");
                 foreach (var track in unfoundTracks)
-                {                
+                {
                     var data = new StringBuilder();
                     data.AppendLine($"ID: {track.Id}");
                     data.AppendLine($"Name: {track.Trackname}");

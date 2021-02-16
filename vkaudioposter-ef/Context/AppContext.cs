@@ -24,18 +24,11 @@ namespace vkaudioposter_ef
         public virtual DbSet<PostedTrack> PostedTracks { get; set; }
         public virtual DbSet<UnfoundTrack> UnfoundTracks { get; set; }
 
-        public string server;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            DotNetEnv.Env.TraversePath().Load();
 
-            var server = DotNetEnv.Env.GetString("SERVER");
-            var user = DotNetEnv.Env.GetString("USER");
-            var pass = DotNetEnv.Env.GetString("PASSWORD");
-            var db = DotNetEnv.Env.GetString("DATABASE");
-
-            optionsBuilder.UseMySQL("server=" + server + ";user=" + user + ";password=" + pass + ";database=" + db + ";");
+            optionsBuilder.UseMySQL("server=" + Program.server + ";user=" + Program.user + ";password=" + Program.pass + ";database=" + Program.db + ";");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

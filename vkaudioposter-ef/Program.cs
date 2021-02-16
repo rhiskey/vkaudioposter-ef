@@ -56,7 +56,8 @@ namespace vkaudioposter_ef
                 context.UnfoundTracks.AddRange(ut1, ut2);
 
 
-                StoredProcedures.StoredProcedures.CreateInsertFoundTrack();
+                StoredProcedures.SP_PostedTracks.CreateInsertFoundTrack();
+                Views.VW_MakeGenres.CreateMakeGenres();
 
                 //context.Database.ExecuteSqlRaw(@"CREATE 
                 //                            VIEW parser_ef.vw_all_playlists AS 

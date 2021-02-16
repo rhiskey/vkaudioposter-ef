@@ -38,8 +38,4 @@
     <PackageReference Include="MySql.EntityFrameworkCore" Version="5.0.0-m8.0.23" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\" />
-  </ItemGroup>
-
 </Project>

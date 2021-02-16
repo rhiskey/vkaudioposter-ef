@@ -7,7 +7,7 @@ using vkaudioposter_ef;
 
 namespace vkaudioposter_ef.StoredProcedures
 {
-    public class StoredProcedures
+    public class SP_PostedTracks
     {
         public static void CreateInsertFoundTrack()
         {

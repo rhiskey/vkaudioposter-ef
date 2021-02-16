@@ -51,7 +51,7 @@ namespace vkaudioposter_ef.Views
                 conn.Open();
                 cmd.Connection = conn;
 
-                cmd.CommandText = "vw_make_genres_fromDB";
+                cmd.CommandText = "SELECT * FROM vw_make_genres_fromDB;";
                 cmd.CommandType = CommandType.Text;
 
                 //cmd.ExecuteNonQuery();
@@ -60,12 +60,12 @@ namespace vkaudioposter_ef.Views
                 var ordinalPK = reader.GetOrdinal("id");
                 var ordinalID = reader.GetOrdinal("Playlist_ID");
                 var ordinalName = reader.GetOrdinal("Playlist_Name");
-                var ordinalAuthor = reader.GetOrdinal("Playlist_Author");
+                //var ordinalAuthor = reader.GetOrdinal("Playlist_Author");
                 while (reader.Read())
                 {
                     if (reader.GetValue(ordinalID).ToString() != "\u0000") 
                     {
-                        if (reader.IsDBNull(ordinalID) || reader.IsDBNull(ordinalName) || reader.IsDBNull(ordinalAuthor))
+                        if (reader.IsDBNull(ordinalID) || reader.IsDBNull(ordinalName))
                         {                         
                             throw new Exception("returned NULL from Table");
                         }
@@ -73,8 +73,10 @@ namespace vkaudioposter_ef.Views
                         {
                             var val1 = reader.GetValue(ordinalPK); //ID
                             var val2 = reader.GetValue(ordinalName); //Name        
-                            var PlAuthor = reader.GetValue(ordinalAuthor); //Author
-                            output.AppendLine(reader.GetValue(ordinalID) + " - " + reader.GetValue(1));
+                            //var PlAuthor = reader.GetValue(ordinalAuthor); //Author
+                            var plId = reader.GetValue(ordinalID).ToString();
+                            var plName = reader.GetValue(ordinalName).ToString();
+                            output.AppendLine($" {plId} - {plName}");
                         }
                     }
                 }

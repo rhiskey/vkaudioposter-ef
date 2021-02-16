@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using vkaudioposter_ef.parser;
 //using vkaudioposter_ef.Model;
 using vkaudioposter_ef.StoredProcedures;
+using vkaudioposter_ef.Views;
 
 namespace vkaudioposter_ef
 {
@@ -13,6 +14,7 @@ namespace vkaudioposter_ef
         static void Main(string[] args)
         {
             InsertData();
+            CreateSPandVw();
             PrintDataAsync();
         }
 
@@ -55,24 +57,15 @@ namespace vkaudioposter_ef
                 var ut2 = new UnfoundTrack { Trackname = "AC/DC - Thunderstruck", Playlist = p2 };
                 context.UnfoundTracks.AddRange(ut1, ut2);
 
-
-                StoredProcedures.SP_PostedTracks.CreateInsertFoundTrack();
-                Views.VW_MakeGenres.CreateMakeGenres();
-
-                //context.Database.ExecuteSqlRaw(@"CREATE 
-                //                            VIEW parser_ef.vw_all_playlists AS 
-                //                            SELECT `Playlists`.`id` AS `id`
-                //                            `Playlists`.`Playlist_ID` AS `Playlist_ID`, 
-                //                            `Playlists`.`Playlist_Name` AS `Playlist_Name`,
-                //                            `Playlists `.`Mood` AS `Mood`,
-                //                            FROM Playlists
-                //                            ORDER BY `Playlists`.`Mood`, `Playlists`.`Playlist_Name`
-                //                              ");
-
-
                 // Saves changes
                 context.SaveChanges();
             }
+        }
+
+        private static void CreateSPandVw()
+        {
+            SP_PostedTracks.CreateInsertFoundTrack();
+            VW_MakeGenres.CreateMakeGenres();
         }
 
         private static async System.Threading.Tasks.Task PrintDataAsync()

@@ -75,6 +75,7 @@ namespace vkaudioposter_ef.Views
                     }
                 }
                 reader.Close();
+                Console.WriteLine("vw_posted_tracks_count");
                 Console.WriteLine(output.ToString());
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)

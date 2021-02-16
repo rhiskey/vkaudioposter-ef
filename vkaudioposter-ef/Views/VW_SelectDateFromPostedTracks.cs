@@ -49,7 +49,7 @@ namespace vkaudioposter_ef.Views
                 conn.Open();
                 cmd.Connection = conn;
 
-                cmd.CommandText = "SELECT * FROM vw_select_date_from_PostedTracks;";
+                cmd.CommandText = "SELECT * FROM vw_select_date_from_PostedTracks ORDER BY Date DESC LIMIT 1;";
                 cmd.CommandType = CommandType.Text;
 
                 //cmd.ExecuteNonQuery();
@@ -74,6 +74,7 @@ namespace vkaudioposter_ef.Views
                     }
                 }
                 reader.Close();
+                Console.WriteLine("vw_select_date_from_PostedTracks:");
                 Console.WriteLine(output.ToString());
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)

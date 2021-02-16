@@ -23,10 +23,10 @@ namespace vkaudioposter_ef.Views
                 cmd.ExecuteNonQuery();
 
                 cmd.CommandText = "CREATE VIEW vw_style_count_chart AS " +
-                    "SELECT Style, COUNT(0) AS Count " +
+                    "SELECT Style, PlaylistId, COUNT(0) AS Count " +
                     "FROM PostedTracks " +
-                    "GROUP BY Style "+
-                    "ORDER BY Style ";
+                    "ORDER BY PlaylistId " +
+                    "GROUP BY PlaylistId";
 
                 cmd.ExecuteNonQuery();
             }
@@ -59,12 +59,13 @@ namespace vkaudioposter_ef.Views
 
                 var ordinalStyle = reader.GetOrdinal("Style");
                 var ordinalCount = reader.GetOrdinal("Count");
+                var ordinalPlID = reader.GetOrdinal("PlaylistId");
 
                 while (reader.Read())
                 {
                     if (reader.GetValue(ordinalStyle).ToString() != "\u0000")
                     {
-                        if (reader.IsDBNull(ordinalStyle) || reader.IsDBNull(ordinalCount))
+                        if (reader.IsDBNull(ordinalPlID) || reader.IsDBNull(ordinalCount))
                         {
                             throw new Exception("returned NULL from Table");
                         }
@@ -72,13 +73,14 @@ namespace vkaudioposter_ef.Views
                         {
                             var val1 = reader.GetValue(ordinalStyle).ToString();
                             var val2 = reader.GetValue(ordinalCount).ToString();
-       
+                            var val3 = reader.GetValue(ordinalPlID).ToString();
 
-                            output.AppendLine($"{val1} - {val2}");
+                            output.AppendLine($"{val1} - {val2} - {val3}");
                         }
                     }
                 }
                 reader.Close();
+                Console.WriteLine("vw_style_count_chart");
                 Console.WriteLine(output.ToString());
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)

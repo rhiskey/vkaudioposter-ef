@@ -60,6 +60,7 @@ namespace vkaudioposter_ef.Views
                 var ordinalID = reader.GetOrdinal("Playlist_ID");
                 var ordinalName = reader.GetOrdinal("Playlist_Name");
                 //var ordinalAuthor = reader.GetOrdinal("Playlist_Author");
+
                 while (reader.Read())
                 {
                     if (reader.GetValue(ordinalID).ToString() != "\u0000")
@@ -80,6 +81,7 @@ namespace vkaudioposter_ef.Views
                     }
                 }
                 reader.Close();
+                Console.WriteLine("vw_all_playlists:");
                 Console.WriteLine(output.ToString());
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)

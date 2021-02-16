@@ -79,6 +79,7 @@ namespace vkaudioposter_ef.Views
                     }
                 }
                 reader.Close();
+                Console.WriteLine("vw_make_genres_fromDB");
                 Console.WriteLine(output.ToString());
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)

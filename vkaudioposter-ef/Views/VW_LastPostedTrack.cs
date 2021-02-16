@@ -23,7 +23,7 @@ namespace vkaudioposter_ef.Views
                 cmd.ExecuteNonQuery();
 
                 cmd.CommandText = "CREATE VIEW vw_last_posted_track AS " +
-                    "SELECT Trackname, Style " +
+                    "SELECT Trackname, PlaylistId " +
                     "FROM PostedTracks " +
                     "ORDER BY PostedTracks.id DESC " +
                     "LIMIT 1";
@@ -56,21 +56,21 @@ namespace vkaudioposter_ef.Views
 
                 var reader = cmd.ExecuteReader();
 
-                var ordinalStyle = reader.GetOrdinal("Style");
+                var ordinalPlId = reader.GetOrdinal("PlaylistId");
                 var ordinalName = reader.GetOrdinal("Trackname");
 
                 while (reader.Read())
                 {
                     if (reader.GetValue(ordinalName).ToString() != "\u0000")
                     {
-                        if (reader.IsDBNull(ordinalName) || reader.IsDBNull(ordinalStyle))
+                        if (reader.IsDBNull(ordinalName) || reader.IsDBNull(ordinalPlId))
                         {
                             throw new Exception("returned NULL from Table");
                         }
                         else
                         {
                             var val2 = reader.GetValue(ordinalName); //Name                              
-                            var plId = reader.GetValue(ordinalStyle).ToString();
+                            var plId = reader.GetValue(ordinalPlId).ToString();
 
                             var plName = reader.GetValue(ordinalName).ToString();
                             output.AppendLine($" {plId} -  {plName}");
@@ -78,6 +78,7 @@ namespace vkaudioposter_ef.Views
                     }
                 }
                 reader.Close();
+                Console.WriteLine("vw_last_posted_track");
                 Console.WriteLine(output.ToString());
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)

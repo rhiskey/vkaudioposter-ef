@@ -19,17 +19,17 @@ namespace vkaudioposter_ef.Functions
                 Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
                 cmd.Connection = conn;
-                cmd.CommandText = "DROP FUNCTION IF EXISTS func_insert_media_attachment";
+                cmd.CommandText = "DROP FUNCTION IF EXISTS get_last_date_from_PostedTracks";
                 cmd.ExecuteNonQuery();
 
 
-                cmd.CommandText = "CREATE FUNCTION sp_select_all_posted_tracks_by_style() RETURNS datetime" +
+                cmd.CommandText = "CREATE FUNCTION get_last_date_from_PostedTracks() RETURNS datetime " +
                                     "READS SQL DATA " +
                                     "DETERMINISTIC " +
                                    "BEGIN " +
                                       "DECLARE lastDate DATETIME; " +
                                         "SELECT Date "+
-                                        "FROM PostedTrack " +
+                                        "FROM PostedTracks " +
                                         "ORDER BY Date DESC LIMIT 1 "+
                                         "INTO lastDate;" +
                                         "RETURN(lastDate); " +
@@ -57,11 +57,11 @@ namespace vkaudioposter_ef.Functions
                 conn.Open();
                 cmd.Connection = conn;
 
-                cmd.CommandText = "SELECT * FROM vw_select_date_from_PostedTracks ORDER BY Date DESC LIMIT 1;";
+                cmd.CommandText = "SELECT get_last_date_from_PostedTracks();";
                 cmd.CommandType = CommandType.Text;
                 MySqlDataReader reader;
                 reader = cmd.ExecuteReader();
-                var ordinalDate = reader.GetOrdinal("Date");
+                var ordinalDate = reader.GetOrdinal("get_last_date_from_PostedTracks()");
                 while (reader.Read())
                 {
 
@@ -82,6 +82,7 @@ namespace vkaudioposter_ef.Functions
                     }
                 }
                 reader.Close();
+                Console.WriteLine("vw_select_date_from_PostedTracks");
                 Console.WriteLine(Output);
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)

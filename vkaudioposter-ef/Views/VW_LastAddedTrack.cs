@@ -56,7 +56,7 @@ namespace vkaudioposter_ef.Views
 
                 var reader = cmd.ExecuteReader();
 
-                var ordinalStyle = reader.GetOrdinal("Style");
+                var ordinalPlID = reader.GetOrdinal("PlaylistId");
                 var ordinalName = reader.GetOrdinal("Trackname");
                 var ordinalDate = reader.GetOrdinal("Date");
 
@@ -64,7 +64,7 @@ namespace vkaudioposter_ef.Views
                 {
                     if (reader.GetValue(ordinalName).ToString() != "\u0000")
                     {
-                        if (reader.IsDBNull(ordinalName) || reader.IsDBNull(ordinalDate) || reader.IsDBNull(ordinalStyle))
+                        if (reader.IsDBNull(ordinalName) || reader.IsDBNull(ordinalDate) || reader.IsDBNull(ordinalPlID))
                         {
                             throw new Exception("returned NULL from Table");
                         }
@@ -73,7 +73,7 @@ namespace vkaudioposter_ef.Views
                             //var val1 = reader.GetValue(ordinalPK); //ID
                             var val2 = reader.GetValue(ordinalName); //Name        
                             var date = reader.GetValue(ordinalDate).ToString();
-                            var plId = reader.GetValue(ordinalStyle).ToString();
+                            var plId = reader.GetValue(ordinalPlID).ToString();
 
                             var plName = reader.GetValue(ordinalName).ToString();
                             output.AppendLine($" {plId} - {date} - {plName}");
@@ -81,6 +81,7 @@ namespace vkaudioposter_ef.Views
                     }
                 }
                 reader.Close();
+                Console.WriteLine("vw_last_added_track:");
                 Console.WriteLine(output.ToString());
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)

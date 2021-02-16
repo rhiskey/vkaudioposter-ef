@@ -24,9 +24,9 @@ namespace vkaudioposter_ef.StoredProcedures
 
                 cmd.CommandText = "CREATE PROCEDURE sp_insert_unfound_track(" +
                                    "IN in_trackname VARCHAR(150), IN in_style VARCHAR(50), IN in_playlist INT" +
-                                   ")" +
+                                   ") " +
                                    "BEGIN " +
-                                   "INSERT INTO PostedTracks(Trackname, Style, PlaylistId) values(in_trackname, in_style, in_playlist);" +
+                                   "INSERT INTO UnfoundTracks(trackname,style, PlaylistId) values(in_trackname, in_style, in_playlist); " +
                                    "END";
 
                 cmd.ExecuteNonQuery();
@@ -65,8 +65,8 @@ namespace vkaudioposter_ef.StoredProcedures
 
                 cmd.ExecuteNonQuery();
 
-                Console.WriteLine("Track name: " + cmd.Parameters["@in_trackname"].Value);
-                Console.WriteLine("Date: " + cmd.Parameters["@in_dateT"].Value);
+                Console.WriteLine("insert_unfound_track: Track name: " + cmd.Parameters["@in_trackname"].Value);
+                Console.WriteLine("Style: " + cmd.Parameters["@in_playlist"].Value);
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)
             {

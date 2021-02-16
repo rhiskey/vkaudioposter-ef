@@ -24,7 +24,7 @@ namespace vkaudioposter_ef.StoredProcedures
 
 
                 cmd.CommandText = "CREATE PROCEDURE sp_check_track_in_posted(" +
-                                   "IN in_trackname VARCHAR(200), IN in_playlist INT)" +
+                                   "IN in_trackname VARCHAR(200), IN in_playlist INT) " +
                                    "BEGIN " +
                                    "SELECT 1 FROM PostedTracks " +
                                    "WHERE Trackname = in_trackname " +
@@ -69,7 +69,7 @@ namespace vkaudioposter_ef.StoredProcedures
                     isExist = true;
                 }
 
-                Console.WriteLine("Track name: " + cmd.Parameters["@in_trackname"].Value);
+                Console.WriteLine("sp_check_track_in_posted Track name: " + cmd.Parameters["@in_trackname"].Value);
                 Console.WriteLine("Style: " + cmd.Parameters["@in_playlist"].Value);
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)

@@ -71,7 +71,7 @@ namespace vkaudioposter_ef.StoredProcedures
 
                 cmd.ExecuteNonQuery();
 
-                Console.WriteLine("Track name: " + cmd.Parameters["@in_trackname"].Value);
+                Console.WriteLine("sp_insert_found_track Track name: " + cmd.Parameters["@in_trackname"].Value);
                 Console.WriteLine("Date: " + cmd.Parameters["@in_dateT"].Value);
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)

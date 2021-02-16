@@ -24,6 +24,7 @@ namespace vkaudioposter_ef
         public virtual DbSet<PostedTrack> PostedTracks { get; set; }
         public virtual DbSet<UnfoundTrack> UnfoundTracks { get; set; }
 
+        public string server;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -79,6 +80,7 @@ namespace vkaudioposter_ef
 
                 entity.HasOne(d => d.Playlist)
                     .WithMany(p => p.PostedTracks);
+                    //.OnDelete(DeleteBehavior.ClientSetNull);
             });
 
             modelBuilder.Entity<UnfoundTrack>(entity =>

@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using vkaudioposter_ef.parser;
 //using vkaudioposter_ef.Model;
-
+using vkaudioposter_ef.StoredProcedures;
 
 namespace vkaudioposter_ef
 {
@@ -26,8 +26,14 @@ namespace vkaudioposter_ef
                 // Creates the database if not exists
                 context.Database.EnsureCreated();
 
-                var p1 = new Playlist { PlaylistId = "spoty:134636", PlaylistName = "Club Hits" };
-                var p2 = new Playlist { PlaylistId = "spoty:13463145", PlaylistName = "Metall Charge" };
+                var p1 = new Playlist { 
+                    PlaylistId = "spoty:134636", 
+                    PlaylistName = "Club Hits" 
+                };
+                var p2 = new Playlist { 
+                    PlaylistId = "spoty:13463145", 
+                    PlaylistName = "Metall Charge" 
+                };
                 context.Playlists.AddRange(p1, p2);
 
                 var cp1 = new ConsolePhotostock { Url = "https://devianart.com/topic" };
@@ -48,6 +54,9 @@ namespace vkaudioposter_ef
                 var ut1 = new UnfoundTrack { Trackname = "CPMG - Dddl", Playlist = p1 };
                 var ut2 = new UnfoundTrack { Trackname = "AC/DC - Thunderstruck", Playlist = p2 };
                 context.UnfoundTracks.AddRange(ut1, ut2);
+
+
+                StoredProcedures.StoredProcedures.CreateInsertFoundTrack();
 
                 //context.Database.ExecuteSqlRaw(@"CREATE 
                 //                            VIEW parser_ef.vw_all_playlists AS 
@@ -70,12 +79,20 @@ namespace vkaudioposter_ef
             using (var context = new AppContext())
             {
                 var playlists = await context.Playlists.ToListAsync();
+                foreach (var playlist in playlists)
+                {
+                    var data = new StringBuilder();
+                    data.AppendLine($"ID: {playlist.Id}");
+                    data.AppendLine($"Name: {playlist.PlaylistName}");
+                    data.AppendLine($"PlaylistId: {playlist.PlaylistId}");
+                    Console.WriteLine(data.ToString());
+                }
 
                 var postedTracks = context.PostedTracks.Include(p => p.Playlist);
+                Console.WriteLine("---------Found Tracks:---------");
                 foreach (var track in postedTracks)
                 {
                     var data = new StringBuilder();
-                    data.AppendLine("Found Tracks:");
                     data.AppendLine($"ID: {track.Id}");
                     data.AppendLine($"Name: {track.Trackname}");
                     data.AppendLine($"Playlist: {track.Playlist.PlaylistName}");
@@ -83,23 +100,18 @@ namespace vkaudioposter_ef
                 }
 
                 var unfoundTracks = context.UnfoundTracks.Include(p => p.Playlist);
+                Console.WriteLine("----------Unfound Tracks:---------");
                 foreach (var track in unfoundTracks)
                 {                
                     var data = new StringBuilder();
-                    data.AppendLine("Unfound Tracks:");
                     data.AppendLine($"ID: {track.Id}");
                     data.AppendLine($"Name: {track.Trackname}");
                     data.AppendLine($"Playlist: {track.Playlist.PlaylistName}");
                     Console.WriteLine(data.ToString());
                 }
 
-                //foreach (var playlist in playlists)
-                //{
-                //    var data = new StringBuilder();
-                //    data.AppendLine($"ID: {playlist.PlaylistId}");
-                //    data.AppendLine($"Name: {playlist.PlaylistName}");
-                //    Console.WriteLine(data.ToString());
-                //}
+                //var lastPublised = postedTracks
+
             }
         }
     }

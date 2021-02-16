@@ -16,7 +16,7 @@ namespace vkaudioposter_ef.Views
 
             try
             {
-                Console.WriteLine("Connecting to MySQL...");
+                //Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
                 cmd.Connection = conn;
                 cmd.CommandText = "DROP VIEW IF EXISTS vw_posted_tracks_count";
@@ -34,7 +34,7 @@ namespace vkaudioposter_ef.Views
                 Console.WriteLine("Error " + ex.Number + " has occurred: " + ex.Message);
             }
             conn.Close();
-            Console.WriteLine("Connection closed.");
+            //Console.WriteLine("Connection closed.");
 
         }
 

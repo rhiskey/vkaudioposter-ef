@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
+using vkaudioposter_ef.parser;
 
 namespace vkaudioposter_ef.StoredProcedures
 {
@@ -16,12 +17,11 @@ namespace vkaudioposter_ef.StoredProcedures
 
             try
             {
-                Console.WriteLine("Connecting to MySQL...");
+                //Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
                 cmd.Connection = conn;
                 cmd.CommandText = "DROP PROCEDURE IF EXISTS sp_check_track_in_posted";
                 cmd.ExecuteNonQuery();
-
 
                 cmd.CommandText = "CREATE PROCEDURE sp_check_track_in_posted(" +
                                    "IN in_trackname VARCHAR(200), IN in_playlist INT) " +
@@ -38,7 +38,7 @@ namespace vkaudioposter_ef.StoredProcedures
                 Console.WriteLine("Error " + ex.Number + " has occurred: " + ex.Message);
             }
             conn.Close();
-            Console.WriteLine("Connection closed.");
+            //Console.WriteLine("Connection closed.");
         }
 
         public void TestProcedure(string trackname, string style, DateTime? date, int? playlistID)

@@ -16,7 +16,7 @@ namespace vkaudioposter_ef.StoredProcedures
 
             try
             {
-                Console.WriteLine("Connecting to MySQL...");
+                //Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
                 cmd.Connection = conn;
                 cmd.CommandText = "DROP PROCEDURE IF EXISTS sp_insert_unfound_track";
@@ -36,7 +36,7 @@ namespace vkaudioposter_ef.StoredProcedures
                 Console.WriteLine("Error " + ex.Number + " has occurred: " + ex.Message);
             }
             conn.Close();
-            Console.WriteLine("Connection closed.");
+            //Console.WriteLine("Connection closed.");
         }
 
 

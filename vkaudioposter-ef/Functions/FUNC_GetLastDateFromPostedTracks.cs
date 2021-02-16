@@ -16,7 +16,7 @@ namespace vkaudioposter_ef.Functions
 
             try
             {
-                Console.WriteLine("Connecting to MySQL...");
+                //Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
                 cmd.Connection = conn;
                 cmd.CommandText = "DROP FUNCTION IF EXISTS get_last_date_from_PostedTracks";
@@ -42,7 +42,7 @@ namespace vkaudioposter_ef.Functions
                 Console.WriteLine("Error " + ex.Number + " has occurred: " + ex.Message);
             }
             conn.Close();
-            Console.WriteLine("Connection closed.");
+            //Console.WriteLine("Connection closed.");
         }
 
         public void TestFunction()

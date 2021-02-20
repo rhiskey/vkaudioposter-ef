@@ -8,7 +8,7 @@ namespace vkaudioposter_ef.Views
 {
     public class VW_SelectDateFromPostedTracks : IView
     {
-        public void CreateView()
+        public void CreateView(bool isFirstLaunch)
         {
             MySqlConnection conn = new MySqlConnection();
             conn.ConnectionString = Program.connStr;
@@ -19,9 +19,11 @@ namespace vkaudioposter_ef.Views
                 //Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
                 cmd.Connection = conn;
-                cmd.CommandText = "DROP VIEW IF EXISTS vw_select_date_from_PostedTracks";
-                cmd.ExecuteNonQuery();
-
+                if (isFirstLaunch)
+                {
+                    cmd.CommandText = "DROP VIEW IF EXISTS vw_select_date_from_PostedTracks";
+                    cmd.ExecuteNonQuery();
+                }
                 cmd.CommandText = "CREATE VIEW vw_select_date_from_PostedTracks AS " +
                     "SELECT Date " +
                     "FROM PostedTracks";

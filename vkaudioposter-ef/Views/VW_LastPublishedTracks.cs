@@ -8,7 +8,7 @@ namespace vkaudioposter_ef.Views
 {
     public class VW_LastPublishedTracks: IView
     {
-        public void CreateView()
+        public void CreateView(bool isFirstLaunch)
         {
             MySqlConnection conn = new MySqlConnection();
             conn.ConnectionString = Program.connStr;
@@ -19,9 +19,11 @@ namespace vkaudioposter_ef.Views
                 //Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
                 cmd.Connection = conn;
-                cmd.CommandText = "DROP VIEW IF EXISTS vw_last_published_tracks";
-                cmd.ExecuteNonQuery();
-
+                if (isFirstLaunch)
+                {
+                    cmd.CommandText = "DROP VIEW IF EXISTS vw_last_published_tracks";
+                    cmd.ExecuteNonQuery();
+                }
                 cmd.CommandText = "CREATE VIEW vw_last_published_tracks AS " +
                     "SELECT Trackname, Style, PlaylistId " +
                     "FROM PostedTracks " +

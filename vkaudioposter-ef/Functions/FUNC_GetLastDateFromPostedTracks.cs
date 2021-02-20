@@ -8,7 +8,7 @@ namespace vkaudioposter_ef.Functions
 {
     public class FUNC_GetLastDateFromPostedTracks : IFunction
     {
-        public void CreateFunction()
+        public void CreateFunction(bool isFirstLaunch)
         {
             MySqlConnection conn = new MySqlConnection();
             conn.ConnectionString = Program.connStr;
@@ -19,9 +19,11 @@ namespace vkaudioposter_ef.Functions
                 //Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
                 cmd.Connection = conn;
-                cmd.CommandText = "DROP FUNCTION IF EXISTS get_last_date_from_PostedTracks";
-                cmd.ExecuteNonQuery();
-
+                if (isFirstLaunch)
+                {
+                    cmd.CommandText = "DROP FUNCTION IF EXISTS get_last_date_from_PostedTracks";
+                    cmd.ExecuteNonQuery();
+                }
 
                 cmd.CommandText = "CREATE FUNCTION get_last_date_from_PostedTracks() RETURNS datetime " +
                                     "READS SQL DATA " +

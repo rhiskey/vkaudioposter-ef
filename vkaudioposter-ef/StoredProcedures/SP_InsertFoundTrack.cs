@@ -9,7 +9,7 @@ namespace vkaudioposter_ef.StoredProcedures
 {
     public class SP_InsertFoundTrack: IStoredProcedure
     {
-        public void CreateProcedure()
+        public void CreateProcedure(bool isFirstLaunch)
         {
             MySqlConnection conn = new MySqlConnection();
             conn.ConnectionString = Program.connStr;
@@ -20,9 +20,11 @@ namespace vkaudioposter_ef.StoredProcedures
                 //Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
                 cmd.Connection = conn;
-                cmd.CommandText = "DROP PROCEDURE IF EXISTS sp_insert_found_track";
-                cmd.ExecuteNonQuery();
-
+                if (isFirstLaunch)
+                {
+                    cmd.CommandText = "DROP PROCEDURE IF EXISTS sp_insert_found_track";
+                    cmd.ExecuteNonQuery();
+                }
 
                 cmd.CommandText = "CREATE PROCEDURE sp_insert_found_track(" +
                                    "IN in_trackname VARCHAR(150), IN in_style VARCHAR(50), IN in_dateT DATETIME, IN in_playlist INT" +

@@ -8,7 +8,7 @@ namespace vkaudioposter_ef.StoredProcedures
 {
     public class SP_SelectAllPostedTracksByStyle : IStoredProcedure
     {
-        public void CreateProcedure()
+        public void CreateProcedure(bool isFirstLaunch)
         {
             MySqlConnection conn = new MySqlConnection();
             conn.ConnectionString = Program.connStr;
@@ -19,9 +19,11 @@ namespace vkaudioposter_ef.StoredProcedures
                 //Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
                 cmd.Connection = conn;
-                cmd.CommandText = "DROP PROCEDURE IF EXISTS sp_select_all_posted_tracks_by_style";
-                cmd.ExecuteNonQuery();
-
+                if (isFirstLaunch)
+                {
+                    cmd.CommandText = "DROP PROCEDURE IF EXISTS sp_select_all_posted_tracks_by_style";
+                    cmd.ExecuteNonQuery();
+                }
 
                 cmd.CommandText = "CREATE PROCEDURE sp_select_all_posted_tracks_by_style( " +
                                    "IN in_style VARCHAR(60), IN in_playlist INT) " +

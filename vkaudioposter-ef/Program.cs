@@ -17,6 +17,7 @@ namespace vkaudioposter_ef
         public static string pass;
         public static string db;
         public static string connStr;
+        private static bool isFirstTime = true; // If true - drop all procedures and views, functions
 
         private static void LoadConfig()
         {
@@ -31,53 +32,54 @@ namespace vkaudioposter_ef
         {
             LoadConfig();
 
-            InsertData();
-            CreateStoredProceduresViewsAndFunctions();
+            InsertData(false);
+            //CreateStoredProceduresViewsAndFunctions(false);
             //RunTests();
             PrintDataAsync();
         }
 
         // Seed
-        private static void InsertData()
+        private static void InsertData(bool isFirstTime)
         {
             using (var context = new AppContext())
             {
-                context.Database.EnsureDeleted();
+                if (isFirstTime)
+                    context.Database.EnsureDeleted();
 
                 // Creates the database if not exists
                 context.Database.EnsureCreated();
 
                 var p1 = new Playlist
                 {
-                    PlaylistId = "spoty:134636",
-                    PlaylistName = "Club Hits"
+                    PlaylistId = "spoty:1346367",
+                    PlaylistName = "EDM"
                 };
                 var p2 = new Playlist
                 {
                     PlaylistId = "spoty:13463145",
-                    PlaylistName = "Metall Charge"
+                    PlaylistName = "Metall Basics"
                 };
                 context.Playlists.AddRange(p1, p2);
 
-                var cp1 = new ConsolePhotostock { Url = "https://devianart.com/topic" };
+                var cp1 = new ConsolePhotostock { Url = "https://devianart.com/topic2" };
                 context.Photostocks.Add(cp1);
 
                 var pt1 = new PostedTrack
                 {
-                    Trackname = "Martin Garrix - Animals",
+                    Trackname = "Martin Garrix - Animals (remix)",
                     Date = DateTime.Now,
                     Playlist = p1
                 };
                 var pt2 = new PostedTrack
                 {
-                    Trackname = "Disturbed - Silence",
+                    Trackname = "Disturbed - On my own",
                     Date = DateTime.Now,
                     Playlist = p2
                 };
                 context.PostedTracks.AddRange(pt1, pt2);
 
-                var ut1 = new UnfoundTrack { Trackname = "CPMG - Dddl", Playlist = p1 };
-                var ut2 = new UnfoundTrack { Trackname = "AC/DC - Thunderstruck", Playlist = p2 };
+                var ut1 = new UnfoundTrack { Trackname = "KVPV - Inferno", Playlist = p1 };
+                var ut2 = new UnfoundTrack { Trackname = "AC/DC - Paradise", Playlist = p2 };
                 context.UnfoundTracks.AddRange(ut1, ut2);
 
                 // Saves changes
@@ -85,56 +87,56 @@ namespace vkaudioposter_ef
             }
         }
         
-        private static void CreateStoredProceduresViewsAndFunctions()
+        private static void CreateStoredProceduresViewsAndFunctions(bool isFirstTime)
         {
             SP_CheckTrackInPosted cTIP = new SP_CheckTrackInPosted();
-            cTIP.CreateProcedure();
+            cTIP.CreateProcedure(isFirstTime);
 
             SP_CheckTrackInUnfound cTIU = new SP_CheckTrackInUnfound();
-            cTIU.CreateProcedure();
+            cTIU.CreateProcedure(isFirstTime);
 
             SP_InsertFoundTrack iFT = new SP_InsertFoundTrack();
-            iFT.CreateProcedure();
+            iFT.CreateProcedure(isFirstTime);
 
             SP_InsertUnfoundTrack iUT = new SP_InsertUnfoundTrack();
-            iUT.CreateProcedure();
+            iUT.CreateProcedure(isFirstTime);
 
             SP_SelectAllPostedTracksByStyle sAPTBS = new SP_SelectAllPostedTracksByStyle();
-            sAPTBS.CreateProcedure();
+            sAPTBS.CreateProcedure(isFirstTime);
 
             SP_SelectUnfoundTracksByStyle sUTBS = new SP_SelectUnfoundTracksByStyle();
-            sUTBS.CreateProcedure();
+            sUTBS.CreateProcedure(isFirstTime);
 
             VW_AllPlaylists aP = new VW_AllPlaylists();
-            aP.CreateView();
+            aP.CreateView(isFirstTime);
 
             VW_GetAllPostedTracks gAPT = new VW_GetAllPostedTracks();
-            gAPT.CreateView();
+            gAPT.CreateView(isFirstTime);
 
             VW_LastAddedTrack lAT = new VW_LastAddedTrack();
-            lAT.CreateView();
+            lAT.CreateView(isFirstTime);
 
             VW_LastPostedTrack lPT = new VW_LastPostedTrack();
-            lPT.CreateView();
+            lPT.CreateView(isFirstTime);
 
             VW_LastPublishedTracks lPTs = new VW_LastPublishedTracks();
-            lPTs.CreateView();
+            lPTs.CreateView(isFirstTime);
 
             VW_MakeGenresFromDB mG = new VW_MakeGenresFromDB();
-            mG.CreateView();
+            mG.CreateView(isFirstTime);
 
             VW_PostedTracksCount pTC = new VW_PostedTracksCount();
-            pTC.CreateView();
+            pTC.CreateView(isFirstTime);
 
             //// Dont need anymore - only for WEB
             //VW_StyleCountChart sCS = new VW_StyleCountChart();
             //sCS.CreateView();
 
             VW_SelectDateFromPostedTracks sDFPT = new VW_SelectDateFromPostedTracks();
-            sDFPT.CreateView();
+            sDFPT.CreateView(isFirstTime);
 
             FUNC_GetLastDateFromPostedTracks gLDFPT = new FUNC_GetLastDateFromPostedTracks();
-            gLDFPT.CreateFunction();
+            gLDFPT.CreateFunction(isFirstTime);
 
         }
 

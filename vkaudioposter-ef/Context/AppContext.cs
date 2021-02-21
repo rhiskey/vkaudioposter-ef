@@ -8,7 +8,17 @@ namespace vkaudioposter_ef
 {
     public partial class AppContext : DbContext
     {
-
+        private static string db_server = vkaudioposter_ef.Program.server;
+        private static string db_user = vkaudioposter_ef.Program.user;
+        private static string db_password = vkaudioposter_ef.Program.pass;
+        private static string db_name = vkaudioposter_ef.Program.db;
+        public AppContext(string server, string user, string password, string database)
+        {
+            db_server = server;
+            db_user = user;
+            db_password = password;
+            db_name = database;
+        }
         public AppContext()
         {
         }
@@ -27,8 +37,7 @@ namespace vkaudioposter_ef
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
-            optionsBuilder.UseMySQL("server=" + Program.server + ";user=" + Program.user + ";password=" + Program.pass + ";database=" + Program.db + ";");
+            optionsBuilder.UseMySQL("server=" + db_server + ";user=" + db_user + ";password=" + db_password + ";database=" + db_name + ";");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

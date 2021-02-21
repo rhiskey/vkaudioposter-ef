@@ -28,7 +28,7 @@ namespace vkaudioposter_ef
             db = DotNetEnv.Env.GetString("DATABASE");
             connStr = "server=" + server + ";user=" + user + ";database=" + db + ";port=3306;password=" + pass + "";
         }
-        static void Main(string[] args)
+        private static void Main2(string[] args)
         {
             LoadConfig();
 

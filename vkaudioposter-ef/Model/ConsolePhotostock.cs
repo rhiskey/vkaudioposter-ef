@@ -17,6 +17,6 @@ namespace vkaudioposter_ef.parser
         [MaxLength(200)]
         public string Url { get; set; }
 
-        public virtual Playlist Playlist { get; set; }
+        //public virtual Playlist Playlist { get; set; }
     }
 }

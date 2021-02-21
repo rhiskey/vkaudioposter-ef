@@ -27,7 +27,7 @@ namespace vkaudioposter_ef.parser
 
         //public string PlaylistAuthor { get; set; }
         public int Mood { get; set; }
-        public virtual ICollection<ConsolePhotostock> Photostock { get; set; }
+        //public virtual ICollection<ConsolePhotostock> Photostock { get; set; }
         public virtual ICollection<PostedTrack> PostedTracks { get; set; }
         public virtual ICollection<UnfoundTrack> UnfoundTracks { get; set; }
     }

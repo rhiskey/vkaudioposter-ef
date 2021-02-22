@@ -10,6 +10,16 @@ namespace vkaudioposter_ef.parser
 {
     public partial class Playlist
     {
+        public Playlist(string playlistId, string playlistName)
+        {
+            PlaylistId = playlistId;
+            PlaylistName = playlistName;
+        }
+        public Playlist()
+        {
+
+        }
+
         [Column("id")]
         public int Id { get; set; }
 

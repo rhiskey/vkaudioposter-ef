@@ -20,7 +20,17 @@ namespace vkaudioposter_ef.parser
 
         }
 
+        public Playlist(int id, string playlistId, string playlistName, int mood)
+        {
+            Id = id;
+            PlaylistId = playlistId;
+            PlaylistName = playlistName;
+            Mood = mood;
+        }
+
         [Column("id")]
+        //[Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]
@@ -38,6 +48,7 @@ namespace vkaudioposter_ef.parser
         //public string PlaylistAuthor { get; set; }
         public int Mood { get; set; }
         //public virtual ICollection<ConsolePhotostock> Photostock { get; set; }
+
         public virtual ICollection<PostedTrack> PostedTracks { get; set; }
         public virtual ICollection<UnfoundTrack> UnfoundTracks { get; set; }
     }

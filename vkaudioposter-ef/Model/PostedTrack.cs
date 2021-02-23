@@ -28,6 +28,7 @@ namespace vkaudioposter_ef.parser
         [Column(TypeName = "DATETIME")]
         public DateTime Date { get; set; }
 
+        public int? PlaylistId { get; set; }
         public virtual Playlist Playlist { get; set; }
     }
 }

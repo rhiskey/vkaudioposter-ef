@@ -1,7 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>vkaudioposter_ef</RootNamespace>
   </PropertyGroup>
@@ -19,16 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove=".env" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include=".env">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="DotNetEnv" Version="2.0.0" />
     <PackageReference Include="EntityFrameworkCore.Extensions" Version="3.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.3" />
@@ -40,4 +30,9 @@
     <PackageReference Include="MySql.EntityFrameworkCore" Version="5.0.0-m8.0.23" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update=".env">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

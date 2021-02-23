@@ -28,7 +28,7 @@ namespace vkaudioposter_ef
             db = DotNetEnv.Env.GetString("DATABASE");
             connStr = "server=" + server + ";user=" + user + ";database=" + db + ";port=3306;password=" + pass + "";
         }
-        private static void Main2(string[] args)
+        private static void MainEf(string[] args)
         {
             LoadConfig();
 
@@ -41,50 +41,48 @@ namespace vkaudioposter_ef
         // Seed
         private static void InsertData(bool isFirstTime)
         {
-            using (var context = new AppContext())
+            using var context = new AppContext();
+            if (isFirstTime)
+                context.Database.EnsureDeleted();
+
+            // Creates the database if not exists
+            context.Database.EnsureCreated();
+
+            var p1 = new Playlist
             {
-                if (isFirstTime)
-                    context.Database.EnsureDeleted();
+                PlaylistId = "spoty:1346367",
+                PlaylistName = "EDM"
+            };
+            var p2 = new Playlist
+            {
+                PlaylistId = "spoty:13463145",
+                PlaylistName = "Metall Basics"
+            };
+            context.Playlists.AddRange(p1, p2);
 
-                // Creates the database if not exists
-                context.Database.EnsureCreated();
+            var cp1 = new ConsolePhotostock { Url = "https://devianart.com/topic2" };
+            context.Photostocks.Add(cp1);
 
-                var p1 = new Playlist
-                {
-                    PlaylistId = "spoty:1346367",
-                    PlaylistName = "EDM"
-                };
-                var p2 = new Playlist
-                {
-                    PlaylistId = "spoty:13463145",
-                    PlaylistName = "Metall Basics"
-                };
-                context.Playlists.AddRange(p1, p2);
+            var pt1 = new PostedTrack
+            {
+                Trackname = "Martin Garrix - Animals (remix)",
+                Date = DateTime.Now,
+                Playlist = p1
+            };
+            var pt2 = new PostedTrack
+            {
+                Trackname = "Disturbed - On my own",
+                Date = DateTime.Now,
+                Playlist = p2
+            };
+            context.PostedTracks.AddRange(pt1, pt2);
 
-                var cp1 = new ConsolePhotostock { Url = "https://devianart.com/topic2" };
-                context.Photostocks.Add(cp1);
+            var ut1 = new UnfoundTrack { Trackname = "KVPV - Inferno", Playlist = p1 };
+            var ut2 = new UnfoundTrack { Trackname = "AC/DC - Paradise", Playlist = p2 };
+            context.UnfoundTracks.AddRange(ut1, ut2);
 
-                var pt1 = new PostedTrack
-                {
-                    Trackname = "Martin Garrix - Animals (remix)",
-                    Date = DateTime.Now,
-                    Playlist = p1
-                };
-                var pt2 = new PostedTrack
-                {
-                    Trackname = "Disturbed - On my own",
-                    Date = DateTime.Now,
-                    Playlist = p2
-                };
-                context.PostedTracks.AddRange(pt1, pt2);
-
-                var ut1 = new UnfoundTrack { Trackname = "KVPV - Inferno", Playlist = p1 };
-                var ut2 = new UnfoundTrack { Trackname = "AC/DC - Paradise", Playlist = p2 };
-                context.UnfoundTracks.AddRange(ut1, ut2);
-
-                // Saves changes
-                context.SaveChanges();
-            }
+            // Saves changes
+            context.SaveChanges();
         }
         
         private static void CreateStoredProceduresViewsAndFunctions(bool isFirstTime)
@@ -206,43 +204,41 @@ namespace vkaudioposter_ef
 
         private static async System.Threading.Tasks.Task PrintDataAsync()
         {
-            using (var context = new AppContext())
+            using var context = new AppContext();
+            var playlists = await context.Playlists.ToListAsync();
+            foreach (var playlist in playlists)
             {
-                var playlists = await context.Playlists.ToListAsync();
-                foreach (var playlist in playlists)
-                {
-                    var data = new StringBuilder();
-                    data.AppendLine($"ID: {playlist.Id}");
-                    data.AppendLine($"Name: {playlist.PlaylistName}");
-                    data.AppendLine($"PlaylistId: {playlist.PlaylistId}");
-                    Console.WriteLine(data.ToString());
-                }
-
-                var postedTracks = context.PostedTracks.Include(p => p.Playlist);
-                Console.WriteLine("---------Found Tracks:---------");
-                foreach (var track in postedTracks)
-                {
-                    var data = new StringBuilder();
-                    data.AppendLine($"ID: {track.Id}");
-                    data.AppendLine($"Name: {track.Trackname}");
-                    data.AppendLine($"Playlist: {track.Playlist.PlaylistName}");
-                    Console.WriteLine(data.ToString());
-                }
-
-                var unfoundTracks = context.UnfoundTracks.Include(p => p.Playlist);
-                Console.WriteLine("----------Unfound Tracks:---------");
-                foreach (var track in unfoundTracks)
-                {
-                    var data = new StringBuilder();
-                    data.AppendLine($"ID: {track.Id}");
-                    data.AppendLine($"Name: {track.Trackname}");
-                    data.AppendLine($"Playlist: {track.Playlist.PlaylistName}");
-                    Console.WriteLine(data.ToString());
-                }
-
-                //var lastPublised = postedTracks
-
+                var data = new StringBuilder();
+                data.AppendLine($"ID: {playlist.Id}");
+                data.AppendLine($"Name: {playlist.PlaylistName}");
+                data.AppendLine($"PlaylistId: {playlist.PlaylistId}");
+                Console.WriteLine(data.ToString());
             }
+
+            var postedTracks = context.PostedTracks.Include(p => p.Playlist);
+            Console.WriteLine("---------Found Tracks:---------");
+            foreach (var track in postedTracks)
+            {
+                var data = new StringBuilder();
+                data.AppendLine($"ID: {track.Id}");
+                data.AppendLine($"Name: {track.Trackname}");
+                data.AppendLine($"Playlist: {track.Playlist.PlaylistName}");
+                Console.WriteLine(data.ToString());
+            }
+
+            var unfoundTracks = context.UnfoundTracks.Include(p => p.Playlist);
+            Console.WriteLine("----------Unfound Tracks:---------");
+            foreach (var track in unfoundTracks)
+            {
+                var data = new StringBuilder();
+                data.AppendLine($"ID: {track.Id}");
+                data.AppendLine($"Name: {track.Trackname}");
+                data.AppendLine($"Playlist: {track.Playlist.PlaylistName}");
+                Console.WriteLine(data.ToString());
+            }
+
+            //var lastPublised = postedTracks
+
         }
     }
 }

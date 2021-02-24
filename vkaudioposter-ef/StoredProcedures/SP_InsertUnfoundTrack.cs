@@ -25,10 +25,10 @@ namespace vkaudioposter_ef.StoredProcedures
                     cmd.ExecuteNonQuery();
                 }
                 cmd.CommandText = "CREATE PROCEDURE sp_insert_unfound_track(" +
-                                   "IN in_trackname VARCHAR(150), IN in_style VARCHAR(50), IN in_playlist INT" +
+                                   "IN in_trackname VARCHAR(150), IN in_playlist INT" +
                                    ") " +
                                    "BEGIN " +
-                                   "INSERT INTO UnfoundTracks(trackname,style, PlaylistId) values(in_trackname, in_style, in_playlist); " +
+                                   "INSERT INTO UnfoundTracks(Trackname, PlaylistId) values(in_trackname, in_playlist); " +
                                    "END";
 
                 cmd.ExecuteNonQuery();
@@ -59,8 +59,8 @@ namespace vkaudioposter_ef.StoredProcedures
                 cmd.Parameters.AddWithValue("@in_trackname", trackname);
                 cmd.Parameters["@in_trackname"].Direction = ParameterDirection.Input;
 
-                cmd.Parameters.AddWithValue("@in_style", style);
-                cmd.Parameters["@in_style"].Direction = ParameterDirection.Input;
+                //cmd.Parameters.AddWithValue("@in_style", style);
+                //cmd.Parameters["@in_style"].Direction = ParameterDirection.Input;
 
                 cmd.Parameters.AddWithValue("in_playlist", playlistID);
                 cmd.Parameters["in_playlist"].Direction = ParameterDirection.Input;

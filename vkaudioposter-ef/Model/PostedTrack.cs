@@ -20,10 +20,10 @@ namespace vkaudioposter_ef.parser
         //[Index(IsUnique = true)]
         public string Trackname { get; set; }
 
-        //[Required]
-        [Column(TypeName = "varchar(45)")]
-        [MaxLength(50)]
-        public string? Style { get; set; }
+        ////[Required]
+        //[Column(TypeName = "varchar(45)")]
+        //[MaxLength(50)]
+        //public string? Style { get; set; }
 
         [Column(TypeName = "DATETIME")]
         public DateTime Date { get; set; }

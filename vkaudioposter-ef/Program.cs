@@ -19,13 +19,13 @@ namespace vkaudioposter_ef
         public static string connStr;
         private static bool isFirstTime = true; // If true - drop all procedures and views, functions
 
-        private static void LoadConfig()
+        public static void LoadConfig()
         {
             DotNetEnv.Env.TraversePath().Load();
-            server = DotNetEnv.Env.GetString("SERVER");
-            user = DotNetEnv.Env.GetString("USER");
-            pass = DotNetEnv.Env.GetString("PASSWORD");
-            db = DotNetEnv.Env.GetString("DATABASE");
+            server = DotNetEnv.Env.GetString("DB_HOST");
+            user = DotNetEnv.Env.GetString("EF_USER");
+            pass = DotNetEnv.Env.GetString("EF_PASSWORD");
+            db = DotNetEnv.Env.GetString("EF_DATABASE");
             connStr = "server=" + server + ";user=" + user + ";database=" + db + ";port=3306;password=" + pass + "";
         }
         private static void MainEf(string[] args)
@@ -85,7 +85,7 @@ namespace vkaudioposter_ef
             context.SaveChanges();
         }
         
-        private static void CreateStoredProceduresViewsAndFunctions(bool isFirstTime)
+        public static void CreateStoredProceduresViewsAndFunctions(bool isFirstTime)
         {
             SP_CheckTrackInPosted cTIP = new SP_CheckTrackInPosted();
             cTIP.CreateProcedure(isFirstTime);

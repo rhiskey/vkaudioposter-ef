@@ -30,7 +30,7 @@ namespace vkaudioposter_ef.StoredProcedures
                                    //"IN in_trackname VARCHAR(200), IN in_style VARCHAR(60), IN in_playlist INT)" +
                                    "BEGIN " +
                                    "SELECT 1 FROM UnfoundTracks " +
-                                   "WHERE trackname = in_trackname " +
+                                   "WHERE Trackname = in_trackname " +
                                    "AND PlaylistId = in_playlist; " +
                                    "END";
 

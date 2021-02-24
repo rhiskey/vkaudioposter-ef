@@ -26,7 +26,7 @@ namespace vkaudioposter_ef.Views
                 }
                 cmd.CommandText = "CREATE VIEW vw_select_date_from_PostedTracks AS " +
                     "SELECT Date " +
-                    "FROM PostedTracks" +
+                    "FROM PostedTracks " +
                     "ORDER BY `PostedTracks`.`Date` " +
                     "DESC " +
                     "LIMIT 1";

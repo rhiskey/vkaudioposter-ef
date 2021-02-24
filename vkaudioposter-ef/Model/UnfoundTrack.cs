@@ -18,10 +18,10 @@ namespace vkaudioposter_ef.parser
         [MaxLength(150)]
         public string Trackname { get; set; }
 
-        //[Required]
-        [Column("style", TypeName = "varchar(45)")]
-        [MaxLength(50)]
-        public string? Style { get; set; }
+        ////[Required]
+        //[Column("style", TypeName = "varchar(45)")]
+        //[MaxLength(50)]
+        //public string? Style { get; set; }
 
         public int? PlaylistId { get; set; }
         public virtual Playlist Playlist { get; set; }

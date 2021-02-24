@@ -26,12 +26,12 @@ namespace vkaudioposter_ef.StoredProcedures
                 }
 
                 cmd.CommandText = "CREATE PROCEDURE sp_select_all_posted_tracks_by_style( " +
-                                   "IN in_style VARCHAR(60), IN in_playlist INT) " +
+                                   "IN in_playlist INT) " +
                                    "BEGIN " +
                                    "SELECT * FROM PostedTracks " +
                                    "WHERE " +
-                                   "Style = in_style " +
-                                   "AND PlaylistId = in_playlist; " +
+                                   //"Style = in_style " +
+                                   "PlaylistId = in_playlist; " +
                                    "END";
 
                 cmd.ExecuteNonQuery();
@@ -59,15 +59,15 @@ namespace vkaudioposter_ef.StoredProcedures
                 cmd.CommandText = "sp_select_all_posted_tracks_by_style";
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@in_style", style);
-                cmd.Parameters["@in_style"].Direction = ParameterDirection.Input;
+                //cmd.Parameters.AddWithValue("@in_style", style);
+                //cmd.Parameters["@in_style"].Direction = ParameterDirection.Input;
 
                 cmd.Parameters.AddWithValue("@in_playlist", playlistID);
                 cmd.Parameters["@in_playlist"].Direction = ParameterDirection.Input;
 
                 cmd.ExecuteNonQuery();
 
-                Console.WriteLine("sp_select_all_posted_tracks_by_style Style: " + cmd.Parameters["@in_style"].Value);
+                //Console.WriteLine("sp_select_all_posted_tracks_by_style Style: " + cmd.Parameters["@in_style"].Value);
                 Console.WriteLine("Playlist: " + cmd.Parameters["@in_playlist"].Value);
             }
             catch (MySql.Data.MySqlClient.MySqlException ex)

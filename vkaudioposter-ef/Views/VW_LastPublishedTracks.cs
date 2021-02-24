@@ -25,7 +25,7 @@ namespace vkaudioposter_ef.Views
                     cmd.ExecuteNonQuery();
                 }
                 cmd.CommandText = "CREATE VIEW vw_last_published_tracks AS " +
-                    "SELECT Trackname, Style, PlaylistId " +
+                    "SELECT Trackname, PlaylistId " +
                     "FROM PostedTracks " +
                     "ORDER BY PostedTracks.id DESC " +
                     "LIMIT 10";

@@ -25,7 +25,7 @@ namespace vkaudioposter_ef.Views
                     cmd.ExecuteNonQuery();
                 }
                 cmd.CommandText = "CREATE VIEW vw_style_count_chart AS " +
-                    "SELECT Style, PlaylistId, COUNT(0) AS Count " +
+                    "SELECT PlaylistId, COUNT(0) AS Count " +
                     "FROM PostedTracks " +
                     "ORDER BY PlaylistId " +
                     "GROUP BY PlaylistId";
@@ -59,13 +59,13 @@ namespace vkaudioposter_ef.Views
                 //cmd.ExecuteNonQuery();
                 var reader = cmd.ExecuteReader();
 
-                var ordinalStyle = reader.GetOrdinal("Style");
+                //var ordinalStyle = reader.GetOrdinal("Style");
                 var ordinalCount = reader.GetOrdinal("Count");
                 var ordinalPlID = reader.GetOrdinal("PlaylistId");
 
                 while (reader.Read())
                 {
-                    if (reader.GetValue(ordinalStyle).ToString() != "\u0000")
+                    if (reader.GetValue(ordinalCount).ToString() != "\u0000")
                     {
                         if (reader.IsDBNull(ordinalPlID) || reader.IsDBNull(ordinalCount))
                         {
@@ -73,11 +73,11 @@ namespace vkaudioposter_ef.Views
                         }
                         else
                         {
-                            var val1 = reader.GetValue(ordinalStyle).ToString();
+                            //var val1 = reader.GetValue(ordinalStyle).ToString();
                             var val2 = reader.GetValue(ordinalCount).ToString();
                             var val3 = reader.GetValue(ordinalPlID).ToString();
 
-                            output.AppendLine($"{val1} - {val2} - {val3}");
+                            output.AppendLine($"- {val2} - {val3}");
                         }
                     }
                 }

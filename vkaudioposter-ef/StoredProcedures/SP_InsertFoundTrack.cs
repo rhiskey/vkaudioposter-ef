@@ -27,10 +27,10 @@ namespace vkaudioposter_ef.StoredProcedures
                 }
 
                 cmd.CommandText = "CREATE PROCEDURE sp_insert_found_track(" +
-                                   "IN in_trackname VARCHAR(150), IN in_style VARCHAR(50), IN in_dateT DATETIME, IN in_playlist INT" +
+                                   "IN in_trackname VARCHAR(150), IN in_dateT DATETIME, IN in_playlist INT" +
                                    ")" +
                                    "BEGIN " +
-                                   "INSERT INTO PostedTracks(Trackname, Style, Date, PlaylistId) values(in_trackname, in_style, in_dateT, in_playlist);" +
+                                   "INSERT INTO PostedTracks(Trackname, Date, PlaylistId) values(in_trackname, in_dateT, in_playlist);" +
                                    "END";
 
                 cmd.ExecuteNonQuery();
@@ -62,8 +62,8 @@ namespace vkaudioposter_ef.StoredProcedures
                 cmd.Parameters.AddWithValue("@in_trackname", trackname);
                 cmd.Parameters["@in_trackname"].Direction = ParameterDirection.Input;
 
-                cmd.Parameters.AddWithValue("@in_style", style);
-                cmd.Parameters["@in_style"].Direction = ParameterDirection.Input;
+                //cmd.Parameters.AddWithValue("@in_style", style);
+                //cmd.Parameters["@in_style"].Direction = ParameterDirection.Input;
 
                 cmd.Parameters.AddWithValue("@in_dateT", date);
                 cmd.Parameters["@in_dateT"].Direction = ParameterDirection.Input;

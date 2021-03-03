@@ -133,6 +133,9 @@ namespace vkaudioposter_ef
             VW_SelectDateFromPostedTracks sDFPT = new VW_SelectDateFromPostedTracks();
             sDFPT.CreateView(isFirstTime);
 
+            VW_StyleCountChart sCC = new VW_StyleCountChart();
+            sCC.CreateView(isFirstTime);
+
             FUNC_GetLastDateFromPostedTracks gLDFPT = new FUNC_GetLastDateFromPostedTracks();
             gLDFPT.CreateFunction(isFirstTime);
 
@@ -189,6 +192,11 @@ namespace vkaudioposter_ef
 
                 VW_SelectDateFromPostedTracks sDFPT = new VW_SelectDateFromPostedTracks();
                 sDFPT.TestView();
+
+
+                VW_StyleCountChart sCC = new VW_StyleCountChart();
+                sCC.TestView();
+
 
                 Console.WriteLine("\nTest Functions:\n");
                 FUNC_GetLastDateFromPostedTracks gLDFPT = new FUNC_GetLastDateFromPostedTracks();

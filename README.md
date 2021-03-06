@@ -17,3 +17,7 @@ DATABASE=dbname
 `dotnet ef migrations add InitialCreate`
 `dotnet ef database update`
 `dotnet ef migrations add TaskMigration`
+
+### VisualStudio:
+1) `Add-Migration NameOfMigration`
+2) `Update-Database`

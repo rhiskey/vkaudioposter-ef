@@ -12,21 +12,23 @@ namespace vkaudioposter_ef
         private static string db_user = vkaudioposter_ef.Program.user;
         private static string db_password = vkaudioposter_ef.Program.pass;
         private static string db_name = vkaudioposter_ef.Program.db;
-        public AppContext(string server, string user, string password, string database)
-        {
-            db_server = server;
-            db_user = user;
-            db_password = password;
-            db_name = database;
-        }
-        public AppContext()
-        {
-        }
 
-        public AppContext(DbContextOptions<AppContext> options)
-            : base(options)
-        {
-        }
+
+        //public AppContext(string server, string user, string password, string database)
+        //{
+        //    db_server = server;
+        //    db_user = user;
+        //    db_password = password;
+        //    db_name = database;
+        //}
+        //public AppContext()
+        //{
+        //}
+
+        //public AppContext(DbContextOptions<AppContext> options)
+        //    : base(options)
+        //{
+        //}
 
         public virtual DbSet<Playlist> Playlists { get; set; }
         //public DbSet<VwAllPlaylist> AllPlaylists { get; set; }
@@ -37,6 +39,12 @@ namespace vkaudioposter_ef
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            DotNetEnv.Env.TraversePath().Load();
+            db_server = DotNetEnv.Env.GetString("DB_HOST");
+            db_user = DotNetEnv.Env.GetString("EF_USER");
+            db_password = DotNetEnv.Env.GetString("EF_PASSWORD");
+            db_name = DotNetEnv.Env.GetString("EF_DATABASE");
+            //connStr = "server=" + server + ";user=" + user + ";database=" + db + ";port=3306;password=" + pass + "";
             optionsBuilder.UseMySQL("server=" + db_server + ";user=" + db_user + ";password=" + db_password + ";database=" + db_name + ";");
         }
 
@@ -81,6 +89,7 @@ namespace vkaudioposter_ef
 
                 entity.Property(e => e.MediaId);
                 entity.Property(e => e.OwnerId);
+
                 entity.HasOne(d => d.Playlist)
                     .WithMany(p => p.PostedTracks);
                     //.OnDelete(DeleteBehavior.ClientSetNull);

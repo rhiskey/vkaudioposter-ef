@@ -17,7 +17,7 @@ namespace vkaudioposter_ef
         public static string pass;
         public static string db;
         public static string connStr;
-        private static bool isFirstTime = true; // If true - drop all procedures and views, functions
+        private static bool isFirstTime = false; // If true - drop all procedures and views, functions
 
         public static void LoadConfig()
         {
@@ -32,7 +32,7 @@ namespace vkaudioposter_ef
         {
             LoadConfig();
 
-            InsertData(false);
+            //InsertData(false);
             //CreateStoredProceduresViewsAndFunctions(false);
             //RunTests();
             PrintDataAsync();

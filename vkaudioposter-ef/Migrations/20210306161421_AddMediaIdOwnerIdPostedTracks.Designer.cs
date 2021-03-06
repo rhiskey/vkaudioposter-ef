@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using vkaudioposter_ef;
 
 namespace vkaudioposter_ef.Migrations
 {
     [DbContext(typeof(AppContext))]
-    partial class AppContextModelSnapshot : ModelSnapshot
+    [Migration("20210306161421_AddMediaIdOwnerIdPostedTracks")]
+    partial class AddMediaIdOwnerIdPostedTracks
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,10 +82,10 @@ namespace vkaudioposter_ef.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("DATETIME");
 
-                    b.Property<int?>("MediaId")
+                    b.Property<int>("MediaId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("OwnerId")
+                    b.Property<int>("OwnerId")
                         .HasColumnType("int");
 
                     b.Property<int?>("PlaylistId")

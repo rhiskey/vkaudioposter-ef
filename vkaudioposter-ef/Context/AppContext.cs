@@ -79,7 +79,8 @@ namespace vkaudioposter_ef
                     .IsRequired()
                     .HasMaxLength(150);
 
-
+                entity.Property(e => e.MediaId);
+                entity.Property(e => e.OwnerId);
                 entity.HasOne(d => d.Playlist)
                     .WithMany(p => p.PostedTracks);
                     //.OnDelete(DeleteBehavior.ClientSetNull);

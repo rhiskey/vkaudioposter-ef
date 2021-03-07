@@ -40,9 +40,9 @@ namespace vkaudioposter_ef
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             DotNetEnv.Env.TraversePath().Load();
-            db_server = DotNetEnv.Env.GetString("DB_HOST");
+            db_server = DotNetEnv.Env.GetString("AWS_RDS_ENDPOINT");
             db_user = DotNetEnv.Env.GetString("EF_USER");
-            db_password = DotNetEnv.Env.GetString("EF_PASSWORD");
+            db_password = DotNetEnv.Env.GetString("AWS_RDS_PASSWORD");
             db_name = DotNetEnv.Env.GetString("EF_DATABASE");
             //connStr = "server=" + server + ";user=" + user + ";database=" + db + ";port=3306;password=" + pass + "";
             optionsBuilder.UseMySQL("server=" + db_server + ";user=" + db_user + ";password=" + db_password + ";database=" + db_name + ";");

@@ -22,9 +22,9 @@ namespace vkaudioposter_ef
         public static void LoadConfig()
         {
             DotNetEnv.Env.TraversePath().Load();
-            server = DotNetEnv.Env.GetString("DB_HOST");
+            server = DotNetEnv.Env.GetString("AWS_RDS_ENDPOINT");
             user = DotNetEnv.Env.GetString("EF_USER");
-            pass = DotNetEnv.Env.GetString("EF_PASSWORD");
+            pass = DotNetEnv.Env.GetString("AWS_RDS_PASSWORD");
             db = DotNetEnv.Env.GetString("EF_DATABASE");
             connStr = "server=" + server + ";user=" + user + ";database=" + db + ";port=3306;password=" + pass + "";
         }
@@ -39,7 +39,7 @@ namespace vkaudioposter_ef
         }
 
         // Seed
-        private static void InsertData(bool isFirstTime)
+        public static void InsertData(bool isFirstTime)
         {
             using var context = new AppContext();
             if (isFirstTime)
@@ -50,18 +50,21 @@ namespace vkaudioposter_ef
 
             var p1 = new Playlist
             {
-                PlaylistId = "spoty:1346367",
-                PlaylistName = "EDM"
+                PlaylistId = "spotify:playlist:37i9dQZF1DWUbycBFSWTh7",
+                PlaylistName = "Deephouse Delight",
+                Mood = 7
             };
             var p2 = new Playlist
             {
-                PlaylistId = "spoty:13463145",
-                PlaylistName = "Metall Basics"
+                PlaylistId = "spotify:playlist:37i9dQZF1DWUq3wF0JVtEy",
+                PlaylistName = "Shuffle Syndrome",
+                Mood = 8
             };
             context.Playlists.AddRange(p1, p2);
 
-            var cp1 = new ConsolePhotostock { Url = "https://devianart.com/topic2" };
-            context.Photostocks.Add(cp1);
+            var cp1 = new ConsolePhotostock { Url = "https://www.deviantart.com/topic/photo-manipulation" };
+            var cp2 = new ConsolePhotostock { Url = "https://www.deviantart.com/topic/digital-art" };
+            context.Photostocks.AddRange(cp1, cp2);
 
             var pt1 = new PostedTrack
             {

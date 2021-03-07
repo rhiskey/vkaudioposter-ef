@@ -38,6 +38,8 @@ namespace vkaudioposter_ef
             PrintDataAsync();
         }
 
+        // Create Schema
+ 
         // Seed
         public static void InsertData(bool isFirstTime)
         {

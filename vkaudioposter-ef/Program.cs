@@ -23,7 +23,7 @@ namespace vkaudioposter_ef
         {
             DotNetEnv.Env.TraversePath().Load();
             server = DotNetEnv.Env.GetString("AWS_RDS_ENDPOINT");
-            user = DotNetEnv.Env.GetString("EF_USER");
+            user = DotNetEnv.Env.GetString("AWS_USER");
             pass = DotNetEnv.Env.GetString("AWS_RDS_PASSWORD");
             db = DotNetEnv.Env.GetString("EF_DATABASE");
             connStr = "server=" + server + ";user=" + user + ";database=" + db + ";port=3306;password=" + pass + "";

@@ -27,7 +27,6 @@ namespace vkaudioposter_ef
                     cmd.ExecuteNonQuery();
                 }
                 cmd.CommandText = qCreate;
-
                 cmd.ExecuteNonQuery();
             }
             catch (MySqlException ex)

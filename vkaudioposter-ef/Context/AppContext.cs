@@ -8,11 +8,8 @@ namespace vkaudioposter_ef
 {
     public partial class AppContext : DbContext
     {
-        private static string db_server = vkaudioposter_ef.Program.server;
-        private static string db_user = vkaudioposter_ef.Program.user;
-        private static string db_password = vkaudioposter_ef.Program.pass;
-        private static string db_name = vkaudioposter_ef.Program.db;
-
+        private static string db_server, db_user, db_password, db_name, connStr;
+        //private static int db_port;
 
         //public AppContext(string server, string user, string password, string database)
         //{
@@ -44,7 +41,8 @@ namespace vkaudioposter_ef
             db_user = DotNetEnv.Env.GetString("MYSQL_USER");
             db_password = DotNetEnv.Env.GetString("MYSQL_PASSWORD");
             db_name = DotNetEnv.Env.GetString("MYSQL_DATABASE_NAME");
-            //connStr = "server=" + server + ";user=" + user + ";database=" + db + ";port=3306;password=" + pass + "";
+
+            connStr = "server=" + db_server + ";user=" + db_user + ";database=" + db_password + ";port=3306;password=" + db_password + "";
             optionsBuilder.UseMySQL("server=" + db_server + ";user=" + db_user + ";password=" + db_password + ";database=" + db_name + ";");
         }
 

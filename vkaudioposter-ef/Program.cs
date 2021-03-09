@@ -17,16 +17,16 @@ namespace vkaudioposter_ef
         public static string pass;
         public static string db;
         public static string connStr;
-        private static bool isFirstTime = false; // If true - drop all procedures and views, functions
+        //private static bool isFirstTime = false; // If true - drop all procedures and views, functions
 
         public static void LoadConfig()
         {
-            //DotNetEnv.Env.TraversePath().Load();
-            //server = DotNetEnv.Env.GetString("MYSQL_SERVER");
-            //user = DotNetEnv.Env.GetString("MYSQL_USER");
-            //pass = DotNetEnv.Env.GetString("MYSQL_PASSWORD");
-            //db = DotNetEnv.Env.GetString("MYSQL_DATABASE_NAME");
-            //connStr = "server=" + server + ";user=" + user + ";database=" + db + ";port=3306;password=" + pass + "";
+            DotNetEnv.Env.TraversePath().Load();
+            server = DotNetEnv.Env.GetString("MYSQL_SERVER");
+            user = DotNetEnv.Env.GetString("MYSQL_USER");
+            pass = DotNetEnv.Env.GetString("MYSQL_PASSWORD");
+            db = DotNetEnv.Env.GetString("MYSQL_DATABASE_NAME");
+            connStr = "server=" + server + ";user=" + user + ";database=" + db + ";port=3306;password=" + pass + "";
         }
         private static void MainEf(string[] args)
         {

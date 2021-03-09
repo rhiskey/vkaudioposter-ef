@@ -19,6 +19,9 @@ namespace vkaudioposter_ef
         public static string connStr;
         //private static bool isFirstTime = false; // If true - drop all procedures and views, functions
 
+        /// <summary>
+        /// First run (initial) Executes from external
+        /// </summary>
         public static void LoadConfig()
         {
             DotNetEnv.Env.TraversePath().Load();

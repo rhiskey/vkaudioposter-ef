@@ -33,7 +33,10 @@ namespace vkaudioposter_ef
         public virtual DbSet<PostedTrack> PostedTracks { get; set; }
         public virtual DbSet<UnfoundTrack> UnfoundTracks { get; set; }
 
-
+        /// <summary>
+        /// Executes every time when use AppContext
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             DotNetEnv.Env.TraversePath().Load();

@@ -21,16 +21,16 @@ namespace vkaudioposter_ef
 
         public static void LoadConfig()
         {
-            DotNetEnv.Env.TraversePath().Load();
-            server = DotNetEnv.Env.GetString("AWS_RDS_ENDPOINT");
-            user = DotNetEnv.Env.GetString("EF_USER");
-            pass = DotNetEnv.Env.GetString("AWS_RDS_PASSWORD");
-            db = DotNetEnv.Env.GetString("EF_DATABASE");
-            connStr = "server=" + server + ";user=" + user + ";database=" + db + ";port=3306;password=" + pass + "";
+            //DotNetEnv.Env.TraversePath().Load();
+            //server = DotNetEnv.Env.GetString("MYSQL_SERVER");
+            //user = DotNetEnv.Env.GetString("MYSQL_USER");
+            //pass = DotNetEnv.Env.GetString("MYSQL_PASSWORD");
+            //db = DotNetEnv.Env.GetString("MYSQL_DATABASE_NAME");
+            //connStr = "server=" + server + ";user=" + user + ";database=" + db + ";port=3306;password=" + pass + "";
         }
         private static void MainEf(string[] args)
         {
-            LoadConfig();
+            //LoadConfig();
 
             //InsertData(false);
             //CreateStoredProceduresViewsAndFunctions(false);

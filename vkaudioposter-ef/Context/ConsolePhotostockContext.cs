@@ -14,7 +14,7 @@ namespace vkaudioposter_ef.Context
         {
         }
 
-        public virtual DbSet<ConsolePhotostock> Playlists { get; set; }
+        public virtual DbSet<ConsolePhotostock> Photostocks { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

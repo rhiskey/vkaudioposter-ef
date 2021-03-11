@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using vkaudioposter_ef.parser;
 //using vkaudioposter_ef.Model;
 //using MySQL.EntityFrameworkCore.Extensions;
@@ -8,7 +9,8 @@ namespace vkaudioposter_ef
 {
     public partial class AppContext : DbContext
     {
-        private static string db_server, db_user, db_password, db_name, connStr;
+        private static string db_server, db_user, db_password, db_name;
+        public static string connStr;
         //private static int db_port;
 
         //public AppContext(string server, string user, string password, string database)
@@ -18,6 +20,7 @@ namespace vkaudioposter_ef
         //    db_password = password;
         //    db_name = database;
         //}
+
         //public AppContext()
         //{
         //}
@@ -45,7 +48,7 @@ namespace vkaudioposter_ef
             db_password = DotNetEnv.Env.GetString("MYSQL_PASSWORD");
             db_name = DotNetEnv.Env.GetString("MYSQL_DATABASE_NAME");
 
-            connStr = "server=" + db_server + ";user=" + db_user + ";database=" + db_password + ";port=3306;password=" + db_password + "";
+            connStr = "server=" + db_server + ";user=" + db_user + ";database=" + db_name+ ";port=3306;password=" + db_password + "";
             optionsBuilder.UseMySQL("server=" + db_server + ";user=" + db_user + ";password=" + db_password + ";database=" + db_name + ";");
         }
 

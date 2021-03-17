@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using vkaudioposter_ef.Model;
 using vkaudioposter_ef.parser;
 //using vkaudioposter_ef.Model;
 //using MySQL.EntityFrameworkCore.Extensions;
@@ -35,6 +36,9 @@ namespace vkaudioposter_ef
         public virtual DbSet<ConsolePhotostock> Photostocks { get; set; }
         public virtual DbSet<PostedTrack> PostedTracks { get; set; }
         public virtual DbSet<UnfoundTrack> UnfoundTracks { get; set; }
+        
+        public virtual DbSet<User> Users { get; set;}
+        public virtual DbSet<Role> Roles { get; set; }
 
         /// <summary>
         /// Executes every time when use AppContext
@@ -110,6 +114,22 @@ namespace vkaudioposter_ef
                 //entity.Property(e => e.Style).IsRequired();
                 entity.HasOne(d => d.Playlist)
                     .WithMany(p => p.UnfoundTracks);
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Username);
+                entity.Property(e => e.Email);
+                entity.Property(e => e.Password);
+            });
+
+            modelBuilder.Entity<Role>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Name);
+                entity.HasOne(e => e.User)
+                    .WithMany(u => u.Roles);
             });
         }
     }

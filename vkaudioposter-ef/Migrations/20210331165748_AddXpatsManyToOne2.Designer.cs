@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using vkaudioposter_ef;
 
 namespace vkaudioposter_ef.Migrations
 {
     [DbContext(typeof(AppContext))]
-    partial class AppContextModelSnapshot : ModelSnapshot
+    [Migration("20210331165748_AddXpatsManyToOne2")]
+    partial class AddXpatsManyToOne2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,13 +28,11 @@ namespace vkaudioposter_ef.Migrations
 
                     b.Property<string>("Xpath")
                         .HasMaxLength(1024)
-                        .HasColumnType("varchar(1024)")
-                        .HasComment("nodContainer for parsing (outer)");
+                        .HasColumnType("varchar(1024)");
 
                     b.Property<string>("XpathInner")
                         .HasMaxLength(1024)
-                        .HasColumnType("varchar(1024)")
-                        .HasComment("nodContainer for parsing (inner if need to go inside)");
+                        .HasColumnType("varchar(1024)");
 
                     b.HasKey("Id");
 
@@ -90,16 +90,6 @@ namespace vkaudioposter_ef.Migrations
                     b.Property<int?>("ParserXpathId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int")
-                        .HasDefaultValue(1)
-                        .HasComment("Enabled status. If = 0 - not included, if = 1 - included in parsing");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 3, 31, 20, 15, 37, 103, DateTimeKind.Local).AddTicks(7299))
-                        .HasComment("Update Date");
-
                     b.Property<string>("Url")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -139,16 +129,6 @@ namespace vkaudioposter_ef.Migrations
                         .HasColumnType("varchar(50)")
                         .HasColumnName("Playlist_Name")
                         .HasComment("Name of playlist");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int")
-                        .HasDefaultValue(1)
-                        .HasComment("Enabled status. If = 0 - not included, if = 1 - included in parsing");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 3, 31, 20, 15, 37, 101, DateTimeKind.Local).AddTicks(7846))
-                        .HasComment("Update Date");
 
                     b.HasKey("Id");
 

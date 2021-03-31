@@ -2,42 +2,22 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using vkaudioposter_ef;
 
 namespace vkaudioposter_ef.Migrations
 {
     [DbContext(typeof(AppContext))]
-    partial class AppContextModelSnapshot : ModelSnapshot
+    [Migration("20210331162453_AddXpatsToConsolePhotostocks")]
+    partial class AddXpatsToConsolePhotostocks
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.3");
-
-            modelBuilder.Entity("vkaudioposter_ef.Model.ParserXpath", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
-
-                    b.Property<string>("Xpath")
-                        .HasMaxLength(1024)
-                        .HasColumnType("varchar(1024)")
-                        .HasComment("nodContainer for parsing (outer)");
-
-                    b.Property<string>("XpathInner")
-                        .HasMaxLength(1024)
-                        .HasColumnType("varchar(1024)")
-                        .HasComment("nodContainer for parsing (inner if need to go inside)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ParserXpaths");
-                });
 
             modelBuilder.Entity("vkaudioposter_ef.Model.Role", b =>
                 {
@@ -87,28 +67,21 @@ namespace vkaudioposter_ef.Migrations
                         .HasColumnType("int")
                         .HasColumnName("id");
 
-                    b.Property<int?>("ParserXpathId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int")
-                        .HasDefaultValue(1)
-                        .HasComment("Enabled status. If = 0 - not included, if = 1 - included in parsing");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 3, 31, 20, 15, 37, 103, DateTimeKind.Local).AddTicks(7299))
-                        .HasComment("Update Date");
-
                     b.Property<string>("Url")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)")
                         .HasColumnName("URL");
 
-                    b.HasKey("Id");
+                    b.Property<string>("Xpath")
+                        .HasMaxLength(1024)
+                        .HasColumnType("varchar(1024)");
 
-                    b.HasIndex("ParserXpathId");
+                    b.Property<string>("XpathInner")
+                        .HasMaxLength(1024)
+                        .HasColumnType("varchar(1024)");
+
+                    b.HasKey("Id");
 
                     b.ToTable("console_Photostocks");
 
@@ -139,16 +112,6 @@ namespace vkaudioposter_ef.Migrations
                         .HasColumnType("varchar(50)")
                         .HasColumnName("Playlist_Name")
                         .HasComment("Name of playlist");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int")
-                        .HasDefaultValue(1)
-                        .HasComment("Enabled status. If = 0 - not included, if = 1 - included in parsing");
-
-                    b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 3, 31, 20, 15, 37, 101, DateTimeKind.Local).AddTicks(7846))
-                        .HasComment("Update Date");
 
                     b.HasKey("Id");
 
@@ -234,15 +197,6 @@ namespace vkaudioposter_ef.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("vkaudioposter_ef.parser.ConsolePhotostock", b =>
-                {
-                    b.HasOne("vkaudioposter_ef.Model.ParserXpath", "ParserXpath")
-                        .WithMany("ConsolePhotostock")
-                        .HasForeignKey("ParserXpathId");
-
-                    b.Navigation("ParserXpath");
-                });
-
             modelBuilder.Entity("vkaudioposter_ef.parser.PostedTrack", b =>
                 {
                     b.HasOne("vkaudioposter_ef.parser.Playlist", "Playlist")
@@ -263,11 +217,6 @@ namespace vkaudioposter_ef.Migrations
                         .IsRequired();
 
                     b.Navigation("Playlist");
-                });
-
-            modelBuilder.Entity("vkaudioposter_ef.Model.ParserXpath", b =>
-                {
-                    b.Navigation("ConsolePhotostock");
                 });
 
             modelBuilder.Entity("vkaudioposter_ef.Model.User", b =>

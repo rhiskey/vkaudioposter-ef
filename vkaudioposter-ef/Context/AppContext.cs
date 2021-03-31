@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using System;
 using vkaudioposter_ef.Model;
 using vkaudioposter_ef.parser;
 //using vkaudioposter_ef.Model;
@@ -34,6 +35,7 @@ namespace vkaudioposter_ef
         public virtual DbSet<Playlist> Playlists { get; set; }
         //public DbSet<VwAllPlaylist> AllPlaylists { get; set; }
         public virtual DbSet<ConsolePhotostock> Photostocks { get; set; }
+        public virtual DbSet<ParserXpath> ParserXpaths { get; set; }
         public virtual DbSet<PostedTrack> PostedTracks { get; set; }
         public virtual DbSet<UnfoundTrack> UnfoundTracks { get; set; }
         
@@ -71,6 +73,8 @@ namespace vkaudioposter_ef
                     .IsRequired()
                     .HasMaxLength(50)
                     .HasColumnName("Playlist_Name");
+                entity.Property(e => e.Status).HasDefaultValue(1);
+                entity.Property(e => e.UpdateDate).HasDefaultValue(DateTime.Now);
             });
 
             modelBuilder.Entity<ConsolePhotostock>(entity =>
@@ -81,6 +85,10 @@ namespace vkaudioposter_ef
                 entity.Property(e => e.Url).IsRequired()
                     .HasMaxLength(200)
                     .HasColumnName("URL");
+                entity.Property(e => e.Status).HasDefaultValue(1);
+                entity.Property(e => e.UpdateDate).HasDefaultValue(DateTime.Now);
+                //entity.Property(e => e.Xpath).HasMaxLength(1024);
+                //entity.Property(e => e.XpathInner).HasMaxLength(1024);
             });
 
             modelBuilder.Entity<PostedTrack>(entity =>

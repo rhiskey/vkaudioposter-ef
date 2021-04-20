@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>vkaudioposter_ef</RootNamespace>
 	<GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -36,9 +36,4 @@
     <PackageReference Include="MySql.EntityFrameworkCore" Version="5.0.0-m8.0.23" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update=".env">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
 </Project>

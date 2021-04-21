@@ -24,7 +24,7 @@
 
   <ItemGroup>
     <Content Include=".env">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 

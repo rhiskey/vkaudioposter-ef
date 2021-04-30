@@ -16,8 +16,8 @@ namespace vkaudioposter_ef.parser
         public int Id { get; set; }
 
         [Required]
-        [Column(TypeName = "varchar(150)")]
-        [MaxLength(150)]
+        [Column(TypeName = "varchar(1024)")]
+        [MaxLength(1024)]
         //[Index(IsUnique = true)]
         public string Trackname { get; set; }
 

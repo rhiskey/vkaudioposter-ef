@@ -41,6 +41,7 @@ namespace vkaudioposter_ef
         
         public virtual DbSet<User> Users { get; set;}
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Post> Posts { get; set; }
 
         /// <summary>
         /// Executes every time when use AppContext

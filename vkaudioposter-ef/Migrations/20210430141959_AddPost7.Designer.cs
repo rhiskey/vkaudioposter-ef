@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using vkaudioposter_ef;
 
 namespace vkaudioposter_ef.Migrations
 {
     [DbContext(typeof(AppContext))]
-    partial class AppContextModelSnapshot : ModelSnapshot
+    [Migration("20210430141959_AddPost7")]
+    partial class AddPost7
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -120,7 +122,7 @@ namespace vkaudioposter_ef.Migrations
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 4, 30, 17, 51, 55, 990, DateTimeKind.Local).AddTicks(3515))
+                        .HasDefaultValue(new DateTime(2021, 4, 30, 17, 19, 59, 49, DateTimeKind.Local).AddTicks(5606))
                         .HasComment("Update Date");
 
                     b.Property<string>("Url")
@@ -170,7 +172,7 @@ namespace vkaudioposter_ef.Migrations
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 4, 30, 17, 51, 55, 983, DateTimeKind.Local).AddTicks(6541))
+                        .HasDefaultValue(new DateTime(2021, 4, 30, 17, 19, 59, 42, DateTimeKind.Local).AddTicks(3929))
                         .HasComment("Update Date");
 
                     b.HasKey("Id");
@@ -207,7 +209,7 @@ namespace vkaudioposter_ef.Migrations
                     b.Property<string>("Trackname")
                         .IsRequired()
                         .HasMaxLength(150)
-                        .HasColumnType("varchar(1024)");
+                        .HasColumnType("varchar(150)");
 
                     b.HasKey("Id");
 

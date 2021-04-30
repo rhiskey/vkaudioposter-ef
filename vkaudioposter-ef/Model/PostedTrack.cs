@@ -32,6 +32,8 @@ namespace vkaudioposter_ef.parser
 
         public int? OwnerId { get; set; }
         public int? MediaId { get; set; }
+
+        public long? PostId { get; set; }
         public virtual Playlist Playlist { get; set; }
     }
 }

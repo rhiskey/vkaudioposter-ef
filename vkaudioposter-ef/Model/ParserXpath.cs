@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 #nullable disable
 namespace vkaudioposter_ef.Model
 {
+    [Table("ParserXpaths")]
     public partial class ParserXpath
     {
         [Key]

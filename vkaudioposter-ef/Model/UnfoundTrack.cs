@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace vkaudioposter_ef.parser
 {
+    [Table("UnfoundTracks")]
     public partial class UnfoundTrack
     {
         [Key]

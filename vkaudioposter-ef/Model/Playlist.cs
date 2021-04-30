@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace vkaudioposter_ef.parser
 {
+    [Table("Playlists")]
     public partial class Playlist
     {
         public Playlist(string playlistId, string playlistName)

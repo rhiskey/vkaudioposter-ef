@@ -9,6 +9,7 @@ using vkaudioposter_ef.parser;
 
 namespace vkaudioposter_ef.Model
 {
+    [Table("Posts")]
     public partial class Post
     {
         [Key]

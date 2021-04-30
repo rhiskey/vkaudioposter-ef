@@ -9,8 +9,8 @@ using vkaudioposter_ef;
 namespace vkaudioposter_ef.Migrations
 {
     [DbContext(typeof(AppContext))]
-    [Migration("20210430130318_AddPost6")]
-    partial class AddPost6
+    [Migration("20210430165306_newPostFK3")]
+    partial class newPostFK3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,7 +61,7 @@ namespace vkaudioposter_ef.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Post");
+                    b.ToTable("Posts");
                 });
 
             modelBuilder.Entity("vkaudioposter_ef.Model.Role", b =>
@@ -122,7 +122,7 @@ namespace vkaudioposter_ef.Migrations
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 4, 30, 16, 3, 17, 721, DateTimeKind.Local).AddTicks(2153))
+                        .HasDefaultValue(new DateTime(2021, 4, 30, 19, 53, 6, 249, DateTimeKind.Local).AddTicks(111))
                         .HasComment("Update Date");
 
                     b.Property<string>("Url")
@@ -172,7 +172,7 @@ namespace vkaudioposter_ef.Migrations
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 4, 30, 16, 3, 17, 712, DateTimeKind.Local).AddTicks(9416))
+                        .HasDefaultValue(new DateTime(2021, 4, 30, 19, 53, 6, 245, DateTimeKind.Local).AddTicks(4901))
                         .HasComment("Update Date");
 
                     b.HasKey("Id");
@@ -209,7 +209,7 @@ namespace vkaudioposter_ef.Migrations
                     b.Property<string>("Trackname")
                         .IsRequired()
                         .HasMaxLength(150)
-                        .HasColumnType("varchar(150)");
+                        .HasColumnType("varchar(1024)");
 
                     b.HasKey("Id");
 

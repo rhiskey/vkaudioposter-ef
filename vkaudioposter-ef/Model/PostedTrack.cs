@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using vkaudioposter_ef.Model;
 
 #nullable enable
 
@@ -33,7 +34,8 @@ namespace vkaudioposter_ef.parser
         public long? OwnerId { get; set; }
         public long? MediaId { get; set; }
 
-        public long? PostId { get; set; }
+        //public long? PostId { get; set; }
         public virtual Playlist Playlist { get; set; }
+        public virtual Post? Post { get; set; }
     }
 }

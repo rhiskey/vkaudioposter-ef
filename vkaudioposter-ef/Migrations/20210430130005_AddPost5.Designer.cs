@@ -9,8 +9,8 @@ using vkaudioposter_ef;
 namespace vkaudioposter_ef.Migrations
 {
     [DbContext(typeof(AppContext))]
-    [Migration("20210430101914_PostId")]
-    partial class PostId
+    [Migration("20210430130005_AddPost5")]
+    partial class AddPost5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -99,7 +99,7 @@ namespace vkaudioposter_ef.Migrations
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 4, 30, 13, 19, 14, 340, DateTimeKind.Local).AddTicks(5920))
+                        .HasDefaultValue(new DateTime(2021, 4, 30, 16, 0, 4, 634, DateTimeKind.Local).AddTicks(7326))
                         .HasComment("Update Date");
 
                     b.Property<string>("Url")
@@ -149,7 +149,7 @@ namespace vkaudioposter_ef.Migrations
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 4, 30, 13, 19, 14, 335, DateTimeKind.Local).AddTicks(9071))
+                        .HasDefaultValue(new DateTime(2021, 4, 30, 16, 0, 4, 627, DateTimeKind.Local).AddTicks(7381))
                         .HasComment("Update Date");
 
                     b.HasKey("Id");
@@ -170,18 +170,15 @@ namespace vkaudioposter_ef.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("DATETIME");
 
-                    b.Property<int?>("MediaId")
-                        .HasColumnType("int");
+                    b.Property<long?>("MediaId")
+                        .HasColumnType("bigint");
 
-                    b.Property<int?>("OwnerId")
-                        .HasColumnType("int");
+                    b.Property<long?>("OwnerId")
+                        .HasColumnType("bigint");
 
                     b.Property<int?>("PlaylistId")
                         .IsRequired()
                         .HasColumnType("int");
-
-                    b.Property<long?>("PostId")
-                        .HasColumnType("bigint");
 
                     b.Property<string>("Trackname")
                         .IsRequired()

@@ -3,26 +3,20 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace vkaudioposter_ef.Migrations
 {
-    public partial class PostId : Migration
+    public partial class AddPost5 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<long>(
-                name: "PostId",
-                table: "PostedTracks",
-                type: "bigint",
-                nullable: true);
-
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdateDate",
                 table: "Playlists",
                 type: "datetime",
                 nullable: false,
-                defaultValue: new DateTime(2021, 4, 30, 13, 19, 14, 335, DateTimeKind.Local).AddTicks(9071),
+                defaultValue: new DateTime(2021, 4, 30, 16, 0, 4, 627, DateTimeKind.Local).AddTicks(7381),
                 comment: "Update Date",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValue: new DateTime(2021, 3, 31, 20, 15, 37, 101, DateTimeKind.Local).AddTicks(7846),
+                oldDefaultValue: new DateTime(2021, 4, 30, 15, 56, 47, 111, DateTimeKind.Local).AddTicks(7900),
                 oldComment: "Update Date");
 
             migrationBuilder.AlterColumn<DateTime>(
@@ -30,30 +24,26 @@ namespace vkaudioposter_ef.Migrations
                 table: "console_Photostocks",
                 type: "datetime",
                 nullable: false,
-                defaultValue: new DateTime(2021, 4, 30, 13, 19, 14, 340, DateTimeKind.Local).AddTicks(5920),
+                defaultValue: new DateTime(2021, 4, 30, 16, 0, 4, 634, DateTimeKind.Local).AddTicks(7326),
                 comment: "Update Date",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValue: new DateTime(2021, 3, 31, 20, 15, 37, 103, DateTimeKind.Local).AddTicks(7299),
+                oldDefaultValue: new DateTime(2021, 4, 30, 15, 56, 47, 119, DateTimeKind.Local).AddTicks(8531),
                 oldComment: "Update Date");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "PostId",
-                table: "PostedTracks");
-
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdateDate",
                 table: "Playlists",
                 type: "datetime",
                 nullable: false,
-                defaultValue: new DateTime(2021, 3, 31, 20, 15, 37, 101, DateTimeKind.Local).AddTicks(7846),
+                defaultValue: new DateTime(2021, 4, 30, 15, 56, 47, 111, DateTimeKind.Local).AddTicks(7900),
                 comment: "Update Date",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValue: new DateTime(2021, 4, 30, 13, 19, 14, 335, DateTimeKind.Local).AddTicks(9071),
+                oldDefaultValue: new DateTime(2021, 4, 30, 16, 0, 4, 627, DateTimeKind.Local).AddTicks(7381),
                 oldComment: "Update Date");
 
             migrationBuilder.AlterColumn<DateTime>(
@@ -61,11 +51,11 @@ namespace vkaudioposter_ef.Migrations
                 table: "console_Photostocks",
                 type: "datetime",
                 nullable: false,
-                defaultValue: new DateTime(2021, 3, 31, 20, 15, 37, 103, DateTimeKind.Local).AddTicks(7299),
+                defaultValue: new DateTime(2021, 4, 30, 15, 56, 47, 119, DateTimeKind.Local).AddTicks(8531),
                 comment: "Update Date",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValue: new DateTime(2021, 4, 30, 13, 19, 14, 340, DateTimeKind.Local).AddTicks(5920),
+                oldDefaultValue: new DateTime(2021, 4, 30, 16, 0, 4, 634, DateTimeKind.Local).AddTicks(7326),
                 oldComment: "Update Date");
         }
     }

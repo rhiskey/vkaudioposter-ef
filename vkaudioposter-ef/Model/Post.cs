@@ -17,9 +17,6 @@ namespace vkaudioposter_ef.Model
 
         public long PostId { get; set; }
 
-        //[Required]
-        //[Column(TypeName = "varchar(150)")]
-        //[MaxLength(150)]
         public string Message { get; set; }
 
         [Column(TypeName = "DATETIME")]
@@ -27,5 +24,7 @@ namespace vkaudioposter_ef.Model
 
         public long? OwnerId { get; set; }
         public virtual ICollection<PostedTrack> PostedTracks { get; set; }
+
+        //public virtual ICollection<Photo> Photos { get; set; }
     }
 }

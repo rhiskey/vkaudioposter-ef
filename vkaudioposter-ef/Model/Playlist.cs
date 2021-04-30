@@ -51,8 +51,11 @@ namespace vkaudioposter_ef.parser
         //public virtual ICollection<ConsolePhotostock> Photostock { get; set; }
         [Comment("Enabled status. If = 0 - not included, if = 1 - included in parsing")]
         public int Status { get; set; }
+
         [Comment("Update Date")]
         public DateTime UpdateDate { get; set; }
+
+        public int? Count { get; set; }
         public virtual ICollection<PostedTrack> PostedTracks { get; set; }
         public virtual ICollection<UnfoundTrack> UnfoundTracks { get; set; }
     }

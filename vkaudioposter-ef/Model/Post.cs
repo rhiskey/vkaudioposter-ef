@@ -25,6 +25,6 @@ namespace vkaudioposter_ef.Model
         public long? OwnerId { get; set; }
         public virtual ICollection<PostedTrack> PostedTracks { get; set; }
 
-        //public virtual ICollection<Photo> Photos { get; set; }
+        public virtual ICollection<PostedPhoto> PostedPhotos { get; set; }
     }
 }

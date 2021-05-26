@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using vkaudioposter_ef.Model;
 using vkaudioposter_ef.parser;
 //using vkaudioposter_ef.Model;
@@ -110,7 +112,15 @@ namespace vkaudioposter_ef
 
                 entity.HasOne(d => d.Playlist)
                     .WithMany(p => p.PostedTracks);
-                    //.OnDelete(DeleteBehavior.ClientSetNull);
+                //.OnDelete(DeleteBehavior.ClientSetNull);
+
+                entity.Property(e => e.Urls)
+                    .HasConversion(
+                        d => JsonConvert.SerializeObject(d),
+                        s => JsonConvert.DeserializeObject<Dictionary<string, string>>(s)
+                    )
+                    .HasMaxLength(5000);
+
             });
 
             modelBuilder.Entity<UnfoundTrack>(entity =>

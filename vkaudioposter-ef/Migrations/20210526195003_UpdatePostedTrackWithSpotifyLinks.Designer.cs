@@ -2,20 +2,22 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using vkaudioposter_ef;
 
 namespace vkaudioposter_ef.Migrations
 {
     [DbContext(typeof(AppContext))]
-    partial class AppContextModelSnapshot : ModelSnapshot
+    [Migration("20210526195003_UpdatePostedTrackWithSpotifyLinks")]
+    partial class UpdatePostedTrackWithSpotifyLinks
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
-                .HasAnnotation("ProductVersion", "5.0.6");
+                .HasAnnotation("ProductVersion", "5.0.3");
 
             modelBuilder.Entity("vkaudioposter_ef.Model.ParserXpath", b =>
                 {
@@ -140,7 +142,7 @@ namespace vkaudioposter_ef.Migrations
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 5, 26, 23, 46, 12, 212, DateTimeKind.Local).AddTicks(9554))
+                        .HasDefaultValue(new DateTime(2021, 5, 26, 22, 50, 3, 243, DateTimeKind.Local).AddTicks(150))
                         .HasComment("Update Date");
 
                     b.Property<string>("Url")
@@ -193,7 +195,7 @@ namespace vkaudioposter_ef.Migrations
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 5, 26, 23, 46, 12, 211, DateTimeKind.Local).AddTicks(2529))
+                        .HasDefaultValue(new DateTime(2021, 5, 26, 22, 50, 3, 241, DateTimeKind.Local).AddTicks(4336))
                         .HasComment("Update Date");
 
                     b.HasKey("Id");
@@ -234,11 +236,6 @@ namespace vkaudioposter_ef.Migrations
                         .IsRequired()
                         .HasMaxLength(150)
                         .HasColumnType("varchar(1024)");
-
-                    b.Property<string>("Urls")
-                        .HasMaxLength(5000)
-                        .HasColumnType("text")
-                        .HasColumnName("Urls");
 
                     b.HasKey("Id");
 

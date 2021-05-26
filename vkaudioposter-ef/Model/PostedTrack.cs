@@ -36,8 +36,10 @@ namespace vkaudioposter_ef.parser
         public long? OwnerId { get; set; }
         public long? MediaId { get; set; }
 
-        [Column("Urls"), JsonExtensionData]
-        public Dictionary<string, string>? Urls { get; set; }
+        //[Column("Urls"), JsonExtensionData]
+        //public Dictionary<string, string>? Urls { get; set; }
+
+        public IList<TrackUrl>? TrackUrls { get; set; }
 
         public string? Url { get; set; }
         public string? PreviewUrl { get; set; }

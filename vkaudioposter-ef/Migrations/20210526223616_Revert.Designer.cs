@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using vkaudioposter_ef;
 
 namespace vkaudioposter_ef.Migrations
 {
     [DbContext(typeof(AppContext))]
-    partial class AppContextModelSnapshot : ModelSnapshot
+    [Migration("20210526223616_Revert")]
+    partial class Revert
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -140,7 +142,7 @@ namespace vkaudioposter_ef.Migrations
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 5, 27, 1, 37, 21, 754, DateTimeKind.Local).AddTicks(5742))
+                        .HasDefaultValue(new DateTime(2021, 5, 27, 1, 36, 16, 473, DateTimeKind.Local).AddTicks(7397))
                         .HasComment("Update Date");
 
                     b.Property<string>("Url")
@@ -193,7 +195,7 @@ namespace vkaudioposter_ef.Migrations
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 5, 27, 1, 37, 21, 753, DateTimeKind.Local).AddTicks(157))
+                        .HasDefaultValue(new DateTime(2021, 5, 27, 1, 36, 16, 472, DateTimeKind.Local).AddTicks(1190))
                         .HasComment("Update Date");
 
                     b.HasKey("Id");
@@ -228,10 +230,6 @@ namespace vkaudioposter_ef.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("PreviewUrl")
-                        .HasColumnType("text");
-
-                    b.Property<string>("TrackUrls")
-                        .HasMaxLength(5000)
                         .HasColumnType("text");
 
                     b.Property<string>("Trackname")

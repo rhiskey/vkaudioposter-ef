@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using vkaudioposter_ef;
 
 namespace vkaudioposter_ef.Migrations
 {
     [DbContext(typeof(AppContext))]
-    partial class AppContextModelSnapshot : ModelSnapshot
+    [Migration("20210526223234_ChangeTrackUrlsToListInsteadDict2")]
+    partial class ChangeTrackUrlsToListInsteadDict2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -140,7 +142,7 @@ namespace vkaudioposter_ef.Migrations
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 5, 27, 1, 37, 21, 754, DateTimeKind.Local).AddTicks(5742))
+                        .HasDefaultValue(new DateTime(2021, 5, 27, 1, 32, 34, 222, DateTimeKind.Local).AddTicks(9294))
                         .HasComment("Update Date");
 
                     b.Property<string>("Url")
@@ -193,7 +195,7 @@ namespace vkaudioposter_ef.Migrations
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 5, 27, 1, 37, 21, 753, DateTimeKind.Local).AddTicks(157))
+                        .HasDefaultValue(new DateTime(2021, 5, 27, 1, 32, 34, 221, DateTimeKind.Local).AddTicks(3823))
                         .HasComment("Update Date");
 
                     b.HasKey("Id");

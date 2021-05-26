@@ -114,10 +114,18 @@ namespace vkaudioposter_ef
                     .WithMany(p => p.PostedTracks);
                 //.OnDelete(DeleteBehavior.ClientSetNull);
 
-                entity.Property(e => e.Urls)
+                //entity.Property(e => e.Urls)
+                //    .HasConversion(
+                //        d => JsonConvert.SerializeObject(d),
+                //        s => JsonConvert.DeserializeObject<Dictionary<string, string>>(s)
+                //    )
+                //    .HasMaxLength(5000);
+
+
+                entity.Property(e => e.TrackUrls)
                     .HasConversion(
                         d => JsonConvert.SerializeObject(d),
-                        s => JsonConvert.DeserializeObject<Dictionary<string, string>>(s)
+                        s => JsonConvert.DeserializeObject<IList<TrackUrl>>(s)
                     )
                     .HasMaxLength(5000);
 

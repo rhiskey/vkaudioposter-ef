@@ -39,6 +39,7 @@ namespace vkaudioposter_ef.parser
         [Column("Urls"), JsonExtensionData]
         public Dictionary<string, string>? Urls { get; set; }
 
+        public string? Url { get; set; }
         public string? PreviewUrl { get; set; }
 
         public virtual Playlist Playlist { get; set; }

@@ -46,5 +46,8 @@ namespace vkaudioposter_ef.parser
 
         public virtual Playlist Playlist { get; set; }
         public virtual Post? Post { get; set; }
+
+
     }
+
 }

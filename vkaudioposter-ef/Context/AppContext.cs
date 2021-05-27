@@ -121,13 +121,13 @@ namespace vkaudioposter_ef
                 //    )
                 //    .HasMaxLength(5000);
 
-
-                entity.Property(e => e.TrackUrls)
-                    .HasConversion(
-                        d => JsonConvert.SerializeObject(d),
-                        s => JsonConvert.DeserializeObject<IList<TrackUrl>>(s)
-                    )
-                    .HasMaxLength(5000);
+                ///UNCOMMENT IF WANT TO STORE IN DB
+                //entity.Property(e => e.TrackUrls)
+                //    .HasConversion(
+                //        d => JsonConvert.SerializeObject(d),
+                //        s => JsonConvert.DeserializeObject<IList<TrackUrl>>(s)
+                //    )
+                //    .HasMaxLength(5000);
 
             });
 

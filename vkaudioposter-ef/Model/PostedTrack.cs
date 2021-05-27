@@ -39,6 +39,7 @@ namespace vkaudioposter_ef.parser
         //[Column("Urls"), JsonExtensionData]
         //public Dictionary<string, string>? Urls { get; set; }
 
+        [NotMapped] //Remove if want to store in DB
         public IList<TrackUrl>? TrackUrls { get; set; }
 
         public string? Url { get; set; }

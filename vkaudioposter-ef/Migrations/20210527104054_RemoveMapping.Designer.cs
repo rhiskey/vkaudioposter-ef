@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using vkaudioposter_ef;
 
 namespace vkaudioposter_ef.Migrations
 {
     [DbContext(typeof(AppContext))]
-    partial class AppContextModelSnapshot : ModelSnapshot
+    [Migration("20210527104054_RemoveMapping")]
+    partial class RemoveMapping
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -140,7 +142,7 @@ namespace vkaudioposter_ef.Migrations
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 5, 27, 13, 43, 2, 97, DateTimeKind.Local).AddTicks(5703))
+                        .HasDefaultValue(new DateTime(2021, 5, 27, 13, 40, 54, 439, DateTimeKind.Local).AddTicks(7153))
                         .HasComment("Update Date");
 
                     b.Property<string>("Url")
@@ -193,7 +195,7 @@ namespace vkaudioposter_ef.Migrations
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 5, 27, 13, 43, 2, 95, DateTimeKind.Local).AddTicks(9512))
+                        .HasDefaultValue(new DateTime(2021, 5, 27, 13, 40, 54, 438, DateTimeKind.Local).AddTicks(937))
                         .HasComment("Update Date");
 
                     b.HasKey("Id");
@@ -228,6 +230,10 @@ namespace vkaudioposter_ef.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("PreviewUrl")
+                        .HasColumnType("text");
+
+                    b.Property<string>("TrackUrls")
+                        .HasMaxLength(5000)
                         .HasColumnType("text");
 
                     b.Property<string>("Trackname")

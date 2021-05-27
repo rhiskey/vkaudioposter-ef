@@ -99,7 +99,7 @@ namespace vkaudioposter_ef.Migrations
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 5, 27, 14, 44, 1, 969, DateTimeKind.Local).AddTicks(2500))
+                        .HasDefaultValue(new DateTime(2021, 5, 27, 14, 55, 17, 543, DateTimeKind.Local).AddTicks(1411))
                         .HasComment("Update Date");
 
                     b.Property<string>("Url")
@@ -152,7 +152,7 @@ namespace vkaudioposter_ef.Migrations
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 5, 27, 14, 44, 1, 967, DateTimeKind.Local).AddTicks(6731))
+                        .HasDefaultValue(new DateTime(2021, 5, 27, 14, 55, 17, 541, DateTimeKind.Local).AddTicks(4943))
                         .HasComment("Update Date");
 
                     b.HasKey("Id");

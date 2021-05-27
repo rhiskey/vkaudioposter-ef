@@ -16,9 +16,9 @@ namespace vkaudioposter_ef.Model
     {
         [Key]
         public int Id { get; set; }
-        public string Key { get; set; } = "Key";
+        public string Key { get; set; } = null!;
 
-        public string Value { get; set; } = "Value";
+        public string Value { get; set; } = null!;
 
         public virtual PostedTrack PostedTrack { get; set; } = null!; //= new PostedTrack { OwnerId = 0 };
     }

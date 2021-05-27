@@ -21,7 +21,7 @@ namespace vkaudioposter_ef.parser
         [Column(TypeName = "varchar(1024)")]
         [MaxLength(1024)]
         //[Index(IsUnique = true)]
-        public string Trackname { get; set; }
+        public string Trackname { get; set; } = "Trackname";
 
         ////[Required]
         //[Column(TypeName = "varchar(45)")]
@@ -39,13 +39,13 @@ namespace vkaudioposter_ef.parser
         //[Column("Urls"), JsonExtensionData]
         //public Dictionary<string, string>? Urls { get; set; }
 
-        [NotMapped] //Remove if want to store in DB
+        //[NotMapped] //COMMENT if want to store in DB
         public IList<TrackUrl>? TrackUrls { get; set; }
 
         public string? Url { get; set; }
         public string? PreviewUrl { get; set; }
 
-        public virtual Playlist Playlist { get; set; }
+        public virtual Playlist Playlist { get; set; } = new Playlist { PlaylistName = "Default" };
         public virtual Post? Post { get; set; }
 
 

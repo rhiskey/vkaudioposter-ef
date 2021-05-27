@@ -14,7 +14,7 @@ namespace vkaudioposter_ef
     public partial class AppContext : DbContext
     {
         private static string db_server, db_user, db_password, db_name;
-        public static string connStr;
+        //private static string connStr;
         //private static int db_port;
 
         //public AppContext(string server, string user, string password, string database)
@@ -58,7 +58,7 @@ namespace vkaudioposter_ef
             db_password = DotNetEnv.Env.GetString("MYSQL_PASSWORD");
             db_name = DotNetEnv.Env.GetString("MYSQL_DATABASE_NAME");
 
-            connStr = "server=" + db_server + ";user=" + db_user + ";database=" + db_name+ ";port=3306;password=" + db_password + "";
+            //connStr = "server=" + db_server + ";user=" + db_user + ";database=" + db_name+ ";port=3306;password=" + db_password + "";
             optionsBuilder.UseMySQL("server=" + db_server + ";user=" + db_user + ";password=" + db_password + ";database=" + db_name + ";");
         }
 
@@ -122,12 +122,12 @@ namespace vkaudioposter_ef
                 //    .HasMaxLength(5000);
 
                 ///UNCOMMENT IF WANT TO STORE IN DB
-                //entity.Property(e => e.TrackUrls)
-                //    .HasConversion(
-                //        d => JsonConvert.SerializeObject(d),
-                //        s => JsonConvert.DeserializeObject<IList<TrackUrl>>(s)
-                //    )
-                //    .HasMaxLength(5000);
+                entity.Property(e => e.TrackUrls)
+                    .HasConversion(
+                        d => JsonConvert.SerializeObject(d),
+                        s => JsonConvert.DeserializeObject<IList<TrackUrl>>(s)
+                    )
+                    .HasMaxLength(5000);
 
             });
 

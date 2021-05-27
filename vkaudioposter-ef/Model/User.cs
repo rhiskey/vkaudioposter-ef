@@ -19,6 +19,6 @@ namespace vkaudioposter_ef.Model
 
         //public DateTime CreatedAt { get; set; }
         //public DateTime UpdatedAt { get; set; }
-        public virtual ICollection<Role> Roles { get; set; }
+        public virtual ICollection<Role> Roles { get; set; } = new List<Role> { new Role { Name = "Default Role" } };
     }
 }

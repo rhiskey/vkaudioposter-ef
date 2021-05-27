@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using vkaudioposter_ef;
 
 namespace vkaudioposter_ef.Migrations
 {
     [DbContext(typeof(AppContext))]
-    partial class AppContextModelSnapshot : ModelSnapshot
+    [Migration("20210527113727_Remove-Default-Vals")]
+    partial class RemoveDefaultVals
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,6 +84,47 @@ namespace vkaudioposter_ef.Migrations
                     b.ToTable("PostedPhotos");
                 });
 
+            modelBuilder.Entity("vkaudioposter_ef.Model.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Roles");
+                });
+
+            modelBuilder.Entity("vkaudioposter_ef.Model.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("vkaudioposter_ef.parser.ConsolePhotostock", b =>
                 {
                     b.Property<int>("Id")
@@ -99,7 +142,7 @@ namespace vkaudioposter_ef.Migrations
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 5, 27, 14, 44, 1, 969, DateTimeKind.Local).AddTicks(2500))
+                        .HasDefaultValue(new DateTime(2021, 5, 27, 14, 37, 27, 195, DateTimeKind.Local).AddTicks(2782))
                         .HasComment("Update Date");
 
                     b.Property<string>("Url")
@@ -152,7 +195,7 @@ namespace vkaudioposter_ef.Migrations
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 5, 27, 14, 44, 1, 967, DateTimeKind.Local).AddTicks(6731))
+                        .HasDefaultValue(new DateTime(2021, 5, 27, 14, 37, 27, 193, DateTimeKind.Local).AddTicks(7260))
                         .HasComment("Update Date");
 
                     b.HasKey("Id");
@@ -248,6 +291,17 @@ namespace vkaudioposter_ef.Migrations
                     b.Navigation("Post");
                 });
 
+            modelBuilder.Entity("vkaudioposter_ef.Model.Role", b =>
+                {
+                    b.HasOne("vkaudioposter_ef.Model.User", "User")
+                        .WithMany("Roles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("vkaudioposter_ef.parser.ConsolePhotostock", b =>
                 {
                     b.HasOne("vkaudioposter_ef.Model.ParserXpath", "ParserXpath")
@@ -295,6 +349,11 @@ namespace vkaudioposter_ef.Migrations
                     b.Navigation("PostedPhotos");
 
                     b.Navigation("PostedTracks");
+                });
+
+            modelBuilder.Entity("vkaudioposter_ef.Model.User", b =>
+                {
+                    b.Navigation("Roles");
                 });
 
             modelBuilder.Entity("vkaudioposter_ef.parser.Playlist", b =>

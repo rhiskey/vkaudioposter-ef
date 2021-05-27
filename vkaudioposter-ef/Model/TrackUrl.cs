@@ -20,6 +20,6 @@ namespace vkaudioposter_ef.Model
 
         public string Value { get; set; } = "Value";
 
-        public virtual PostedTrack PostedTrack { get; set; } = new PostedTrack { OwnerId = 0 };
+        public virtual PostedTrack PostedTrack { get; set; } = null!; //= new PostedTrack { OwnerId = 0 };
     }
 }

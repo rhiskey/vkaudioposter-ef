@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable enable
-
 namespace vkaudioposter_ef.parser
 {
     [Table("UnfoundTracks")]
@@ -17,7 +16,7 @@ namespace vkaudioposter_ef.parser
         [Required]
         [Column("trackname", TypeName = "varchar(150)")]
         [MaxLength(150)]
-        public string Trackname { get; set; }
+        public string Trackname { get; set; } = null!;
 
         ////[Required]
         //[Column("style", TypeName = "varchar(45)")]
@@ -25,7 +24,7 @@ namespace vkaudioposter_ef.parser
         //public string? Style { get; set; }
 
         public int? PlaylistId { get; set; }
-        public virtual Playlist Playlist { get; set; }
+        public virtual Playlist Playlist { get; set; } = null!;
 
     }
 }

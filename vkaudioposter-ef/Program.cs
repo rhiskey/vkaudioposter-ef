@@ -43,49 +43,7 @@ namespace vkaudioposter_ef
             PrintDataAsync();
         }
 
-        public static void InsertRoles()
-        {
-            using var context = new AppContext();
-            context.Database.EnsureCreated();
 
-            var user = new Role
-            {
-                Name = "USER"
-            };
-            var mod = new Role
-            {
-                Name = "MODERATOR"
-            };
-            var admin = new Role
-            {
-                Name = "ADMIN"
-            };
-            context.Roles.AddRange(user, mod, admin);
-
-            List<Role> roles = new List<Role>();
-            roles.Add(user);
-            roles.Add(mod);
-            roles.Add(admin);
-
-            var adminUser = new User
-            {
-                Username = "admin",
-                Email = "admin@gmail.com",
-                Password = "12345",
-                Roles = roles
-            };
-            context.Users.Add(adminUser);
-
-            context.SaveChanges();
-        }
-        public static void InsertUsers()
-        {
-            using var context = new AppContext();
-            // Creates the database if not exists
-            context.Database.EnsureCreated();
-
-            
-        }
         // Seed
         public static void InsertData(bool isFirstTime)
         {

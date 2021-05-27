@@ -6,7 +6,6 @@ using System.Text;
 using vkaudioposter_ef.parser;
 
 #nullable enable
-
 namespace vkaudioposter_ef.Model
 {
     public partial class Track
@@ -18,7 +17,7 @@ namespace vkaudioposter_ef.Model
         [Required]
         [Column(TypeName = "varchar(150)")]
         [MaxLength(150)]
-        public string Trackname { get; set; }
+        public string Trackname { get; set; } = null!;
 
         ////[Required]
         //[Column(TypeName = "varchar(45)")]
@@ -26,6 +25,6 @@ namespace vkaudioposter_ef.Model
         //public string? Style { get; set; }
 
         public int? PlaylistId { get; set; }
-        public virtual Playlist Playlist { get; set; }
+        public virtual Playlist Playlist { get; set; } = null!;
     }
 }

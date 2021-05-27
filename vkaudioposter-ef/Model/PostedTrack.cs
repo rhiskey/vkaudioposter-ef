@@ -21,7 +21,7 @@ namespace vkaudioposter_ef.parser
         [Column(TypeName = "varchar(1024)")]
         [MaxLength(1024)]
         //[Index(IsUnique = true)]
-        public string Trackname { get; set; } = "Trackname";
+        public string Trackname { get; set; } = null!; //= "Trackname"; 
 
         ////[Required]
         //[Column(TypeName = "varchar(45)")]
@@ -45,7 +45,7 @@ namespace vkaudioposter_ef.parser
         public string? Url { get; set; }
         public string? PreviewUrl { get; set; }
 
-        public virtual Playlist Playlist { get; set; } = new Playlist { PlaylistName = "Default" };
+        public virtual Playlist Playlist { get; set; } = null!; //= new Playlist { PlaylistName = "Default" };
         public virtual Post? Post { get; set; }
 
 

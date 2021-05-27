@@ -41,8 +41,6 @@ namespace vkaudioposter_ef
         public virtual DbSet<PostedTrack> PostedTracks { get; set; }
         public virtual DbSet<UnfoundTrack> UnfoundTracks { get; set; }
         
-        public virtual DbSet<User> Users { get; set;}
-        public virtual DbSet<Role> Roles { get; set; }
 
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<PostedPhoto> PostedPhotos { get; set; }
@@ -144,21 +142,6 @@ namespace vkaudioposter_ef
                     .WithMany(p => p.UnfoundTracks);
             });
 
-            modelBuilder.Entity<User>(entity =>
-            {
-                entity.HasKey(e => e.Id);
-                entity.Property(e => e.Username);
-                entity.Property(e => e.Email);
-                entity.Property(e => e.Password);
-            });
-
-            modelBuilder.Entity<Role>(entity =>
-            {
-                entity.HasKey(e => e.Id);
-                entity.Property(e => e.Name);
-                entity.HasOne(e => e.User)
-                    .WithMany(u => u.Roles);
-            });
         }
     }
 }

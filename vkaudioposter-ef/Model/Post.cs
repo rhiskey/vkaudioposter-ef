@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -23,8 +24,10 @@ namespace vkaudioposter_ef.Model
         public DateTime PublishDate { get; set; }
 
         public long? OwnerId { get; set; }
+        //[JsonIgnore]
         public virtual ICollection<PostedTrack> PostedTracks { get; set; }
 
+        //[JsonIgnore]
         public virtual ICollection<PostedPhoto> PostedPhotos { get; set; }
     }
 }

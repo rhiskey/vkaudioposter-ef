@@ -40,7 +40,8 @@ namespace vkaudioposter_ef
             //InsertData(false);
             //CreateStoredProceduresViewsAndFunctions(false);
             //RunTests();
-            PrintDataAsync();
+
+            //PrintDataAsync();
         }
 
 

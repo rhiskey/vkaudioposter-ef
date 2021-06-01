@@ -10,7 +10,7 @@ namespace vkaudioposter_ef
 {
     public partial class AppContext : DbContext
     {
-        private static string db_server, db_user, db_password, db_name, mssql_user, mssql_password;
+        private static string db_server, db_user, db_password, db_name;
         //private static string connStr;
         //private static int db_port;
 

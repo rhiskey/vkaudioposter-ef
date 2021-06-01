@@ -8,9 +8,11 @@ namespace vkaudioposter_ef.Functions
     {
         public void CreateFunction(bool isFirstLaunch)
         {
-            MySqlConnection conn = new MySqlConnection();
-            conn.ConnectionString = Program.connStr;
-            MySqlCommand cmd = new MySqlCommand();
+            MySqlConnection conn = new()
+            {
+                ConnectionString = Program.connStr
+            };
+            MySqlCommand cmd = new();
 
             try
             {
@@ -47,9 +49,11 @@ namespace vkaudioposter_ef.Functions
 
         public void TestFunction()
         {
-            MySqlConnection conn = new MySqlConnection();
-            conn.ConnectionString = Program.connStr;
-            MySqlCommand cmd = new MySqlCommand();
+            MySqlConnection conn = new()
+            {
+                ConnectionString = Program.connStr
+            };
+            MySqlCommand cmd = new();
             string Output = "";
             try
             {

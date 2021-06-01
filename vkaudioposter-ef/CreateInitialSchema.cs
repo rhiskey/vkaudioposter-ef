@@ -10,9 +10,9 @@ namespace vkaudioposter_ef
             string db = Program.db;
             string qDrop = $"DROP DATABASE `{db}` ;";
             string qCreate = $"CREATE SCHEMA `{db}` ;";
-            MySqlConnection conn = new MySqlConnection();
+            MySqlConnection conn = new();
             conn.ConnectionString = Program.connStr;
-            MySqlCommand cmd = new MySqlCommand();
+            MySqlCommand cmd = new();
 
             try
             {

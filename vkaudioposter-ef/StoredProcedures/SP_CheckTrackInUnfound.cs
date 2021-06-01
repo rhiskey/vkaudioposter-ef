@@ -44,9 +44,9 @@ namespace vkaudioposter_ef.StoredProcedures
 
         public void TestProcedure(string trackname, string style, DateTime? date, int? playlistID)
         {
-            MySqlConnection conn = new MySqlConnection();
+            MySqlConnection conn = new();
             conn.ConnectionString = Program.connStr;
-            MySqlCommand cmd = new MySqlCommand();
+            MySqlCommand cmd = new();
             //Test
             try
             {

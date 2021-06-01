@@ -1,8 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Text;
 
 namespace vkaudioposter_ef.StoredProcedures
 {
@@ -77,5 +75,5 @@ namespace vkaudioposter_ef.StoredProcedures
             conn.Close();
             Console.WriteLine("Done.");
         }
-    }   
+    }
 }

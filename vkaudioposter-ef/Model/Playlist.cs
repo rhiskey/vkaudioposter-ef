@@ -35,7 +35,7 @@ namespace vkaudioposter_ef.parser
         public int Id { get; set; }
 
         [Required]
-        [Column("Playlist_ID",TypeName = "varchar(45)")]
+        [Column("Playlist_ID", TypeName = "varchar(45)")]
         [MaxLength(45)]
         [Comment("Spotify URI")]
         public string PlaylistId { get; set; }

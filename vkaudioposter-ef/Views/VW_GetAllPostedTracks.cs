@@ -1,6 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Text;
 
@@ -62,7 +61,7 @@ namespace vkaudioposter_ef.Views
                 var ordinalPlID = reader.GetOrdinal("PlaylistId");
                 var ordinalName = reader.GetOrdinal("Trackname");
                 var ordinalDate = reader.GetOrdinal("Date");
-   
+
                 while (reader.Read())
                 {
                     if (reader.GetValue(ordinalName).ToString() != "\u0000")
@@ -77,7 +76,7 @@ namespace vkaudioposter_ef.Views
                             var val2 = reader.GetValue(ordinalName); //Name        
                             var date = reader.GetValue(ordinalDate).ToString();
                             var plId = reader.GetValue(ordinalPlID).ToString();
-                            
+
                             var plName = reader.GetValue(ordinalName).ToString();
                             output.AppendLine($" {plId} - {date} - {plName}");
                         }

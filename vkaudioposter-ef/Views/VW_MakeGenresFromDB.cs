@@ -1,12 +1,11 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Text;
 
 namespace vkaudioposter_ef.Views
 {
-    public class VW_MakeGenresFromDB: IView
+    public class VW_MakeGenresFromDB : IView
     {
         public void CreateView(bool isFirstLaunch)
         {

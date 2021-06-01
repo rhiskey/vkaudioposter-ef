@@ -3,26 +3,20 @@ using System;
 
 namespace vkaudioposter_ef.Migrations
 {
-    public partial class AddStaticUrlStringToPostedTrack : Migration
+    public partial class AddDefaultNullsTrackUrls : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "Url",
-                table: "PostedTracks",
-                type: "text",
-                nullable: true);
-
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdateDate",
                 table: "Playlists",
                 type: "datetime",
                 nullable: false,
-                defaultValue: new DateTime(2021, 5, 27, 0, 32, 16, 287, DateTimeKind.Local).AddTicks(7252),
+                defaultValue: new DateTime(2021, 5, 27, 14, 55, 17, 541, DateTimeKind.Local).AddTicks(4943),
                 comment: "Update Date",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValue: new DateTime(2021, 5, 26, 23, 46, 12, 211, DateTimeKind.Local).AddTicks(2529),
+                oldDefaultValue: new DateTime(2021, 5, 27, 14, 44, 1, 967, DateTimeKind.Local).AddTicks(6731),
                 oldComment: "Update Date");
 
             migrationBuilder.AlterColumn<DateTime>(
@@ -30,30 +24,26 @@ namespace vkaudioposter_ef.Migrations
                 table: "console_Photostocks",
                 type: "datetime",
                 nullable: false,
-                defaultValue: new DateTime(2021, 5, 27, 0, 32, 16, 289, DateTimeKind.Local).AddTicks(3344),
+                defaultValue: new DateTime(2021, 5, 27, 14, 55, 17, 543, DateTimeKind.Local).AddTicks(1411),
                 comment: "Update Date",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValue: new DateTime(2021, 5, 26, 23, 46, 12, 212, DateTimeKind.Local).AddTicks(9554),
+                oldDefaultValue: new DateTime(2021, 5, 27, 14, 44, 1, 969, DateTimeKind.Local).AddTicks(2500),
                 oldComment: "Update Date");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Url",
-                table: "PostedTracks");
-
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdateDate",
                 table: "Playlists",
                 type: "datetime",
                 nullable: false,
-                defaultValue: new DateTime(2021, 5, 26, 23, 46, 12, 211, DateTimeKind.Local).AddTicks(2529),
+                defaultValue: new DateTime(2021, 5, 27, 14, 44, 1, 967, DateTimeKind.Local).AddTicks(6731),
                 comment: "Update Date",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValue: new DateTime(2021, 5, 27, 0, 32, 16, 287, DateTimeKind.Local).AddTicks(7252),
+                oldDefaultValue: new DateTime(2021, 5, 27, 14, 55, 17, 541, DateTimeKind.Local).AddTicks(4943),
                 oldComment: "Update Date");
 
             migrationBuilder.AlterColumn<DateTime>(
@@ -61,11 +51,11 @@ namespace vkaudioposter_ef.Migrations
                 table: "console_Photostocks",
                 type: "datetime",
                 nullable: false,
-                defaultValue: new DateTime(2021, 5, 26, 23, 46, 12, 212, DateTimeKind.Local).AddTicks(9554),
+                defaultValue: new DateTime(2021, 5, 27, 14, 44, 1, 969, DateTimeKind.Local).AddTicks(2500),
                 comment: "Update Date",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValue: new DateTime(2021, 5, 27, 0, 32, 16, 289, DateTimeKind.Local).AddTicks(3344),
+                oldDefaultValue: new DateTime(2021, 5, 27, 14, 55, 17, 543, DateTimeKind.Local).AddTicks(1411),
                 oldComment: "Update Date");
         }
     }

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Text;
-using Microsoft.EntityFrameworkCore;
 using vkaudioposter_ef.Functions;
-using vkaudioposter_ef.Model;
 using vkaudioposter_ef.parser;
 //using vkaudioposter_ef.Model;
 using vkaudioposter_ef.StoredProcedures;
@@ -93,7 +90,7 @@ namespace vkaudioposter_ef
             // Saves changes
             context.SaveChanges();
         }
-        
+
         public static void CreateStoredProceduresViewsAndFunctions(bool isFirstTime)
         {
             SP_CheckTrackInPosted cTIP = new SP_CheckTrackInPosted();
@@ -211,7 +208,7 @@ namespace vkaudioposter_ef
                 FUNC_GetLastDateFromPostedTracks gLDFPT = new FUNC_GetLastDateFromPostedTracks();
                 gLDFPT.TestFunction();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine("One of the tests failed...");
                 Console.WriteLine(ex);

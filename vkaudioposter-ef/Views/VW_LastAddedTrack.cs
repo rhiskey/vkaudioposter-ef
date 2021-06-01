@@ -1,12 +1,11 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Text;
 
 namespace vkaudioposter_ef.Views
 {
-    public class VW_LastAddedTrack:IView
+    public class VW_LastAddedTrack : IView
     {
         public void CreateView(bool isFirstLaunch)
         {
@@ -27,7 +26,7 @@ namespace vkaudioposter_ef.Views
                 cmd.CommandText = "CREATE VIEW vw_last_added_track AS " +
                     "SELECT * " +
                     "FROM PostedTracks " +
-                    "ORDER BY PostedTracks.id DESC "+
+                    "ORDER BY PostedTracks.id DESC " +
                     "LIMIT 10";
 
                 cmd.ExecuteNonQuery();

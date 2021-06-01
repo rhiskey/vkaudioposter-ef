@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using vkaudioposter_ef.Model;
 using vkaudioposter_ef.parser;
 //using vkaudioposter_ef.Model;
@@ -40,7 +37,7 @@ namespace vkaudioposter_ef
         public virtual DbSet<ParserXpath> ParserXpaths { get; set; }
         public virtual DbSet<PostedTrack> PostedTracks { get; set; }
         public virtual DbSet<UnfoundTrack> UnfoundTracks { get; set; }
-        
+
 
         public virtual DbSet<Post> Posts { get; set; }
         public virtual DbSet<PostedPhoto> PostedPhotos { get; set; }

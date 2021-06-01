@@ -1,8 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Text;
 
 namespace vkaudioposter_ef.Functions
 {
@@ -30,9 +28,9 @@ namespace vkaudioposter_ef.Functions
                                     "DETERMINISTIC " +
                                    "BEGIN " +
                                       "DECLARE lastDate DATETIME; " +
-                                        "SELECT Date "+
+                                        "SELECT Date " +
                                         "FROM PostedTracks " +
-                                        "ORDER BY Date DESC LIMIT 1 "+
+                                        "ORDER BY Date DESC LIMIT 1 " +
                                         "INTO lastDate;" +
                                         "RETURN(lastDate); " +
                                    "END";
@@ -78,7 +76,7 @@ namespace vkaudioposter_ef.Functions
                             var val1 = reader.GetValue(ordinalDate);
                             Output += reader.GetValue(ordinalDate) + "\n";
                             string datetimeString = val1.ToString();
-                          
+
                         }
 
                     }

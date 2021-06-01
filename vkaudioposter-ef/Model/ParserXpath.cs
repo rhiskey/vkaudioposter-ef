@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Text;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using vkaudioposter_ef.parser;
-using Microsoft.EntityFrameworkCore;
 
 #nullable disable
 namespace vkaudioposter_ef.Model

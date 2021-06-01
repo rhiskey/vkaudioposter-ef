@@ -1,13 +1,10 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Text;
-using vkaudioposter_ef;
 
 namespace vkaudioposter_ef.StoredProcedures
 {
-    public class SP_InsertFoundTrack: IStoredProcedure
+    public class SP_InsertFoundTrack : IStoredProcedure
     {
         public void CreateProcedure(bool isFirstLaunch)
         {
@@ -49,7 +46,7 @@ namespace vkaudioposter_ef.StoredProcedures
             MySqlConnection conn = new MySqlConnection();
             conn.ConnectionString = Program.connStr;
             MySqlCommand cmd = new MySqlCommand();
- 
+
             try
             {
                 Console.WriteLine("Connecting to MySQL...");

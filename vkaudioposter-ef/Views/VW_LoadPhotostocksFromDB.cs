@@ -1,12 +1,11 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Text;
 
 namespace vkaudioposter_ef.Views
 {
-    public class VW_LoadPhotostocksFromDB:IView
+    public class VW_LoadPhotostocksFromDB : IView
     {
         public void CreateView(bool isFirstLaunch)
         {
@@ -67,7 +66,7 @@ namespace vkaudioposter_ef.Views
                             throw new Exception("returned NULL from Table");
                         }
                         else
-                        {                          
+                        {
                             var plId = reader.GetValue(ordinalURL).ToString();
                             output.AppendLine($" {plId}");
                         }

@@ -1,6 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Text;
 
@@ -25,10 +24,10 @@ namespace vkaudioposter_ef.Views
                     cmd.ExecuteNonQuery();
                 }
                 cmd.CommandText = "CREATE VIEW vw_style_count_chart AS " +
-                "SELECT COUNT(0) AS `Count`, "+
+                "SELECT COUNT(0) AS `Count`, " +
                 "(SELECT Playlist_Name " +
-                "FROM Playlists WHERE id = PostedTracks.PlaylistId) AS Style "+
-                "FROM PostedTracks "+
+                "FROM Playlists WHERE id = PostedTracks.PlaylistId) AS Style " +
+                "FROM PostedTracks " +
                 "GROUP BY PlaylistId";
 
                 cmd.ExecuteNonQuery();

@@ -94,56 +94,56 @@ namespace vkaudioposter_ef
 
         public static void CreateStoredProceduresViewsAndFunctions(bool isFirstTime)
         {
-            SP_CheckTrackInPosted cTIP = new SP_CheckTrackInPosted();
+            SP_CheckTrackInPosted cTIP = new();
             cTIP.CreateProcedure(isFirstTime);
 
-            SP_CheckTrackInUnfound cTIU = new SP_CheckTrackInUnfound();
+            SP_CheckTrackInUnfound cTIU = new();
             cTIU.CreateProcedure(isFirstTime);
 
-            SP_InsertFoundTrack iFT = new SP_InsertFoundTrack();
+            SP_InsertFoundTrack iFT = new();
             iFT.CreateProcedure(isFirstTime);
 
-            SP_InsertUnfoundTrack iUT = new SP_InsertUnfoundTrack();
+            SP_InsertUnfoundTrack iUT = new();
             iUT.CreateProcedure(isFirstTime);
 
-            SP_SelectAllPostedTracksByStyle sAPTBS = new SP_SelectAllPostedTracksByStyle();
+            SP_SelectAllPostedTracksByStyle sAPTBS = new();
             sAPTBS.CreateProcedure(isFirstTime);
 
-            SP_SelectUnfoundTracksByStyle sUTBS = new SP_SelectUnfoundTracksByStyle();
+            SP_SelectUnfoundTracksByStyle sUTBS = new();
             sUTBS.CreateProcedure(isFirstTime);
 
-            VW_AllPlaylists aP = new VW_AllPlaylists();
+            VW_AllPlaylists aP = new();
             aP.CreateView(isFirstTime);
 
-            VW_GetAllPostedTracks gAPT = new VW_GetAllPostedTracks();
+            VW_GetAllPostedTracks gAPT = new();
             gAPT.CreateView(isFirstTime);
 
-            VW_LastAddedTrack lAT = new VW_LastAddedTrack();
+            VW_LastAddedTrack lAT = new();
             lAT.CreateView(isFirstTime);
 
-            VW_LastPostedTrack lPT = new VW_LastPostedTrack();
+            VW_LastPostedTrack lPT = new();
             lPT.CreateView(isFirstTime);
 
-            VW_LastPublishedTracks lPTs = new VW_LastPublishedTracks();
+            VW_LastPublishedTracks lPTs = new();
             lPTs.CreateView(isFirstTime);
 
-            VW_MakeGenresFromDB mG = new VW_MakeGenresFromDB();
+            VW_MakeGenresFromDB mG = new();
             mG.CreateView(isFirstTime);
 
-            VW_PostedTracksCount pTC = new VW_PostedTracksCount();
+            VW_PostedTracksCount pTC = new();
             pTC.CreateView(isFirstTime);
 
             //// Dont need anymore - only for WEB
             //VW_StyleCountChart sCS = new VW_StyleCountChart();
             //sCS.CreateView();
 
-            VW_SelectDateFromPostedTracks sDFPT = new VW_SelectDateFromPostedTracks();
+            VW_SelectDateFromPostedTracks sDFPT = new();
             sDFPT.CreateView(isFirstTime);
 
-            VW_StyleCountChart sCC = new VW_StyleCountChart();
+            VW_StyleCountChart sCC = new();
             sCC.CreateView(isFirstTime);
 
-            FUNC_GetLastDateFromPostedTracks gLDFPT = new FUNC_GetLastDateFromPostedTracks();
+            FUNC_GetLastDateFromPostedTracks gLDFPT = new();
             gLDFPT.CreateFunction(isFirstTime);
 
         }
@@ -153,60 +153,60 @@ namespace vkaudioposter_ef
             try
             {
                 Console.WriteLine("Test Stored Procedures:\n");
-                SP_CheckTrackInPosted cTIP = new SP_CheckTrackInPosted();
+                SP_CheckTrackInPosted cTIP = new();
                 cTIP.TestProcedure("Martin Garrix - Animals", null, null, 1);
 
-                SP_CheckTrackInUnfound cTIU = new SP_CheckTrackInUnfound();
+                SP_CheckTrackInUnfound cTIU = new();
                 cTIU.TestProcedure("AC/DC - Thunderstruck", null, null, 2);
 
-                SP_InsertFoundTrack iFT = new SP_InsertFoundTrack();
+                SP_InsertFoundTrack iFT = new();
                 iFT.TestProcedure("AC/DC - Highway To Hell2", null, DateTime.Now, 2);
 
-                SP_InsertUnfoundTrack iUT = new SP_InsertUnfoundTrack();
+                SP_InsertUnfoundTrack iUT = new();
                 iUT.TestProcedure("Kean Dysso - TRFN", null, DateTime.Now, 1);
 
-                SP_SelectAllPostedTracksByStyle sAPTBS = new SP_SelectAllPostedTracksByStyle();
+                SP_SelectAllPostedTracksByStyle sAPTBS = new();
                 sAPTBS.TestProcedure(null, null, null, 1);
 
-                SP_SelectUnfoundTracksByStyle sUTBS = new SP_SelectUnfoundTracksByStyle();
+                SP_SelectUnfoundTracksByStyle sUTBS = new();
                 sUTBS.TestProcedure(null, null, null, 2);
 
                 Console.WriteLine("\nTest Views:\n");
-                VW_AllPlaylists aP = new VW_AllPlaylists();
+                VW_AllPlaylists aP = new();
                 aP.TestView();
 
-                VW_GetAllPostedTracks gAPT = new VW_GetAllPostedTracks();
+                VW_GetAllPostedTracks gAPT = new();
                 gAPT.TestView();
 
-                VW_LastAddedTrack lAT = new VW_LastAddedTrack();
+                VW_LastAddedTrack lAT = new();
                 lAT.TestView();
 
-                VW_LastPostedTrack lPT = new VW_LastPostedTrack();
+                VW_LastPostedTrack lPT = new();
                 lPT.TestView();
 
-                VW_LastPublishedTracks lPTs = new VW_LastPublishedTracks();
+                VW_LastPublishedTracks lPTs = new();
                 lPTs.TestView();
 
-                VW_MakeGenresFromDB mG = new VW_MakeGenresFromDB();
+                VW_MakeGenresFromDB mG = new();
                 mG.TestView();
 
-                VW_PostedTracksCount pTC = new VW_PostedTracksCount();
+                VW_PostedTracksCount pTC = new();
                 pTC.TestView();
 
                 //// Dont need anymore - only for WEB
                 //VW_StyleCountChart sCS = new VW_StyleCountChart();
                 //sCS.TestView();
 
-                VW_SelectDateFromPostedTracks sDFPT = new VW_SelectDateFromPostedTracks();
+                VW_SelectDateFromPostedTracks sDFPT = new();
                 sDFPT.TestView();
 
 
-                VW_StyleCountChart sCC = new VW_StyleCountChart();
+                VW_StyleCountChart sCC = new();
                 sCC.TestView();
 
 
                 Console.WriteLine("\nTest Functions:\n");
-                FUNC_GetLastDateFromPostedTracks gLDFPT = new FUNC_GetLastDateFromPostedTracks();
+                FUNC_GetLastDateFromPostedTracks gLDFPT = new();
                 gLDFPT.TestFunction();
             }
             catch (Exception ex)

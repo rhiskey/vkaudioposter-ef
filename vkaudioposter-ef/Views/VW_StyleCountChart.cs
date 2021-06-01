@@ -9,9 +9,9 @@ namespace vkaudioposter_ef.Views
     {
         public void CreateView(bool isFirstLaunch)
         {
-            MySqlConnection conn = new MySqlConnection();
+            MySqlConnection conn = new();
             conn.ConnectionString = Program.connStr;
-            MySqlCommand cmd = new MySqlCommand();
+            MySqlCommand cmd = new();
 
             try
             {
@@ -43,12 +43,12 @@ namespace vkaudioposter_ef.Views
 
         public void TestView()
         {
-            MySqlConnection conn = new MySqlConnection();
+            MySqlConnection conn = new();
             conn.ConnectionString = Program.connStr;
-            MySqlCommand cmd = new MySqlCommand();
+            MySqlCommand cmd = new();
             try
             {
-                StringBuilder output = new StringBuilder();
+                StringBuilder output = new();
                 Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
                 cmd.Connection = conn;

@@ -82,9 +82,26 @@ namespace vkaudioposter_ef
             {
                 Trackname = "Disturbed - On my own",
                 Date = DateTime.Now,
-                Playlist = p2
+                Playlist = p2,
             };
             context.PostedTracks.AddRange(pt1, pt2);
+
+            var pp1 = new PostedPhoto
+            {
+                Url="https://test.jpg/",
+            };
+            context.PostedPhotos.Add(pp1);
+
+            var post1 = new Post
+            {
+                Message = "#EDM",
+                PublishDate = DateTime.Now,
+                PostedTracks = { pt1, pt2 },
+                PostId = 0,
+                OwnerId = 1,
+                PostedPhotos = { pp1 }
+            };
+            context.Posts.Add(post1);
 
             var ut1 = new UnfoundTrack { Trackname = "KVPV - Inferno", Playlist = p1 };
             var ut2 = new UnfoundTrack { Trackname = "AC/DC - Paradise", Playlist = p2 };

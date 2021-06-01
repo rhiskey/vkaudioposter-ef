@@ -1,28 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace vkaudioposter_ef.Migrations
 {
-    public partial class AddStaticUrlStringToPostedTrack : Migration
+    public partial class RemoveXpath : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "Url",
-                table: "PostedTracks",
-                type: "text",
-                nullable: true);
-
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdateDate",
                 table: "Playlists",
                 type: "datetime",
                 nullable: false,
-                defaultValue: new DateTime(2021, 5, 27, 0, 32, 16, 287, DateTimeKind.Local).AddTicks(7252),
+                defaultValue: new DateTime(2021, 6, 1, 22, 48, 9, 218, DateTimeKind.Local).AddTicks(3817),
                 comment: "Update Date",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValue: new DateTime(2021, 5, 26, 23, 46, 12, 211, DateTimeKind.Local).AddTicks(2529),
+                oldDefaultValue: new DateTime(2021, 6, 1, 22, 9, 35, 193, DateTimeKind.Local).AddTicks(6625),
                 oldComment: "Update Date");
 
             migrationBuilder.AlterColumn<DateTime>(
@@ -30,30 +24,26 @@ namespace vkaudioposter_ef.Migrations
                 table: "console_Photostocks",
                 type: "datetime",
                 nullable: false,
-                defaultValue: new DateTime(2021, 5, 27, 0, 32, 16, 289, DateTimeKind.Local).AddTicks(3344),
+                defaultValue: new DateTime(2021, 6, 1, 22, 48, 9, 220, DateTimeKind.Local).AddTicks(954),
                 comment: "Update Date",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValue: new DateTime(2021, 5, 26, 23, 46, 12, 212, DateTimeKind.Local).AddTicks(9554),
+                oldDefaultValue: new DateTime(2021, 6, 1, 22, 9, 35, 195, DateTimeKind.Local).AddTicks(2003),
                 oldComment: "Update Date");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "Url",
-                table: "PostedTracks");
-
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdateDate",
                 table: "Playlists",
                 type: "datetime",
                 nullable: false,
-                defaultValue: new DateTime(2021, 5, 26, 23, 46, 12, 211, DateTimeKind.Local).AddTicks(2529),
+                defaultValue: new DateTime(2021, 6, 1, 22, 9, 35, 193, DateTimeKind.Local).AddTicks(6625),
                 comment: "Update Date",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValue: new DateTime(2021, 5, 27, 0, 32, 16, 287, DateTimeKind.Local).AddTicks(7252),
+                oldDefaultValue: new DateTime(2021, 6, 1, 22, 48, 9, 218, DateTimeKind.Local).AddTicks(3817),
                 oldComment: "Update Date");
 
             migrationBuilder.AlterColumn<DateTime>(
@@ -61,11 +51,11 @@ namespace vkaudioposter_ef.Migrations
                 table: "console_Photostocks",
                 type: "datetime",
                 nullable: false,
-                defaultValue: new DateTime(2021, 5, 26, 23, 46, 12, 212, DateTimeKind.Local).AddTicks(9554),
+                defaultValue: new DateTime(2021, 6, 1, 22, 9, 35, 195, DateTimeKind.Local).AddTicks(2003),
                 comment: "Update Date",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValue: new DateTime(2021, 5, 27, 0, 32, 16, 289, DateTimeKind.Local).AddTicks(3344),
+                oldDefaultValue: new DateTime(2021, 6, 1, 22, 48, 9, 220, DateTimeKind.Local).AddTicks(954),
                 oldComment: "Update Date");
         }
     }

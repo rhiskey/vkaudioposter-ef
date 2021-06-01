@@ -9,8 +9,8 @@ using vkaudioposter_ef;
 namespace vkaudioposter_ef.Migrations
 {
     [DbContext(typeof(AppContext))]
-    [Migration("20210526223721_ChangeTrackUrlsToListInsteadDictNormal")]
-    partial class ChangeTrackUrlsToListInsteadDictNormal
+    [Migration("20210601194848_RemoveXpath2")]
+    partial class RemoveXpath2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,28 +18,6 @@ namespace vkaudioposter_ef.Migrations
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.6");
-
-            modelBuilder.Entity("vkaudioposter_ef.Model.ParserXpath", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
-
-                    b.Property<string>("Xpath")
-                        .HasMaxLength(1024)
-                        .HasColumnType("varchar(1024)")
-                        .HasComment("nodContainer for parsing (outer)");
-
-                    b.Property<string>("XpathInner")
-                        .HasMaxLength(1024)
-                        .HasColumnType("varchar(1024)")
-                        .HasComment("nodContainer for parsing (inner if need to go inside)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ParserXpaths");
-                });
 
             modelBuilder.Entity("vkaudioposter_ef.Model.Post", b =>
                 {
@@ -84,56 +62,12 @@ namespace vkaudioposter_ef.Migrations
                     b.ToTable("PostedPhotos");
                 });
 
-            modelBuilder.Entity("vkaudioposter_ef.Model.Role", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("text");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Roles");
-                });
-
-            modelBuilder.Entity("vkaudioposter_ef.Model.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Username")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
-                });
-
             modelBuilder.Entity("vkaudioposter_ef.parser.ConsolePhotostock", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("id");
-
-                    b.Property<int?>("ParserXpathId")
-                        .HasColumnType("int");
 
                     b.Property<int>("Status")
                         .HasColumnType("int")
@@ -142,7 +76,7 @@ namespace vkaudioposter_ef.Migrations
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 5, 27, 1, 37, 21, 754, DateTimeKind.Local).AddTicks(5742))
+                        .HasDefaultValue(new DateTime(2021, 6, 1, 22, 48, 48, 779, DateTimeKind.Local).AddTicks(7419))
                         .HasComment("Update Date");
 
                     b.Property<string>("Url")
@@ -152,8 +86,6 @@ namespace vkaudioposter_ef.Migrations
                         .HasColumnName("URL");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ParserXpathId");
 
                     b.ToTable("console_Photostocks");
 
@@ -195,7 +127,7 @@ namespace vkaudioposter_ef.Migrations
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 5, 27, 1, 37, 21, 753, DateTimeKind.Local).AddTicks(157))
+                        .HasDefaultValue(new DateTime(2021, 6, 1, 22, 48, 48, 778, DateTimeKind.Local).AddTicks(2612))
                         .HasComment("Update Date");
 
                     b.HasKey("Id");
@@ -230,10 +162,6 @@ namespace vkaudioposter_ef.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("PreviewUrl")
-                        .HasColumnType("text");
-
-                    b.Property<string>("TrackUrls")
-                        .HasMaxLength(5000)
                         .HasColumnType("text");
 
                     b.Property<string>("Trackname")
@@ -295,26 +223,6 @@ namespace vkaudioposter_ef.Migrations
                     b.Navigation("Post");
                 });
 
-            modelBuilder.Entity("vkaudioposter_ef.Model.Role", b =>
-                {
-                    b.HasOne("vkaudioposter_ef.Model.User", "User")
-                        .WithMany("Roles")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("vkaudioposter_ef.parser.ConsolePhotostock", b =>
-                {
-                    b.HasOne("vkaudioposter_ef.Model.ParserXpath", "ParserXpath")
-                        .WithMany("ConsolePhotostock")
-                        .HasForeignKey("ParserXpathId");
-
-                    b.Navigation("ParserXpath");
-                });
-
             modelBuilder.Entity("vkaudioposter_ef.parser.PostedTrack", b =>
                 {
                     b.HasOne("vkaudioposter_ef.parser.Playlist", "Playlist")
@@ -343,21 +251,11 @@ namespace vkaudioposter_ef.Migrations
                     b.Navigation("Playlist");
                 });
 
-            modelBuilder.Entity("vkaudioposter_ef.Model.ParserXpath", b =>
-                {
-                    b.Navigation("ConsolePhotostock");
-                });
-
             modelBuilder.Entity("vkaudioposter_ef.Model.Post", b =>
                 {
                     b.Navigation("PostedPhotos");
 
                     b.Navigation("PostedTracks");
-                });
-
-            modelBuilder.Entity("vkaudioposter_ef.Model.User", b =>
-                {
-                    b.Navigation("Roles");
                 });
 
             modelBuilder.Entity("vkaudioposter_ef.parser.Playlist", b =>

@@ -10,7 +10,7 @@ namespace vkaudioposter_ef
 {
     public partial class AppContext : DbContext
     {
-        private static string db_server, db_user, db_password, db_name;
+        private static string db_server, db_user, db_password, db_name, mssql_user, mssql_password;
         //private static string connStr;
         //private static int db_port;
 
@@ -34,7 +34,7 @@ namespace vkaudioposter_ef
         public virtual DbSet<Playlist> Playlists { get; set; }
         //public DbSet<VwAllPlaylist> AllPlaylists { get; set; }
         public virtual DbSet<ConsolePhotostock> Photostocks { get; set; }
-        public virtual DbSet<ParserXpath> ParserXpaths { get; set; }
+        //public virtual DbSet<ParserXpath> ParserXpaths { get; set; }
         public virtual DbSet<PostedTrack> PostedTracks { get; set; }
         public virtual DbSet<UnfoundTrack> UnfoundTracks { get; set; }
 
@@ -52,9 +52,12 @@ namespace vkaudioposter_ef
             db_user = DotNetEnv.Env.GetString("MYSQL_USER");
             db_password = DotNetEnv.Env.GetString("MYSQL_PASSWORD");
             db_name = DotNetEnv.Env.GetString("MYSQL_DATABASE_NAME");
+            //mssql_user = DotNetEnv.Env.GetString("MSSQL_USER");
+            //mssql_password = DotNetEnv.Env.GetString("MSSQL_PASSWORD");
 
             //connStr = "server=" + db_server + ";user=" + db_user + ";database=" + db_name+ ";port=3306;password=" + db_password + "";
             optionsBuilder.UseMySQL("server=" + db_server + ";user=" + db_user + ";password=" + db_password + ";database=" + db_name + ";");
+            //optionsBuilder.UseSqlServer("Server="+ db_server+ ",1433"+ ";Initial Catalog="+ db_name + ";User Id="+ db_user + ";Password="+ db_password + ";");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

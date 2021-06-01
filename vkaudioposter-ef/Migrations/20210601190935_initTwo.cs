@@ -1,26 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace vkaudioposter_ef.Migrations
 {
-    public partial class RemoveMapping2 : Migration
+    public partial class initTwo : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "TrackUrls",
-                table: "PostedTracks");
-
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdateDate",
                 table: "Playlists",
                 type: "datetime",
                 nullable: false,
-                defaultValue: new DateTime(2021, 5, 27, 13, 43, 2, 95, DateTimeKind.Local).AddTicks(9512),
+                defaultValue: new DateTime(2021, 6, 1, 22, 9, 35, 193, DateTimeKind.Local).AddTicks(6625),
                 comment: "Update Date",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValue: new DateTime(2021, 5, 27, 13, 40, 54, 438, DateTimeKind.Local).AddTicks(937),
+                oldDefaultValue: new DateTime(2021, 6, 1, 22, 5, 53, 66, DateTimeKind.Local).AddTicks(2541),
                 oldComment: "Update Date");
 
             migrationBuilder.AlterColumn<DateTime>(
@@ -28,33 +24,26 @@ namespace vkaudioposter_ef.Migrations
                 table: "console_Photostocks",
                 type: "datetime",
                 nullable: false,
-                defaultValue: new DateTime(2021, 5, 27, 13, 43, 2, 97, DateTimeKind.Local).AddTicks(5703),
+                defaultValue: new DateTime(2021, 6, 1, 22, 9, 35, 195, DateTimeKind.Local).AddTicks(2003),
                 comment: "Update Date",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValue: new DateTime(2021, 5, 27, 13, 40, 54, 439, DateTimeKind.Local).AddTicks(7153),
+                oldDefaultValue: new DateTime(2021, 6, 1, 22, 5, 53, 68, DateTimeKind.Local).AddTicks(308),
                 oldComment: "Update Date");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "TrackUrls",
-                table: "PostedTracks",
-                type: "text",
-                maxLength: 5000,
-                nullable: true);
-
             migrationBuilder.AlterColumn<DateTime>(
                 name: "UpdateDate",
                 table: "Playlists",
                 type: "datetime",
                 nullable: false,
-                defaultValue: new DateTime(2021, 5, 27, 13, 40, 54, 438, DateTimeKind.Local).AddTicks(937),
+                defaultValue: new DateTime(2021, 6, 1, 22, 5, 53, 66, DateTimeKind.Local).AddTicks(2541),
                 comment: "Update Date",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValue: new DateTime(2021, 5, 27, 13, 43, 2, 95, DateTimeKind.Local).AddTicks(9512),
+                oldDefaultValue: new DateTime(2021, 6, 1, 22, 9, 35, 193, DateTimeKind.Local).AddTicks(6625),
                 oldComment: "Update Date");
 
             migrationBuilder.AlterColumn<DateTime>(
@@ -62,11 +51,11 @@ namespace vkaudioposter_ef.Migrations
                 table: "console_Photostocks",
                 type: "datetime",
                 nullable: false,
-                defaultValue: new DateTime(2021, 5, 27, 13, 40, 54, 439, DateTimeKind.Local).AddTicks(7153),
+                defaultValue: new DateTime(2021, 6, 1, 22, 5, 53, 68, DateTimeKind.Local).AddTicks(308),
                 comment: "Update Date",
                 oldClrType: typeof(DateTime),
                 oldType: "datetime",
-                oldDefaultValue: new DateTime(2021, 5, 27, 13, 43, 2, 97, DateTimeKind.Local).AddTicks(5703),
+                oldDefaultValue: new DateTime(2021, 6, 1, 22, 9, 35, 195, DateTimeKind.Local).AddTicks(2003),
                 oldComment: "Update Date");
         }
     }

@@ -25,7 +25,7 @@ namespace vkaudioposter_ef.parser
         public DateTime UpdateDate { get; set; }
         //public int? ParserXpathId { get; set; }
         //[ForeignKey("ParserXpathId")]
-        //public virtual ParserXpath ParserXpath { get; set; }
+        public virtual ParserXpath ParserXpath { get; set; }
         //public virtual Playlist Playlist { get; set; }
     }
 }

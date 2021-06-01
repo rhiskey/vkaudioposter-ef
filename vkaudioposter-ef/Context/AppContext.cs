@@ -34,7 +34,7 @@ namespace vkaudioposter_ef
         public virtual DbSet<Playlist> Playlists { get; set; }
         //public DbSet<VwAllPlaylist> AllPlaylists { get; set; }
         public virtual DbSet<ConsolePhotostock> Photostocks { get; set; }
-        //public virtual DbSet<ParserXpath> ParserXpaths { get; set; }
+        public virtual DbSet<ParserXpath> ParserXpaths { get; set; }
         public virtual DbSet<PostedTrack> PostedTracks { get; set; }
         public virtual DbSet<UnfoundTrack> UnfoundTracks { get; set; }
 

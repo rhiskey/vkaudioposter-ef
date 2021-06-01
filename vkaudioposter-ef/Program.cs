@@ -2,6 +2,7 @@
 using System;
 using System.Text;
 using vkaudioposter_ef.Functions;
+using vkaudioposter_ef.Model;
 using vkaudioposter_ef.parser;
 //using vkaudioposter_ef.Model;
 using vkaudioposter_ef.StoredProcedures;
@@ -89,6 +90,8 @@ namespace vkaudioposter_ef
             var ut2 = new UnfoundTrack { Trackname = "AC/DC - Paradise", Playlist = p2 };
             context.UnfoundTracks.AddRange(ut1, ut2);
 
+            var xpath = new ParserXpath { Xpath = "//*[@id=\"root\"]/div[1]/div/div/div/article/div/div[2]/div/div", XpathInner = "", ConsolePhotostock = { cp1, cp2 } };
+            context.ParserXpaths.Add(xpath);
             // Saves changes
             context.SaveChanges();
         }

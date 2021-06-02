@@ -4,14 +4,14 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using vkaudioposter_ef.parser;
 
-#nullable disable
+//#nullable disable
 namespace vkaudioposter_ef.Model
 {
     [Table("ParserXpaths")]
     public partial class ParserXpath
     {
         [Key]
-        [Column("id")]
+        //[Column("id")]
         public int Id { get; set; }
 
         [Comment("nodContainer for parsing (outer)")]

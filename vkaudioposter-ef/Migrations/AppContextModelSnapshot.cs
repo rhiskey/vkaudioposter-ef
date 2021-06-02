@@ -24,7 +24,6 @@ namespace vkaudioposter_ef.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Xpath")
@@ -107,7 +106,7 @@ namespace vkaudioposter_ef.Migrations
                     b.Property<DateTime>("UpdateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 6, 2, 23, 40, 4, 89, DateTimeKind.Local).AddTicks(7594))
+                        .HasDefaultValue(new DateTime(2021, 6, 2, 23, 51, 28, 99, DateTimeKind.Local).AddTicks(6509))
                         .HasComment("Update Date");
 
                     b.Property<string>("Url")
@@ -163,7 +162,7 @@ namespace vkaudioposter_ef.Migrations
                     b.Property<DateTime>("UpdateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 6, 2, 23, 40, 4, 88, DateTimeKind.Local).AddTicks(2897))
+                        .HasDefaultValue(new DateTime(2021, 6, 2, 23, 51, 28, 98, DateTimeKind.Local).AddTicks(1479))
                         .HasComment("Update Date");
 
                     b.HasKey("Id");

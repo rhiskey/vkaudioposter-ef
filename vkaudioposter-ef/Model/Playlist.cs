@@ -41,7 +41,7 @@ namespace vkaudioposter_ef.parser
         public string PlaylistId { get; set; }
 
         [Required]
-        [Column("Playlist_Name", TypeName = "varchar(50)")]
+        [Column("Playlist_Name", TypeName = "nvarchar(50)")] //TypeName = "nvarchar(50)"
         [MaxLength(50)]
         [Comment("Name of playlist")]
         public string PlaylistName { get; set; }

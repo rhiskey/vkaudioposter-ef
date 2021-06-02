@@ -12,7 +12,7 @@ namespace vkaudioposter_ef.Model
         public int Id { get; set; }
 
         [Required]
-        [Column(TypeName = "varchar(150)")]
+        [Column(TypeName = "nvarchar(150)")]
         [MaxLength(150)]
         public string Trackname { get; set; } = null!;
 

@@ -48,16 +48,16 @@ namespace vkaudioposter_ef
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             DotNetEnv.Env.TraversePath().Load();
-            db_server = DotNetEnv.Env.GetString("MYSQL_SERVER");
-            db_user = DotNetEnv.Env.GetString("MYSQL_USER");
-            db_password = DotNetEnv.Env.GetString("MYSQL_PASSWORD");
-            db_name = DotNetEnv.Env.GetString("MYSQL_DATABASE_NAME");
-            //mssql_user = DotNetEnv.Env.GetString("MSSQL_USER");
-            //mssql_password = DotNetEnv.Env.GetString("MSSQL_PASSWORD");
+            //db_server = DotNetEnv.Env.GetString("MYSQL_SERVER");
+            //db_user = DotNetEnv.Env.GetString("MYSQL_USER");
+            //db_password = DotNetEnv.Env.GetString("MYSQL_PASSWORD");
+            //db_name = DotNetEnv.Env.GetString("MYSQL_DATABASE_NAME");
 
+            string connstr = DotNetEnv.Env.GetString("MSSQL_CONNSTR");
             //connStr = "server=" + db_server + ";user=" + db_user + ";database=" + db_name+ ";port=3306;password=" + db_password + "";
-            optionsBuilder.UseMySQL("server=" + db_server + ";user=" + db_user + ";password=" + db_password + ";database=" + db_name + ";");
-            //optionsBuilder.UseSqlServer("Server="+ db_server+ ",1433"+ ";Initial Catalog="+ db_name + ";User Id="+ db_user + ";Password="+ db_password + ";");
+            //optionsBuilder.UseMySQL("server=" + db_server + ";user=" + db_user + ";password=" + db_password + ";database=" + db_name + ";");
+            
+            optionsBuilder.UseSqlServer(connstr);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

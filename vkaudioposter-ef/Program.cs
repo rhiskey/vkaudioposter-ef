@@ -25,12 +25,13 @@ namespace vkaudioposter_ef
         public static void LoadConfig()
         {
             DotNetEnv.Env.TraversePath().Load();
-            server = DotNetEnv.Env.GetString("MYSQL_SERVER");
-            user = DotNetEnv.Env.GetString("MYSQL_USER");
-            pass = DotNetEnv.Env.GetString("MYSQL_PASSWORD");
-            db = DotNetEnv.Env.GetString("MYSQL_DATABASE_NAME");
-            connStr = "server=" + server + ";user=" + user + ";database=" + db + ";port=3306;password=" + pass + "";
+            //server = DotNetEnv.Env.GetString("MYSQL_SERVER");
+            //user = DotNetEnv.Env.GetString("MYSQL_USER");
+            //pass = DotNetEnv.Env.GetString("MYSQL_PASSWORD");
+            //db = DotNetEnv.Env.GetString("MYSQL_DATABASE_NAME");
+            //connStr = "server=" + server + ";user=" + user + ";database=" + db + ";port=3306;password=" + pass + "";
             //connStr=("Server=" + server + ",1433" + ";Initial Catalog=" + db + ";User Id=" + user + ";Password=" + pass + ";");
+            connStr = DotNetEnv.Env.GetString("MSSQL_CONNSTR");
         }
         private static void MainEf(string[] args)
         {
@@ -92,22 +93,22 @@ namespace vkaudioposter_ef
             };
             context.PostedPhotos.Add(pp1);
 
-            var post1 = new Post
-            {
-                Message = "#EDM",
-                PublishDate = DateTime.Now,
-                PostedTracks = { pt1, pt2 },
-                PostId = 0,
-                OwnerId = 1,
-                PostedPhotos = { pp1 }
-            };
-            context.Posts.Add(post1);
+            //var post1 = new Post
+            //{
+            //    Message = "#EDM",
+            //    PublishDate = DateTime.Now,
+            //    PostedTracks = { pt1, pt2 },
+            //    //PostId = 1,
+            //    OwnerId = 1,
+            //    PostedPhotos = { pp1 }
+            //};
+            //context.Posts.Add(post1);
 
             var ut1 = new UnfoundTrack { Trackname = "KVPV - Inferno", Playlist = p1 };
             var ut2 = new UnfoundTrack { Trackname = "AC/DC - Paradise", Playlist = p2 };
             context.UnfoundTracks.AddRange(ut1, ut2);
 
-            var xpath = new ParserXpath { Xpath = "//*[@id=\"root\"]/div[1]/div/div/div/article/div/div[2]/div/div", XpathInner = "", ConsolePhotostock = { cp1, cp2 } };
+            var xpath = new ParserXpath { Xpath = "//*[@id=\"root\"]/div[1]/div/div/div/article/div/div[2]/div/div", XpathInner = "" };
             context.ParserXpaths.Add(xpath);
             // Saves changes
             context.SaveChanges();

@@ -56,6 +56,8 @@ namespace vkaudioposter_ef.parser
         public DateTime UpdateDate { get; set; }
 
         public int? Count { get; set; }
+
+        public string? ImageUrl { get; set; }
         public virtual ICollection<PostedTrack> PostedTracks { get; set; }
         public virtual ICollection<UnfoundTrack> UnfoundTracks { get; set; }
     }

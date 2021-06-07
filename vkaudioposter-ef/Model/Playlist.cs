@@ -21,12 +21,13 @@ namespace vkaudioposter_ef.parser
 
         }
 
-        public Playlist(int id, string playlistId, string playlistName, int mood)
+        public Playlist(int id, string playlistId, string playlistName, int mood, string imageUrl)
         {
             Id = id;
             PlaylistId = playlistId;
             PlaylistName = playlistName;
             Mood = mood;
+            ImageUrl = imageUrl;
         }
 
         [Column("id")]

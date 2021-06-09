@@ -90,7 +90,7 @@ namespace vkaudioposter_ef
 
             var pp1 = new PostedPhoto
             {
-                Url="https://test.jpg/",
+                Url = "https://test.jpg/",
             };
             context.PostedPhotos.Add(pp1);
 

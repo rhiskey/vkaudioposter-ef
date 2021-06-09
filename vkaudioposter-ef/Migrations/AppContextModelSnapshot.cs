@@ -98,7 +98,7 @@ namespace vkaudioposter_ef.Migrations
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 6, 8, 2, 24, 21, 580, DateTimeKind.Local).AddTicks(9277))
+                        .HasDefaultValue(new DateTime(2021, 6, 9, 23, 44, 13, 174, DateTimeKind.Local).AddTicks(7989))
                         .HasComment("Update Date");
 
                     b.Property<string>("Url")
@@ -127,7 +127,7 @@ namespace vkaudioposter_ef.Migrations
                     b.Property<int?>("Count")
                         .HasColumnType("int");
 
-                    b.Property<int>("FollowersTotal")
+                    b.Property<int?>("FollowersTotal")
                         .HasColumnType("int");
 
                     b.Property<string>("ImageUrl")
@@ -157,7 +157,7 @@ namespace vkaudioposter_ef.Migrations
 
                     b.Property<DateTime>("UpdateDate")
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 6, 8, 2, 24, 21, 579, DateTimeKind.Local).AddTicks(315))
+                        .HasDefaultValue(new DateTime(2021, 6, 9, 23, 44, 13, 173, DateTimeKind.Local).AddTicks(2552))
                         .HasComment("Update Date");
 
                     b.HasKey("Id");

@@ -61,7 +61,7 @@ namespace vkaudioposter_ef.parser
         public string ImageUrl { get; set; }
 
         //[NotMapped]
-        public int FollowersTotal { get; set; }
+        public int? FollowersTotal { get; set; }
         public virtual ICollection<PostedTrack> PostedTracks { get; set; }
         public virtual ICollection<UnfoundTrack> UnfoundTracks { get; set; }
     }

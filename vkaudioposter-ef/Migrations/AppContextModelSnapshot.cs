@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using vkaudioposter_ef;
 
@@ -14,23 +15,25 @@ namespace vkaudioposter_ef.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 64)
-                .HasAnnotation("ProductVersion", "5.0.6");
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("ProductVersion", "5.0.6")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("vkaudioposter_ef.Model.ParserXpath", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Xpath")
                         .HasMaxLength(1024)
-                        .HasColumnType("varchar(1024)")
+                        .HasColumnType("nvarchar(1024)")
                         .HasComment("nodContainer for parsing (outer)");
 
                     b.Property<string>("XpathInner")
                         .HasMaxLength(1024)
-                        .HasColumnType("varchar(1024)")
+                        .HasColumnType("nvarchar(1024)")
                         .HasComment("nodContainer for parsing (inner if need to go inside)");
 
                     b.HasKey("Id");
@@ -42,10 +45,11 @@ namespace vkaudioposter_ef.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Message")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long?>("OwnerId")
                         .HasColumnType("bigint");
@@ -65,7 +69,8 @@ namespace vkaudioposter_ef.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("PostId")
                         .HasColumnType("int");
@@ -86,19 +91,22 @@ namespace vkaudioposter_ef.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("id");
+                        .HasColumnName("id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("ParserXpathId")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasDefaultValue(1)
                         .HasComment("Enabled status. If = 0 - not included, if = 1 - included in parsing");
 
                     b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 6, 9, 23, 44, 13, 174, DateTimeKind.Local).AddTicks(7989))
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2021, 6, 11, 1, 35, 50, 610, DateTimeKind.Local).AddTicks(4157))
                         .HasComment("Update Date");
 
                     b.Property<string>("Url")
@@ -122,7 +130,8 @@ namespace vkaudioposter_ef.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("id");
+                        .HasColumnName("id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("Count")
                         .HasColumnType("int");
@@ -131,7 +140,7 @@ namespace vkaudioposter_ef.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ImageUrl")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Mood")
                         .HasColumnType("int");
@@ -151,13 +160,15 @@ namespace vkaudioposter_ef.Migrations
                         .HasComment("Name of playlist");
 
                     b.Property<int>("Status")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasDefaultValue(1)
                         .HasComment("Enabled status. If = 0 - not included, if = 1 - included in parsing");
 
                     b.Property<DateTime>("UpdateDate")
-                        .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 6, 9, 23, 44, 13, 173, DateTimeKind.Local).AddTicks(2552))
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValue(new DateTime(2021, 6, 11, 1, 35, 50, 608, DateTimeKind.Local).AddTicks(8784))
                         .HasComment("Update Date");
 
                     b.HasKey("Id");
@@ -173,7 +184,8 @@ namespace vkaudioposter_ef.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("id");
+                        .HasColumnName("id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("DATETIME");
@@ -192,15 +204,15 @@ namespace vkaudioposter_ef.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("PreviewUrl")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Trackname")
                         .IsRequired()
                         .HasMaxLength(150)
-                        .HasColumnType("nvarchar(1024)");
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("Url")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -222,7 +234,8 @@ namespace vkaudioposter_ef.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("id");
+                        .HasColumnName("id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("PlaylistId")
                         .IsRequired()
@@ -231,7 +244,7 @@ namespace vkaudioposter_ef.Migrations
                     b.Property<string>("Trackname")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar(150)")
+                        .HasColumnType("nvarchar(100)")
                         .HasColumnName("trackname");
 
                     b.HasKey("Id");

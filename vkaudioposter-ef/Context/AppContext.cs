@@ -48,14 +48,15 @@ namespace vkaudioposter_ef
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             DotNetEnv.Env.TraversePath().Load();
-            db_server = DotNetEnv.Env.GetString("MYSQL_SERVER");
-            db_user = DotNetEnv.Env.GetString("MYSQL_USER");
-            db_password = DotNetEnv.Env.GetString("MYSQL_PASSWORD");
-            db_name = DotNetEnv.Env.GetString("MYSQL_DATABASE_NAME");
+            db_server = DotNetEnv.Env.GetString("MSSQL_SERVER");
+            db_user = DotNetEnv.Env.GetString("MSSQL_USER");
+            db_password = DotNetEnv.Env.GetString("MSSQL_PASSWORD");
+            db_name = DotNetEnv.Env.GetString("MSSQL_DATABASE_NAME");
 
             //optionsBuilder.UseMySQL("server=" + db_server + ";user=" + db_user + ";password=" + db_password + ";database=" + db_name + ";");
 
-            string connstr = DotNetEnv.Env.GetString("MSSQL_CONNSTR");
+            //string connstr = DotNetEnv.Env.GetString("MSSQL_CONNSTR");
+            string connstr = $"Server={db_server};Database={db_name};User Id={db_user};Password={db_password};MultipleActiveResultSets=true";
             optionsBuilder.UseSqlServer(connstr);
         }
 

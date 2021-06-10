@@ -29,10 +29,10 @@ namespace vkaudioposter_ef
             user = DotNetEnv.Env.GetString("MYSQL_USER");
             pass = DotNetEnv.Env.GetString("MYSQL_PASSWORD");
             db = DotNetEnv.Env.GetString("MYSQL_DATABASE_NAME");
-            connStr = "server=" + server + ";user=" + user + ";database=" + db + ";port=3306;password=" + pass + "";
+            //connStr = "server=" + server + ";user=" + user + ";database=" + db + ";port=3306;password=" + pass + "";
 
 
-            //connStr = DotNetEnv.Env.GetString("MSSQL_CONNSTR");
+            connStr = DotNetEnv.Env.GetString("MSSQL_CONNSTR");
         }
         private static void MainEf(string[] args)
         {

@@ -53,10 +53,10 @@ namespace vkaudioposter_ef
             db_password = DotNetEnv.Env.GetString("MYSQL_PASSWORD");
             db_name = DotNetEnv.Env.GetString("MYSQL_DATABASE_NAME");
 
-            optionsBuilder.UseMySQL("server=" + db_server + ";user=" + db_user + ";password=" + db_password + ";database=" + db_name + ";");
+            //optionsBuilder.UseMySQL("server=" + db_server + ";user=" + db_user + ";password=" + db_password + ";database=" + db_name + ";");
 
-            //string connstr = DotNetEnv.Env.GetString("MSSQL_CONNSTR");
-            //optionsBuilder.UseSqlServer(connstr);
+            string connstr = DotNetEnv.Env.GetString("MSSQL_CONNSTR");
+            optionsBuilder.UseSqlServer(connstr);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

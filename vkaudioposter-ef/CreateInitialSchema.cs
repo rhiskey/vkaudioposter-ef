@@ -1,4 +1,4 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Microsoft.Data.SqlClient;
 using System;
 
 namespace vkaudioposter_ef
@@ -10,9 +10,9 @@ namespace vkaudioposter_ef
             string db = Program.db;
             string qDrop = $"DROP DATABASE `{db}` ;";
             string qCreate = $"CREATE SCHEMA `{db}` ;";
-            MySqlConnection conn = new();
+            SqlConnection conn = new();
             conn.ConnectionString = Program.connStr;
-            MySqlCommand cmd = new();
+            SqlCommand cmd = new();
 
             try
             {
@@ -27,9 +27,9 @@ namespace vkaudioposter_ef
                 cmd.CommandText = qCreate;
                 cmd.ExecuteNonQuery();
             }
-            catch (MySqlException ex)
+            catch (Exception ex)
             {
-                Console.WriteLine("Error " + ex.Number + " has occurred: " + ex.Message);
+                Console.WriteLine("Error " + ex.StackTrace + " has occurred: " + ex.Message);
             }
             conn.Close();
 

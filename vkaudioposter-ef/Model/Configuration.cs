@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 //#nullable enable
 
-namespace vkaudioposter_ef.parser
+namespace vkaudioposter_ef.Model
 {
     public partial class Configuration
     {
@@ -45,14 +45,16 @@ namespace vkaudioposter_ef.parser
         [Comment("VK account to send log messages")]
         public int AdminId { get; set; }
 
-        //public string TorHost { get; set; }
-        //public int TorPort { get; set; }
+        public string TorHost { get; set; }
+        public int TorPort { get; set; }
         //public string RabbitHost { get; set; }
 
         public bool SaveLogs { get; set; }
         public bool FirstRun { get; set; }
         public bool UseProxy { get; set; }
         public bool Debug { get; set; }
+
+        public bool StartOnce { get; set; }
         public string RollbarToken { get; set; }
 
         [Comment("SignalR Hub")]

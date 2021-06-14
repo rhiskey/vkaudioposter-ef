@@ -19,6 +19,93 @@ namespace vkaudioposter_ef.Migrations
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("vkaudioposter_ef.Model.Configuration", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AccessToken")
+                        .HasColumnType("nvarchar(max)")
+                        .HasComment("add tracks to attachments =добавить фото и музыку вложения на стену. Приложение группы доступ к группе, получается в самом приложении в ручную Standalone приложение");
+
+                    b.Property<int>("AdminId")
+                        .HasColumnType("int")
+                        .HasComment("VK account to send log messages");
+
+                    b.Property<string>("ApiUrl")
+                        .HasColumnType("nvarchar(max)")
+                        .HasComment("Search vk tracks api");
+
+                    b.Property<string>("ConsoleHub")
+                        .HasColumnType("nvarchar(max)")
+                        .HasComment("SignalR Hub");
+
+                    b.Property<bool>("Debug")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("FirstRun")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("GroupId")
+                        .HasColumnType("int")
+                        .HasComment("VK community id");
+
+                    b.Property<int>("HoursPeriod")
+                        .HasColumnType("int")
+                        .HasComment("Postponed post addition time");
+
+                    b.Property<string>("KateMobileToken")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MinutesPeriod")
+                        .HasColumnType("int")
+                        .HasComment("Postponed post time");
+
+                    b.Property<int>("OwnerId")
+                        .HasColumnType("int")
+                        .HasComment("VK account");
+
+                    b.Property<string>("RollbarToken")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("SaveLogs")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SpotifyClientId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpotifyClientSecret")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("StartOnce")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Token")
+                        .HasColumnType("nvarchar(max)")
+                        .HasComment("Загрузка фото + публикация треков (сделать через свое приложение)");
+
+                    b.Property<string>("TorHost")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TorPort")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("UseProxy")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserAccesToken")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Configurations");
+                });
+
             modelBuilder.Entity("vkaudioposter_ef.Model.ParserXpath", b =>
                 {
                     b.Property<int>("Id")
@@ -86,84 +173,6 @@ namespace vkaudioposter_ef.Migrations
                     b.ToTable("PostedPhotos");
                 });
 
-            modelBuilder.Entity("vkaudioposter_ef.parser.Configuration", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AccessToken")
-                        .HasColumnType("nvarchar(max)")
-                        .HasComment("add tracks to attachments =добавить фото и музыку вложения на стену. Приложение группы доступ к группе, получается в самом приложении в ручную Standalone приложение");
-
-                    b.Property<int>("AdminId")
-                        .HasColumnType("int")
-                        .HasComment("VK account to send log messages");
-
-                    b.Property<string>("ApiUrl")
-                        .HasColumnType("nvarchar(max)")
-                        .HasComment("Search vk tracks api");
-
-                    b.Property<string>("ConsoleHub")
-                        .HasColumnType("nvarchar(max)")
-                        .HasComment("SignalR Hub");
-
-                    b.Property<bool>("Debug")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("FirstRun")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("GroupId")
-                        .HasColumnType("int")
-                        .HasComment("VK community id");
-
-                    b.Property<int>("HoursPeriod")
-                        .HasColumnType("int")
-                        .HasComment("Postponed post addition time");
-
-                    b.Property<string>("KateMobileToken")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("MinutesPeriod")
-                        .HasColumnType("int")
-                        .HasComment("Postponed post time");
-
-                    b.Property<int>("OwnerId")
-                        .HasColumnType("int")
-                        .HasComment("VK account");
-
-                    b.Property<string>("RollbarToken")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("SaveLogs")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SpotifyClientId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SpotifyClientSecret")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Token")
-                        .HasColumnType("nvarchar(max)")
-                        .HasComment("Загрузка фото + публикация треков (сделать через свое приложение)");
-
-                    b.Property<bool>("UseProxy")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserAccesToken")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Configurations");
-                });
-
             modelBuilder.Entity("vkaudioposter_ef.parser.ConsolePhotostock", b =>
                 {
                     b.Property<int>("Id")
@@ -184,7 +193,7 @@ namespace vkaudioposter_ef.Migrations
                     b.Property<DateTime>("UpdateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 6, 14, 4, 11, 56, 888, DateTimeKind.Local).AddTicks(9056))
+                        .HasDefaultValue(new DateTime(2021, 6, 14, 4, 42, 22, 531, DateTimeKind.Local).AddTicks(5323))
                         .HasComment("Update Date");
 
                     b.Property<string>("Url")
@@ -246,7 +255,7 @@ namespace vkaudioposter_ef.Migrations
                     b.Property<DateTime>("UpdateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 6, 14, 4, 11, 56, 887, DateTimeKind.Local).AddTicks(4052))
+                        .HasDefaultValue(new DateTime(2021, 6, 14, 4, 42, 22, 530, DateTimeKind.Local).AddTicks(268))
                         .HasComment("Update Date");
 
                     b.HasKey("Id");

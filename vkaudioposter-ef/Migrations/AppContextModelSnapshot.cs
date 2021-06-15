@@ -193,7 +193,7 @@ namespace vkaudioposter_ef.Migrations
                     b.Property<DateTime>("UpdateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 6, 14, 4, 42, 22, 531, DateTimeKind.Local).AddTicks(5323))
+                        .HasDefaultValue(new DateTime(2021, 6, 15, 18, 52, 38, 844, DateTimeKind.Local).AddTicks(1696))
                         .HasComment("Update Date");
 
                     b.Property<string>("Url")
@@ -229,9 +229,6 @@ namespace vkaudioposter_ef.Migrations
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Mood")
-                        .HasColumnType("int");
-
                     b.Property<string>("PlaylistId")
                         .IsRequired()
                         .HasMaxLength(45)
@@ -255,7 +252,7 @@ namespace vkaudioposter_ef.Migrations
                     b.Property<DateTime>("UpdateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 6, 14, 4, 42, 22, 530, DateTimeKind.Local).AddTicks(268))
+                        .HasDefaultValue(new DateTime(2021, 6, 15, 18, 52, 38, 842, DateTimeKind.Local).AddTicks(6404))
                         .HasComment("Update Date");
 
                     b.HasKey("Id");

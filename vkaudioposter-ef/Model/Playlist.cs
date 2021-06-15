@@ -20,13 +20,19 @@ namespace vkaudioposter_ef.parser
         {
 
         }
-
+        public Playlist(int id, string playlistId, string playlistName, string imageUrl)
+        {
+            Id = id;
+            PlaylistId = playlistId;
+            PlaylistName = playlistName;
+            ImageUrl = imageUrl;
+        }
         public Playlist(int id, string playlistId, string playlistName, int mood, string imageUrl)
         {
             Id = id;
             PlaylistId = playlistId;
             PlaylistName = playlistName;
-            Mood = mood;
+            //Mood = mood;
             ImageUrl = imageUrl;
         }
 
@@ -48,7 +54,7 @@ namespace vkaudioposter_ef.parser
         public string PlaylistName { get; set; }
 
         //public string PlaylistAuthor { get; set; }
-        public int Mood { get; set; }
+        //public int Mood { get; set; }
         //public virtual ICollection<ConsolePhotostock> Photostock { get; set; }
         [Comment("Enabled status. If = 0 - not included, if = 1 - included in parsing")]
         public int Status { get; set; }

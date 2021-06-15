@@ -60,13 +60,13 @@ namespace vkaudioposter_ef
             {
                 PlaylistId = "spotify:playlist:37i9dQZF1DWUbycBFSWTh7",
                 PlaylistName = "Deephouse Delight",
-                Mood = 7
+                //Mood = 7
             };
             var p2 = new Playlist
             {
                 PlaylistId = "spotify:playlist:37i9dQZF1DWUq3wF0JVtEy",
                 PlaylistName = "Shuffle Syndrome",
-                Mood = 8
+                //Mood = 8
             };
             context.Playlists.AddRange(p1, p2);
 

@@ -16,7 +16,6 @@ namespace vkaudioposter_ef
 
             try
             {
-                //Console.WriteLine("Connecting to MySQL...");
                 conn.Open();
                 cmd.Connection = conn;
                 if (isFirstLaunch)

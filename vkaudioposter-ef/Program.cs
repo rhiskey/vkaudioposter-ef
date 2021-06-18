@@ -1,12 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Text;
-//using vkaudioposter_ef.Functions;
 using vkaudioposter_ef.Model;
 using vkaudioposter_ef.parser;
-//using vkaudioposter_ef.Model;
-//using vkaudioposter_ef.StoredProcedures;
-//using vkaudioposter_ef.Views;
+
 
 namespace vkaudioposter_ef
 {
@@ -30,9 +27,6 @@ namespace vkaudioposter_ef
             pass = DotNetEnv.Env.GetString("MSSQL_PASSWORD");
             db = DotNetEnv.Env.GetString("MSSQL_DATABASE_NAME");
             connStr = $"Server={server};Database={db};User Id={user};Password={pass};MultipleActiveResultSets=true";
-
-
-            //connStr = DotNetEnv.Env.GetString("MSSQL_CONNSTR");
         }
         private static void MainEf(string[] args)
         {
@@ -115,131 +109,6 @@ namespace vkaudioposter_ef
             context.SaveChanges();
         }
 
-        //public static void CreateStoredProceduresViewsAndFunctions(bool isFirstTime)
-        //{
-        //    SP_CheckTrackInPosted cTIP = new();
-        //    cTIP.CreateProcedure(isFirstTime);
-
-        //    SP_CheckTrackInUnfound cTIU = new();
-        //    cTIU.CreateProcedure(isFirstTime);
-
-        //    SP_InsertFoundTrack iFT = new();
-        //    iFT.CreateProcedure(isFirstTime);
-
-        //    SP_InsertUnfoundTrack iUT = new();
-        //    iUT.CreateProcedure(isFirstTime);
-
-        //    SP_SelectAllPostedTracksByStyle sAPTBS = new();
-        //    sAPTBS.CreateProcedure(isFirstTime);
-
-        //    SP_SelectUnfoundTracksByStyle sUTBS = new();
-        //    sUTBS.CreateProcedure(isFirstTime);
-
-        //    VW_AllPlaylists aP = new();
-        //    aP.CreateView(isFirstTime);
-
-        //    VW_GetAllPostedTracks gAPT = new();
-        //    gAPT.CreateView(isFirstTime);
-
-        //    VW_LastAddedTrack lAT = new();
-        //    lAT.CreateView(isFirstTime);
-
-        //    VW_LastPostedTrack lPT = new();
-        //    lPT.CreateView(isFirstTime);
-
-        //    VW_LastPublishedTracks lPTs = new();
-        //    lPTs.CreateView(isFirstTime);
-
-        //    VW_MakeGenresFromDB mG = new();
-        //    mG.CreateView(isFirstTime);
-
-        //    VW_PostedTracksCount pTC = new();
-        //    pTC.CreateView(isFirstTime);
-
-        //    //// Dont need anymore - only for WEB
-        //    //VW_StyleCountChart sCS = new VW_StyleCountChart();
-        //    //sCS.CreateView();
-
-        //    VW_SelectDateFromPostedTracks sDFPT = new();
-        //    sDFPT.CreateView(isFirstTime);
-
-        //    VW_StyleCountChart sCC = new();
-        //    sCC.CreateView(isFirstTime);
-
-        //    FUNC_GetLastDateFromPostedTracks gLDFPT = new();
-        //    gLDFPT.CreateFunction(isFirstTime);
-
-        //}
-
-        //private static void RunTests()
-        //{
-        //    try
-        //    {
-        //        Console.WriteLine("Test Stored Procedures:\n");
-        //        SP_CheckTrackInPosted cTIP = new();
-        //        cTIP.TestProcedure("Martin Garrix - Animals", null, null, 1);
-
-        //        SP_CheckTrackInUnfound cTIU = new();
-        //        cTIU.TestProcedure("AC/DC - Thunderstruck", null, null, 2);
-
-        //        SP_InsertFoundTrack iFT = new();
-        //        iFT.TestProcedure("AC/DC - Highway To Hell2", null, DateTime.Now, 2);
-
-        //        SP_InsertUnfoundTrack iUT = new();
-        //        iUT.TestProcedure("Kean Dysso - TRFN", null, DateTime.Now, 1);
-
-        //        SP_SelectAllPostedTracksByStyle sAPTBS = new();
-        //        sAPTBS.TestProcedure(null, null, null, 1);
-
-        //        SP_SelectUnfoundTracksByStyle sUTBS = new();
-        //        sUTBS.TestProcedure(null, null, null, 2);
-
-        //        Console.WriteLine("\nTest Views:\n");
-        //        VW_AllPlaylists aP = new();
-        //        aP.TestView();
-
-        //        VW_GetAllPostedTracks gAPT = new();
-        //        gAPT.TestView();
-
-        //        VW_LastAddedTrack lAT = new();
-        //        lAT.TestView();
-
-        //        VW_LastPostedTrack lPT = new();
-        //        lPT.TestView();
-
-        //        VW_LastPublishedTracks lPTs = new();
-        //        lPTs.TestView();
-
-        //        VW_MakeGenresFromDB mG = new();
-        //        mG.TestView();
-
-        //        VW_PostedTracksCount pTC = new();
-        //        pTC.TestView();
-
-        //        //// Dont need anymore - only for WEB
-        //        //VW_StyleCountChart sCS = new VW_StyleCountChart();
-        //        //sCS.TestView();
-
-        //        VW_SelectDateFromPostedTracks sDFPT = new();
-        //        sDFPT.TestView();
-
-
-        //        VW_StyleCountChart sCC = new();
-        //        sCC.TestView();
-
-
-        //        Console.WriteLine("\nTest Functions:\n");
-        //        FUNC_GetLastDateFromPostedTracks gLDFPT = new();
-        //        gLDFPT.TestFunction();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine("One of the tests failed...");
-        //        Console.WriteLine(ex);
-        //    }
-        //    Console.WriteLine("Tests Passed");
-        //}
-
         private static async System.Threading.Tasks.Task PrintDataAsync()
         {
             using var context = new AppContext();
@@ -274,8 +143,6 @@ namespace vkaudioposter_ef
                 data.AppendLine($"Playlist: {track.Playlist.PlaylistName}");
                 Console.WriteLine(data.ToString());
             }
-
-            //var lastPublised = postedTracks
 
         }
     }

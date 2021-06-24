@@ -64,7 +64,7 @@ namespace vkaudioposter_ef.parser
 
         public int? Count { get; set; }
 
-        public string ImageUrl { get; set; }
+        public string? ImageUrl { get; set; }
 
         //[NotMapped]
         public int? FollowersTotal { get; set; }

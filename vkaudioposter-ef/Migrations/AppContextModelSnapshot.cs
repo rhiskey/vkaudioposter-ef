@@ -101,6 +101,12 @@ namespace vkaudioposter_ef.Migrations
                     b.Property<string>("UserAccesToken")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("VKLogin")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VKPassword")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.ToTable("Configurations");
@@ -185,15 +191,11 @@ namespace vkaudioposter_ef.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasDefaultValue(1)
                         .HasComment("Enabled status. If = 0 - not included, if = 1 - included in parsing");
 
                     b.Property<DateTime>("UpdateDate")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 6, 15, 18, 52, 38, 844, DateTimeKind.Local).AddTicks(1696))
                         .HasComment("Update Date");
 
                     b.Property<string>("Url")
@@ -207,9 +209,6 @@ namespace vkaudioposter_ef.Migrations
                     b.HasIndex("ParserXpathId");
 
                     b.ToTable("console_Photostocks");
-
-                    b
-                        .HasComment("URL list of photostocks");
                 });
 
             modelBuilder.Entity("vkaudioposter_ef.parser.Playlist", b =>
@@ -244,21 +243,14 @@ namespace vkaudioposter_ef.Migrations
                         .HasComment("Name of playlist");
 
                     b.Property<int>("Status")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasDefaultValue(1)
                         .HasComment("Enabled status. If = 0 - not included, if = 1 - included in parsing");
 
                     b.Property<DateTime>("UpdateDate")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 6, 15, 18, 52, 38, 842, DateTimeKind.Local).AddTicks(6404))
                         .HasComment("Update Date");
 
                     b.HasKey("Id");
-
-                    b.HasIndex(new[] { "PlaylistName" }, "Playlist_Name")
-                        .IsUnique();
 
                     b.ToTable("Playlists");
                 });
@@ -281,7 +273,6 @@ namespace vkaudioposter_ef.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<int?>("PlaylistId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int?>("PostId")
@@ -292,8 +283,8 @@ namespace vkaudioposter_ef.Migrations
 
                     b.Property<string>("Trackname")
                         .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
+                        .HasMaxLength(1024)
+                        .HasColumnType("nvarchar(1024)");
 
                     b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
@@ -304,13 +295,7 @@ namespace vkaudioposter_ef.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.HasIndex("Trackname")
-                        .IsUnique();
-
                     b.ToTable("PostedTracks");
-
-                    b
-                        .HasComment("Published tracks info");
                 });
 
             modelBuilder.Entity("vkaudioposter_ef.parser.UnfoundTrack", b =>
@@ -322,21 +307,17 @@ namespace vkaudioposter_ef.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("PlaylistId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("Trackname")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)")
                         .HasColumnName("trackname");
 
                     b.HasKey("Id");
 
                     b.HasIndex("PlaylistId");
-
-                    b.HasIndex("Trackname")
-                        .IsUnique();
 
                     b.ToTable("UnfoundTracks");
                 });
@@ -363,9 +344,7 @@ namespace vkaudioposter_ef.Migrations
                 {
                     b.HasOne("vkaudioposter_ef.parser.Playlist", "Playlist")
                         .WithMany("PostedTracks")
-                        .HasForeignKey("PlaylistId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PlaylistId");
 
                     b.HasOne("vkaudioposter_ef.Model.Post", "Post")
                         .WithMany("PostedTracks")
@@ -380,9 +359,7 @@ namespace vkaudioposter_ef.Migrations
                 {
                     b.HasOne("vkaudioposter_ef.parser.Playlist", "Playlist")
                         .WithMany("UnfoundTracks")
-                        .HasForeignKey("PlaylistId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PlaylistId");
 
                     b.Navigation("Playlist");
                 });

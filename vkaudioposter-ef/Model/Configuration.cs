@@ -58,6 +58,7 @@ namespace vkaudioposter_ef.Model
 
         [Comment("SignalR Hub")]
         public string ConsoleHub { get; set; }
-        //User
+        public string VKLogin { get; set; }
+        public string VKPassword { get; set; }
     }
 }

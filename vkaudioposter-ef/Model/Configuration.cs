@@ -60,5 +60,7 @@ namespace vkaudioposter_ef.Model
         public string ConsoleHub { get; set; }
         public string VKLogin { get; set; }
         public string VKPassword { get; set; }
+
+        public string VKCommunityAccessToken { get; set; }
     }
 }

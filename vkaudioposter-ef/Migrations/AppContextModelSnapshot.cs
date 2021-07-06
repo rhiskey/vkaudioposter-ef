@@ -95,6 +95,10 @@ namespace vkaudioposter_ef.Migrations
                     b.Property<int>("TorPort")
                         .HasColumnType("int");
 
+                    b.Property<bool>("USEApiWS")
+                        .HasColumnType("bit")
+                        .HasComment("VK Audio api api-vk.com");
+
                     b.Property<bool>("UseProxy")
                         .HasColumnType("bit");
 

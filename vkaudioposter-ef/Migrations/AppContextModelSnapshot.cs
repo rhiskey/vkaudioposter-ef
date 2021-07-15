@@ -68,6 +68,9 @@ namespace vkaudioposter_ef.Migrations
                         .HasColumnType("int")
                         .HasComment("VK account");
 
+                    b.Property<string>("RollbarDashToken")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("RollbarToken")
                         .HasColumnType("nvarchar(max)");
 

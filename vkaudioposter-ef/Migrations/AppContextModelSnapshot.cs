@@ -186,6 +186,24 @@ namespace vkaudioposter_ef.Migrations
                     b.ToTable("PostedPhotos");
                 });
 
+            modelBuilder.Entity("vkaudioposter_ef.Model.VKAccounts", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("VKLogin")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VKPassword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("VKAccounts");
+                });
+
             modelBuilder.Entity("vkaudioposter_ef.parser.ConsolePhotostock", b =>
                 {
                     b.Property<int>("Id")

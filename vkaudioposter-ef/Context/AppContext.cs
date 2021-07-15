@@ -20,6 +20,7 @@ namespace vkaudioposter_ef
         public virtual DbSet<PostedPhoto> PostedPhotos { get; set; }
 
         public virtual DbSet<Configuration> Configurations { get; set; }
+        public virtual DbSet<VKAccounts> VKAccounts { get; set; }
 
         /// <summary>
         /// Executes every time when use AppContext

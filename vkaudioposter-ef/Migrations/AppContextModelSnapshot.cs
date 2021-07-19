@@ -111,6 +111,9 @@ namespace vkaudioposter_ef.Migrations
                     b.Property<string>("VKCommunityAccessToken")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("VKCommunityAccessTokenProd")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("VKLogin")
                         .HasColumnType("nvarchar(max)");
 

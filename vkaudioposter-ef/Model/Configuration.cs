@@ -63,6 +63,7 @@ namespace vkaudioposter_ef.Model
         public string VKPassword { get; set; }
 
         public string VKCommunityAccessToken { get; set; }
+        public string VKCommunityAccessTokenProd { get; set; }
 
         [Comment("VK Audio api api-vk.com")]
         public bool USEApiWS { get; set; }

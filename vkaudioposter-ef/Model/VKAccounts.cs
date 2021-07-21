@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -14,5 +15,8 @@ namespace vkaudioposter_ef.Model
 
         public string VKLogin { get; set; }
         public string VKPassword { get; set; }
+
+        [Comment("Can user auth?")]
+        public bool Status { get; set; }
     }
 }

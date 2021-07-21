@@ -199,6 +199,10 @@ namespace vkaudioposter_ef.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit")
+                        .HasComment("Can user auth?");
+
                     b.Property<string>("VKLogin")
                         .HasColumnType("nvarchar(max)");
 

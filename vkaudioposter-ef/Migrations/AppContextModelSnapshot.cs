@@ -125,6 +125,27 @@ namespace vkaudioposter_ef.Migrations
                     b.ToTable("Configurations");
                 });
 
+            modelBuilder.Entity("vkaudioposter_ef.Model.FoundTracks", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("MediaId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("OwnerId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Trackname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FoundTracks");
+                });
+
             modelBuilder.Entity("vkaudioposter_ef.Model.ParserXpath", b =>
                 {
                     b.Property<int>("Id")

@@ -21,7 +21,7 @@ namespace vkaudioposter_ef
 
         public virtual DbSet<Configuration> Configurations { get; set; }
         public virtual DbSet<VKAccounts> VKAccounts { get; set; }
-
+        public virtual DbSet<FoundTracks> FoundTracks { get; set; }
         /// <summary>
         /// Executes every time when use AppContext
         /// </summary>

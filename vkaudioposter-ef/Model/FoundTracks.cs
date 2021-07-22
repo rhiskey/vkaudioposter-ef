@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace vkaudioposter_ef.Model
         [Key]
         public int Id { get; set; }
 
+        [Comment("Fulltrackname")]
         public string Trackname { get; set; } = null!;
         public long? MediaId { get; set; }
         public long? OwnerId { get; set; }

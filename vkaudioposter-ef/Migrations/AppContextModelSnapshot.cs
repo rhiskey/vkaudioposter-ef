@@ -139,7 +139,8 @@ namespace vkaudioposter_ef.Migrations
                         .HasColumnType("bigint");
 
                     b.Property<string>("Trackname")
-                        .HasColumnType("nvarchar(max)")
+                        .HasMaxLength(1024)
+                        .HasColumnType("nvarchar(1024)")
                         .HasComment("Fulltrackname");
 
                     b.HasKey("Id");

@@ -53,6 +53,10 @@ namespace vkaudioposter_ef.Migrations
                         .HasColumnType("int")
                         .HasComment("VK community id");
 
+                    b.Property<decimal>("GroupIdSpotyShare")
+                        .HasColumnType("decimal(20,0)")
+                        .HasComment("VK community id");
+
                     b.Property<int>("HoursPeriod")
                         .HasColumnType("int")
                         .HasComment("Postponed post addition time");

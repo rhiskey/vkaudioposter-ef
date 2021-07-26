@@ -41,6 +41,9 @@ namespace vkaudioposter_ef.Model
         [Comment("VK community id")]
         public int GroupId { get; set; }
 
+        [Comment("VK community id")]
+        public ulong GroupIdSpotyShare { get; set; }
+
         [Comment("VK account to send log messages")]
         public int AdminId { get; set; }
 

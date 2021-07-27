@@ -70,5 +70,9 @@ namespace vkaudioposter_ef.Model
 
         [Comment("VK Audio api api-vk.com")]
         public bool USEApiWS { get; set; }
+
+
+        [Comment("Access token bot")]
+        public string TGAccessToken { get; set; }
     }
 }

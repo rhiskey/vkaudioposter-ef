@@ -92,6 +92,10 @@ namespace vkaudioposter_ef.Migrations
                     b.Property<bool>("StartOnce")
                         .HasColumnType("bit");
 
+                    b.Property<string>("TGAccessToken")
+                        .HasColumnType("nvarchar(max)")
+                        .HasComment("Access token bot");
+
                     b.Property<string>("Token")
                         .HasColumnType("nvarchar(max)")
                         .HasComment("Загрузка фото + публикация треков (сделать через свое приложение)");

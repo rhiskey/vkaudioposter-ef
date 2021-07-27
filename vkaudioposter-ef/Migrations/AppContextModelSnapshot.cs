@@ -16,7 +16,7 @@ namespace vkaudioposter_ef.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.7")
+                .HasAnnotation("ProductVersion", "5.0.8")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("vkaudioposter_ef.Model.Configuration", b =>
@@ -217,6 +217,24 @@ namespace vkaudioposter_ef.Migrations
                     b.HasIndex("PostId");
 
                     b.ToTable("PostedPhotos");
+                });
+
+            modelBuilder.Entity("vkaudioposter_ef.Model.TelegramUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long>("ChatId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("UUID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TelegramUsers");
                 });
 
             modelBuilder.Entity("vkaudioposter_ef.Model.VKAccounts", b =>

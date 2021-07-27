@@ -22,6 +22,7 @@ namespace vkaudioposter_ef
         public virtual DbSet<Configuration> Configurations { get; set; }
         public virtual DbSet<VKAccounts> VKAccounts { get; set; }
         public virtual DbSet<FoundTracks> FoundTracks { get; set; }
+        public virtual DbSet<TelegramUser> TelegramUsers { get; set; }
         /// <summary>
         /// Executes every time when use AppContext
         /// </summary>

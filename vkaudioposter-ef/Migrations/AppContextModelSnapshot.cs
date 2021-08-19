@@ -16,7 +16,7 @@ namespace vkaudioposter_ef.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.8")
+                .HasAnnotation("ProductVersion", "5.0.9")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("vkaudioposter_ef.Model.Configuration", b =>
@@ -34,6 +34,10 @@ namespace vkaudioposter_ef.Migrations
                     b.Property<int>("AdminId")
                         .HasColumnType("int")
                         .HasComment("VK account to send log messages");
+
+                    b.Property<string>("AntiCaptchaSecretKey")
+                        .HasColumnType("nvarchar(max)")
+                        .HasComment("Anticaptcha secret key");
 
                     b.Property<string>("ApiUrl")
                         .HasColumnType("nvarchar(max)")

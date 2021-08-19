@@ -74,5 +74,8 @@ namespace vkaudioposter_ef.Model
 
         [Comment("Access token bot")]
         public string TGAccessToken { get; set; }
+
+        [Comment("Anticaptcha secret key")]
+        public string AntiCaptchaSecretKey { get; set; }
     }
 }

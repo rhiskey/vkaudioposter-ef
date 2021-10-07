@@ -59,6 +59,7 @@ namespace vkaudioposter_ef.Model
         public bool StartOnce { get; set; }
         public string RollbarToken { get; set; }
         public string RollbarDashToken { get; set; }
+        public string RollbarSpotyToVkShareBackendToken { get; set; }
 
         [Comment("SignalR Hub")]
         public string ConsoleHub { get; set; }

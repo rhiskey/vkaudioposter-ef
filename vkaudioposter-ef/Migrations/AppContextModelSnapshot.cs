@@ -238,13 +238,17 @@ namespace vkaudioposter_ef.Migrations
                         .HasColumnName("id")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AccessToken")
-                        .HasColumnType("nvarchar(max)")
-                        .HasComment("add tracks to attachments добавить фото и музыку вложения. Приложение группы доступ к группе, получается в самом приложении в ручную Standalone приложение");
-
                     b.Property<string>("AntiCaptchaSecretKey")
                         .HasColumnType("nvarchar(max)")
                         .HasComment("Anticaptcha secret key");
+
+                    b.Property<decimal>("GroupIdSpotyShare")
+                        .HasColumnType("decimal(20,0)")
+                        .HasComment("VK community id");
+
+                    b.Property<string>("KateMobileToken")
+                        .HasColumnType("nvarchar(max)")
+                        .HasComment("Загрузка треков");
 
                     b.Property<string>("RollbarBackendToken")
                         .HasColumnType("nvarchar(max)");

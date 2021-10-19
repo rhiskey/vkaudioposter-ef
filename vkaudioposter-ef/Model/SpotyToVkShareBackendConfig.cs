@@ -15,10 +15,12 @@ namespace vkaudioposter_ef.Model
         [Required]
         public string SpotifyClientSecret { get; set; }
         public string RollbarBackendToken { get; set; }
-        
-        [Comment("add tracks to attachments добавить фото и музыку вложения. Приложение группы доступ к группе, получается в самом приложении в ручную Standalone приложение")]
-        public string AccessToken { get; set; }
+
         public string VKCommunityAccessTokenProd { get; set; }
+        [Comment("Загрузка треков")]
+        public string KateMobileToken { get; set; }
+        [Comment("VK community id")]
+        public ulong GroupIdSpotyShare { get; set; }
 
         [Comment("Anticaptcha secret key")]
         public string AntiCaptchaSecretKey { get; set; }

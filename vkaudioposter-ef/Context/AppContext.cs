@@ -23,6 +23,9 @@ namespace vkaudioposter_ef
         public virtual DbSet<VKAccounts> VKAccounts { get; set; }
         public virtual DbSet<FoundTracks> FoundTracks { get; set; }
         public virtual DbSet<TelegramUser> TelegramUsers { get; set; }
+
+        public virtual DbSet<SpotyToVkShareBackendConfig> SpotyToVkShareBackendConfigs { get; set; }
+        
         /// <summary>
         /// Executes every time when use AppContext
         /// </summary>

@@ -230,6 +230,41 @@ namespace vkaudioposter_ef.Migrations
                     b.ToTable("PostedPhotos");
                 });
 
+            modelBuilder.Entity("vkaudioposter_ef.Model.SpotyToVkShareBackendConfig", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AccessToken")
+                        .HasColumnType("nvarchar(max)")
+                        .HasComment("add tracks to attachments добавить фото и музыку вложения. Приложение группы доступ к группе, получается в самом приложении в ручную Standalone приложение");
+
+                    b.Property<string>("AntiCaptchaSecretKey")
+                        .HasColumnType("nvarchar(max)")
+                        .HasComment("Anticaptcha secret key");
+
+                    b.Property<string>("RollbarBackendToken")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpotifyClientId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpotifyClientSecret")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VKCommunityAccessTokenProd")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SpotyToVkShareBackendConfigs");
+                });
+
             modelBuilder.Entity("vkaudioposter_ef.Model.TelegramUser", b =>
                 {
                     b.Property<int>("Id")

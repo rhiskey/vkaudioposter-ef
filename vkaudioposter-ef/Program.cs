@@ -28,9 +28,9 @@ namespace vkaudioposter_ef
             db = DotNetEnv.Env.GetString("MSSQL_DATABASE_NAME");
             connStr = $"Server={server};Database={db};User Id={user};Password={pass};MultipleActiveResultSets=true";
         }
-        private static void MainEf(string[] args)
+        private static void Main(string[] args)
         {
-            //LoadConfig();
+            LoadConfig();
 
             //InsertData(false);
             //CreateStoredProceduresViewsAndFunctions(false);

@@ -20,7 +20,7 @@ namespace vkaudioposter_ef.Migrations
                 .HasAnnotation("ProductVersion", "6.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, (int)1L, 1);
 
             modelBuilder.Entity("vkaudioposter_ef.Model.Configuration", b =>
                 {
@@ -29,7 +29,7 @@ namespace vkaudioposter_ef.Migrations
                         .HasColumnType("int")
                         .HasColumnName("id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), (int)1L, 1);
 
                     b.Property<string>("AccessToken")
                         .HasColumnType("nvarchar(max)")
@@ -150,7 +150,7 @@ namespace vkaudioposter_ef.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), (int)1L, 1);
 
                     b.Property<long?>("MediaId")
                         .HasColumnType("bigint");
@@ -174,7 +174,7 @@ namespace vkaudioposter_ef.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), (int)1L, 1);
 
                     b.Property<string>("Xpath")
                         .HasMaxLength(1024)
@@ -197,7 +197,7 @@ namespace vkaudioposter_ef.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), (int)1L, 1);
 
                     b.Property<string>("Message")
                         .HasColumnType("nvarchar(max)");
@@ -222,7 +222,7 @@ namespace vkaudioposter_ef.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), (int)1L, 1);
 
                     b.Property<int?>("PostId")
                         .HasColumnType("int");
@@ -245,7 +245,7 @@ namespace vkaudioposter_ef.Migrations
                         .HasColumnType("int")
                         .HasColumnName("id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), (int)1L, 1);
 
                     b.Property<string>("AntiCaptchaSecretKey")
                         .HasColumnType("nvarchar(max)")
@@ -301,7 +301,7 @@ namespace vkaudioposter_ef.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), (int)1L, 1);
 
                     b.Property<long>("ChatId")
                         .HasColumnType("bigint");
@@ -320,7 +320,7 @@ namespace vkaudioposter_ef.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), (int)1L, 1);
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit")
@@ -344,7 +344,7 @@ namespace vkaudioposter_ef.Migrations
                         .HasColumnType("int")
                         .HasColumnName("id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), (int)1L, 1);
 
                     b.Property<int?>("ParserXpathId")
                         .HasColumnType("int");
@@ -377,7 +377,7 @@ namespace vkaudioposter_ef.Migrations
                         .HasColumnType("int")
                         .HasColumnName("id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), (int)1L, 1);
 
                     b.Property<int?>("Count")
                         .HasColumnType("int");
@@ -422,7 +422,7 @@ namespace vkaudioposter_ef.Migrations
                         .HasColumnType("int")
                         .HasColumnName("id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), (int)1L, 1);
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("DATETIME");
@@ -466,7 +466,7 @@ namespace vkaudioposter_ef.Migrations
                         .HasColumnType("int")
                         .HasColumnName("id");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), (int)1L, 1);
 
                     b.Property<int?>("PlaylistId")
                         .HasColumnType("int");

@@ -15,8 +15,9 @@ namespace vkaudioposter_ef.Model
         public int Id { get; set; }
 
         [Comment("Fulltrackname")]
-        [Column(TypeName = "nvarchar(1024)")]
-        [MaxLength(1024)]
+        /// For MSSQL
+        //[Column(TypeName = "nvarchar(1024)")]
+        //[MaxLength(1024)]
         public string Trackname { get; set; } = null!;
         public long? MediaId { get; set; }
         public long? OwnerId { get; set; }

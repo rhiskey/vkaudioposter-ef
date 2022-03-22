@@ -9,20 +9,20 @@ namespace vkaudioposter_ef
     {
         private static string db_server, db_user, db_password, db_name;
 
-        public virtual DbSet<Playlist> Playlists { get; set; }
-        public virtual DbSet<ConsolePhotostock> Photostocks { get; set; }
-        public virtual DbSet<ParserXpath> ParserXpaths { get; set; }
-        public virtual DbSet<PostedTrack> PostedTracks { get; set; }
-        public virtual DbSet<UnfoundTrack> UnfoundTracks { get; set; }
+        //public virtual DbSet<Playlist> Playlists { get; set; }
+        //public virtual DbSet<ConsolePhotostock> Photostocks { get; set; }
+        //public virtual DbSet<ParserXpath> ParserXpaths { get; set; }
+        //public virtual DbSet<PostedTrack> PostedTracks { get; set; }
+        //public virtual DbSet<UnfoundTrack> UnfoundTracks { get; set; }
 
 
-        public virtual DbSet<Post> Posts { get; set; }
-        public virtual DbSet<PostedPhoto> PostedPhotos { get; set; }
+        //public virtual DbSet<Post> Posts { get; set; }
+        //public virtual DbSet<PostedPhoto> PostedPhotos { get; set; }
 
-        public virtual DbSet<Configuration> Configurations { get; set; }
+        //public virtual DbSet<Configuration> Configurations { get; set; }
         public virtual DbSet<VKAccounts> VKAccounts { get; set; }
         public virtual DbSet<FoundTracks> FoundTracks { get; set; }
-        public virtual DbSet<TelegramUser> TelegramUsers { get; set; }
+        //public virtual DbSet<TelegramUser> TelegramUsers { get; set; }
 
         public virtual DbSet<SpotyToVkShareBackendConfig> SpotyToVkShareBackendConfigs { get; set; }
         public virtual DbSet<SpotyVKUser> SpotyVKUsers { get; set; }
@@ -40,14 +40,16 @@ namespace vkaudioposter_ef
             db_password = DotNetEnv.Env.GetString("MSSQL_PASSWORD");
             db_name = DotNetEnv.Env.GetString("MSSQL_DATABASE_NAME");
 
-            string connstr = $"Server={db_server};Database={db_name};User Id={db_user};Password={db_password};MultipleActiveResultSets=true";
-            optionsBuilder.UseSqlServer(connstr);
+            //string connstr = $"Server={db_server};Database={db_name};User Id={db_user};Password={db_password};MultipleActiveResultSets=true";
+            //optionsBuilder.UseSqlServer(connstr);
+            optionsBuilder.UseNpgsql($"Host={db_server};Database={db_name};Username={db_user};Password={db_password}");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // PgSQL
+            modelBuilder.HasDefaultSchema("public");
             base.OnModelCreating(modelBuilder);
-
         }
     }
 }

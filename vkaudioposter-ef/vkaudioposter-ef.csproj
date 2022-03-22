@@ -31,10 +31,14 @@
 
   <ItemGroup>
     <None Remove=".env" />
+    <None Remove="mssql.env" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include=".env">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mssql.env">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -50,6 +54,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.10" />
   </ItemGroup>
 
 </Project>

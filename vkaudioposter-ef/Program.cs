@@ -22,10 +22,10 @@ namespace vkaudioposter_ef
         public static void LoadConfig()
         {
             DotNetEnv.Env.TraversePath().Load();
-            server = DotNetEnv.Env.GetString("MSSQL_SERVER");
-            user = DotNetEnv.Env.GetString("MSSQL_USER");
-            pass = DotNetEnv.Env.GetString("MSSQL_PASSWORD");
-            db = DotNetEnv.Env.GetString("MSSQL_DATABASE_NAME");
+            server = DotNetEnv.Env.GetString("DB_SERVER");
+            user = DotNetEnv.Env.GetString("DB_USER");
+            pass = DotNetEnv.Env.GetString("DB_PASSWORD");
+            db = DotNetEnv.Env.GetString("DB_NAME");
             connStr = $"Server={server};Database={db};User Id={user};Password={pass};MultipleActiveResultSets=true";
         }
         private static void Main(string[] args)

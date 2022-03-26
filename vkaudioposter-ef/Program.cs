@@ -1,11 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Text;
-using vkaudioposter_ef.Model;
-using vkaudioposter_ef.parser;
-
-
-namespace vkaudioposter_ef
+﻿namespace vkaudioposter_ef
 {
     public class Program
     {

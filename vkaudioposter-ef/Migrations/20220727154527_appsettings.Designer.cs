@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using vkaudioposter_ef;
@@ -9,9 +10,10 @@ using vkaudioposter_ef;
 namespace vkaudioposter_ef.Migrations
 {
     [DbContext(typeof(AppContext))]
-    partial class AppContextModelSnapshot : ModelSnapshot
+    [Migration("20220727154527_appsettings")]
+    partial class appsettings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -97,10 +99,6 @@ namespace vkaudioposter_ef.Migrations
                         .HasColumnType("text")
                         .HasComment("Ad text on card");
 
-                    b.Property<string>("AdTextSecond")
-                        .HasColumnType("text")
-                        .HasComment("Ad text on card");
-
                     b.Property<string>("AdUrl")
                         .HasColumnType("text")
                         .HasComment("Ad link, on tap open");
@@ -113,22 +111,6 @@ namespace vkaudioposter_ef.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AppSettings");
-                });
-
-            modelBuilder.Entity("vkaudioposter_ef.Model.SpotyVK.VKParams", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<long>("TopicId")
-                        .HasColumnType("bigint")
-                        .HasComment("Board Topic to track feed");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("VKParams");
                 });
 
             modelBuilder.Entity("vkaudioposter_ef.Model.SpotyVKUser", b =>
